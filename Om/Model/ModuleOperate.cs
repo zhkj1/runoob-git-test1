@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MallWCF.DBHelper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-   public  class ModuleOperate
+    [PrimaryKey("ModuleOperateId")]
+    public  class ModuleOperate
     {
         public int ModuleOperateId { get; set; }
 

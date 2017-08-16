@@ -3,7 +3,7 @@
 @{
     Layout = null;
 }
-@model Model.User
+@model Model.BaseUser
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,7 +55,7 @@
                 </div>
             }
            
-            <div class="row cl">
+            @*<div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
                 <div class="formControls col-xs-8 col-sm-9 skin-minimal">
                      <div class="radio-box">
@@ -67,7 +67,7 @@
                         <label for="sex-2">女</label>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
                 <div class="formControls col-xs-8 col-sm-9">
@@ -120,7 +120,7 @@ $(function(){
 		rules:{
 		    Account: {
 				required:true,
-				minlength:4,
+				minlength:2,
 				maxlength:16
 			},
 		    UserPassword: {
@@ -130,20 +130,13 @@ $(function(){
 				required:true,
 				equalTo: "#UserPassword"
 			},
-			sex:{
-				required:true,
-			},
-			phone:{
-				required:true,
+			Mobile: {
 				isPhone:true,
 			},
-			email:{
-				required:true,
+			Email: {
 				email:true,
-			},
-			adminRole:{
-				required:true,
-			},
+			}
+			
 		},
 		onkeyup:false,
 		focusCleanup:true,

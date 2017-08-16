@@ -1,6 +1,7 @@
 ﻿using DAL;
 using DLL;
 using MallWCF.DBHelper;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,28 @@ namespace BLL
         public DataTable GetPageList(ref JqGridParam jqgridparam)
         {
             return UserDal.GetInstance().GetPageList(ref jqgridparam);
+        }
+        public BaseUser UserLogin(string Account, string Password, out int result)
+        {
+            return UserDal.GetInstance().UserLogin(Account, Password, out result);
+        }
+                //添加用户
+        public Dictionary<string,object> AddUser(BaseUser model, int CreateUserId)
+        {
+            if (UserDal.GetInstance().AddUser(model, CreateUserId) > 0)
+            {
+                return new Dictionary<string, object>
+               {
+                   { "code",1}
+               };
+            }
+            else
+            {
+               return new Dictionary<string, object>
+               {
+                   { "code",0}
+               };
+            }
         }
     }
 }

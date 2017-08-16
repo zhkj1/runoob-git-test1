@@ -1,4 +1,5 @@
-﻿using MallWCF.DBHelper;
+﻿using LeaRun.Utilities;
+using MallWCF.DBHelper;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-   public  class UserDal: RepositoryFactory<User>
+   public  class UserDal: RepositoryFactory<BaseUser>
     {
         private static UserDal _instance;
         private static object _object = new Object();
@@ -37,9 +38,56 @@ namespace DAL
         {
             StringBuilder strSql = new StringBuilder();
             List<DbParameter> parameter = new List<DbParameter>();
-            strSql.Append(@"select UserId,Account from BaseUser ");
+            strSql.Append(@"select UserId,Account,Mobile, Email,CreateTime from BaseUser");
             return Repository().FindTablePageBySql(strSql.ToString(),ref jqgridparam);
+        }
+        //登录
+        public BaseUser UserLogin(string Account, string Password,out int result)
+        {
+            BaseUser entity = Repository().FindEntity("Account", Account);
+            if (entity != null && entity.UserId > 0)
+            {
+                //有效
+                if (entity.Enabled == 1)
+                {
+                    string dbPassword = Md5Helper.MD5(DESEncrypt.Encrypt(Password.ToLower(), "qwertyui"));
+                    if (dbPassword == entity.UserPassword)
+                    {
+                        if (entity.LastVisit.HasValue)
+                        {
+                            entity.PreviousVisit = entity.LastVisit.Value;
+                         }
+                        entity.LastVisit = DateTime.Now;
+                        int LogOnCount = CommonHelper.GetInt(entity.LogOnCount) + 1;
+                        Repository().Update(entity);
+                        result = 1;
+                    }
+                    else
+                    {
+                        //密码错误
+                        result =3;
+                    }
+                }
+                else
+                {
+                    //禁用
+                    result = 2;
+                }
+                return entity;
+             }
+                //用户名不存在
+                result = 0;
+                return null;
 
+
+        }
+
+        public int AddUser(BaseUser model,int CreateUserId)
+        {
+            model.CreateUserId = CreateUserId;
+            model.CreateTime = DateTime.Now;
+            model.Enabled = 1;
+             return Repository().Insert(model);
         }
     }
 }

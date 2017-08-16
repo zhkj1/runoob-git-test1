@@ -43,6 +43,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="ModuleBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysLogBll.cs" />
     <Compile Include="UserBll.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +58,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{99CBD13F-1883-48A5-9967-BD8594B7F5FF}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{F2D9CE2F-5E95-4D09-8FB0-35453DD37D80}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

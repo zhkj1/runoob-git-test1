@@ -1,4 +1,5 @@
 ﻿using BLL;
+using LeaRun.Utilities;
 using MallWCF.DBHelper;
 using Model;
 using System;
@@ -29,14 +30,10 @@ namespace Om.Controllers
 
         }
         [HttpPost]
-        public Dictionary<string, object> CreateUser(User model)
+        public Dictionary<string, object> CreateUser(BaseUser model)
         {
-            return new Dictionary<string, object>
-            {
-                { "code",0}
-            };
-
-                
+            model.UserPassword= Md5Helper.MD5(DESEncrypt.Encrypt(model.UserPassword.ToLower(), "qwertyui"));
+            return UserBll.AddUser(model, 1);
         }
     }
 }
