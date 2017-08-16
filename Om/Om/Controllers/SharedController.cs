@@ -1,0 +1,21 @@
+﻿using BLL;
+using Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace Om.Controllers
+{
+    public class SharedController : Controller
+    {
+        // GET: Share
+        public PartialViewResult Menu()
+        {
+            ModuleBll Bll = new ModuleBll();
+            List<Module> list = Bll.GetModuleList();
+            return PartialView(list);
+        }
+    }
+}
