@@ -26,3 +26,8 @@ D:\李曙光\Git\Om\BLL\bin\Debug\Utilities.pdb
 D:\李曙光\Git\Om\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 D:\李曙光\Git\Om\BLL\obj\Debug\BLL.dll
 D:\李曙光\Git\Om\BLL\obj\Debug\BLL.pdb
+D:\李曙光\Git\Om\BLL\bin\Debug\System.Web.Mvc.dll
+D:\李曙光\Git\Om\BLL\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\李曙光\Git\Om\BLL\bin\Debug\System.Web.Mvc.xml
+D:\李曙光\Git\Om\BLL\bin\Debug\Microsoft.Web.Infrastructure.xml
+D:\李曙光\Git\Om\BLL\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll

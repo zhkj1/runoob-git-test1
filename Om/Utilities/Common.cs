@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Utilities
 {
-   public  class Common
+    //静态拓展类
+   public static class Common
     {
+        public static void get()
+        {
+           //(Enum)Utilities.OperationType
+         
+
+
+        }
         
     }
 }

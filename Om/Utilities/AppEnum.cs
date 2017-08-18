@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,5 +57,21 @@ namespace Utilities
         Abnormal=2
 
     }
-  
+    public enum ModuleType
+    {
+      [Description("显示")]
+        Show =1,
+      [Description("隐藏")]
+        Hide =0
+    }
+    /// <summary>
+    /// 获取SelectListItem列表是否给个请选择
+    /// </summary>
+    public enum SelectListItemSelect
+    {
+         Ok=1,
+         No=0
+    }
+
+
 }

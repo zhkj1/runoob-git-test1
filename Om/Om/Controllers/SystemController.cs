@@ -1,4 +1,6 @@
-﻿using Om.UserAttribute;
+﻿using BLL;
+using Model;
+using Om.UserAttribute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,9 @@ namespace Om.Controllers
         // GET: System
         public ActionResult ModuleManage()
         {
-            return View();
+            ModuleBll Bll = new ModuleBll();
+            List<Module> list = Bll.GetModuleList();
+            return View(list);
         }
         public ActionResult RoleManage()
         {
@@ -27,5 +31,39 @@ namespace Om.Controllers
         {
             return View();
         }
+
+        public ActionResult ModuleAdd()
+        {
+            ModuleBll Bll = new ModuleBll();
+            List<Module> list = Bll.GetModuleList();
+            list = list.Where(a => a.ParentId == 0).ToList();
+            ViewBag.ModuleParentList = list;
+            return View();
+        }
+
+        public ActionResult OperateManage()
+        {
+            return View();
+        }
+
+        public ActionResult OperateList(int moduleid)
+        {
+            ModuleOperateBll Bll = new ModuleOperateBll();
+            List<ModuleOperate> list = Bll.GetModuleOperateListByModuleId(moduleid);
+            return View(list);
+        }
+
+        public ActionResult OperateAdd()
+        {
+          
+            ModuleOperate model = new ModuleOperate();
+            model.ModuleId = int.Parse(Request.QueryString["moduleid"]);
+            if (Request.QueryString["id"] == null)
+            {
+                model.Enabled = 1;
+            }
+            return View(model);
+        }
+
     }
 }

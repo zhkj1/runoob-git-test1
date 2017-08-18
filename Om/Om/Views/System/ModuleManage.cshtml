@@ -1,8 +1,7 @@
 ﻿@{
     ViewBag.Title = "模块管理";
 }
-
-
+@model List<Model.Module>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 评论管理 <span class="c-gray en">&gt;</span> 意见反馈 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="Hui-article">
     <article class="cl pd-20">
@@ -15,27 +14,63 @@
             <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜意见</button>
         </div>
         <div class="cl pd-5 bg-1 bk-gray mt-20">
-            <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加用户','/System/UserAdd','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
-            <span class="r">共有数据：<strong>54</strong> 条</span>
+            <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加模块', '/System/ModuleAdd', '800', '500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
+           
         </div>
         <table class="table table-border table-bordered table-bg">
             <thead>
                 <tr>
-                    <th scope="col" colspan="9">员工列表</th>
+                    <th scope="col" colspan="9">模块列表</th>
                 </tr>
                 <tr class="text-c">
                     <th width="25"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
-                    <th width="150">登录名</th>
-                    <th width="90">手机</th>
-                    <th width="150">邮箱</th>
-                    <th>角色</th>
-                    <th width="130">加入时间</th>
-                    <th width="100">是否已启用</th>
-                    <th width="100">操作</th>
-                </tr>
+                    <th>模块名称</th>
+                    <th width="150">模块地址</th>
+                    <th width="150">模块图标</th>
+                    <th width="130">是否显示</th>
+                 </tr>
             </thead>
             <tbody id="view1">
+               @foreach (var item in Model.Where(a=>a.ParentId==0))
+               {
+                  
+
+                <tr class="text-c">
+                    <td><input type="checkbox" value="@item.ModuleId" name=""></td>
+                    <td>@item.ModuleId</td>
+                    <td class="text-l">@item.ModuleName</td>
+                    <td></td>
+                    <td><i class="Hui-iconfont">@Html.Raw(item.Icon)</i></td>
+                      @if (item.IsShow == 1)
+                      {
+                          <td>显示</td>
+                      }
+                      else
+                      {
+                        <td>隐藏</td>
+                      }
+                   
+                </tr>
+                   foreach (var item1 in Model.Where(a => a.ParentId == item.ModuleId))
+                   {
+                    <tr class="text-c">
+                        <td ><input type="checkbox" value="@item1.ModuleId" name=""></td>
+                        <td>@item1.ModuleId</td>
+                        <td class="text-l">&nbsp;&nbsp;├&nbsp;@item1.ModuleName</td>
+                        <td>@item1.ControllerName/@item1.ActionName</td>
+                        <td>@Html.Raw(item1.Icon)</td>
+                        @if (item1.IsShow == 1)
+                        {
+                            <td>显示</td>
+                        }
+                        else
+                        {
+                            <td>隐藏</td>
+                        }
+                    </tr>
+                   }
+               }
                 @*<tr class="text-c">
                         <td><input type="checkbox" value="1" name=""></td>
                         <td>1</td>
@@ -105,8 +140,7 @@
     <script type="text/javascript">
     $(function ()
     {
-        alert("123");
-        demo(1);
+       
     }
     )
     function demo(page) {
@@ -119,13 +153,18 @@
             for (var i = 0; i < res.rows.length; i++) {
                 strhtml+="<tr class=\"text-c\">";
                 strhtml+="<td><input type=\"checkbox\" value=\"1\" name=\"\"></td>";
+                strhtml += "<td >" + res.rows[i].userid + "</td>";
+                if (i == 1 || i == 5) {
+                    strhtml += "<td class=\"text-l\">" + res.rows[i].account + "</td>";
+
+                }
+                else {
+                    strhtml += "<td class=\"text-l\">&nbsp;&nbsp;├&nbsp;" + res.rows[i].account + "</td>";
+
+                }
                 strhtml += "<td>" + res.rows[i].userid + "</td>";
                 strhtml += "<td>" + res.rows[i].userid + "</td>";
                 strhtml += "<td>" + res.rows[i].userid + "</td>";
-                strhtml += "<td>" + res.rows[i].userid + "</td>";
-                strhtml += "<td>" + res.rows[i].userid + "</td>";
-                strhtml += "<td>" + res.rows[i].userid + "</td>";
-                strhtml += "<td class=\"text-l\">" + res.rows[i].account + "</td>";
                 strhtml+="<td class=\"td-manage\"><a title=\"编辑\" href=\"javascript:;\" onclick=\"member_edit('编辑','member-add.html','4','','510')\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe6df;</i></a> <a title=\"删除\" href=\"javascript:;\" onclick=\"member_del(this,'1')\" class=\"ml-5\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td> ";
                 strhtml+="</tr>"
 

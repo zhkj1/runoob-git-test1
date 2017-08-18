@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ModuleDal.cs" />
+    <Compile Include="ModuleOperateDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysLogDal.cs" />
     <Compile Include="UserDal.cs" />

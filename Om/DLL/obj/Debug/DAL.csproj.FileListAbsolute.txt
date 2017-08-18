@@ -22,3 +22,8 @@ D:\李曙光\Git\Om\DLL\bin\Debug\Newtonsoft.Json.xml
 D:\李曙光\Git\Om\DLL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 D:\李曙光\Git\Om\DLL\obj\Debug\DLL.dll
 D:\李曙光\Git\Om\DLL\obj\Debug\DLL.pdb
+D:\李曙光\Git\Om\DLL\bin\Debug\System.Web.Mvc.dll
+D:\李曙光\Git\Om\DLL\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\李曙光\Git\Om\DLL\bin\Debug\System.Web.Mvc.xml
+D:\李曙光\Git\Om\DLL\bin\Debug\Microsoft.Web.Infrastructure.xml
+D:\李曙光\Git\Om\DLL\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll

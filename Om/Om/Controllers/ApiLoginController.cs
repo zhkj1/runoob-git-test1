@@ -36,7 +36,7 @@ namespace Om.Controllers
                 case 1:
                     IManageUser mangeuser = new IManageUser();
                     mangeuser.UserId = base_user.UserId;
-                    
+                    mangeuser.Account = base_user.Account;
                     mangeuser.IPAddress = IPAddress;
                     mangeuser.IPAddressName = IPAddressName;
                     ManageProvider.Provider.AddCurrent(mangeuser);

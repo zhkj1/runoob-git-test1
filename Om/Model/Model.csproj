@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelView\ModuleViewModel.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="ModuleOperate.cs" />
     <Compile Include="ModuleOperateRole.cs" />

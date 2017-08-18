@@ -5,3 +5,8 @@ D:\李曙光\Git\Om\Utilities\obj\Debug\Utilities.dll
 D:\李曙光\Git\Om\Utilities\obj\Debug\Utilities.pdb
 D:\李曙光\Git\Om\Utilities\bin\Debug\Newtonsoft.Json.dll
 D:\李曙光\Git\Om\Utilities\bin\Debug\Newtonsoft.Json.xml
+D:\李曙光\Git\Om\Utilities\bin\Debug\System.Web.Mvc.dll
+D:\李曙光\Git\Om\Utilities\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\李曙光\Git\Om\Utilities\bin\Debug\System.Web.Mvc.xml
+D:\李曙光\Git\Om\Utilities\bin\Debug\Microsoft.Web.Infrastructure.xml
+D:\李曙光\Git\Om\Utilities\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll

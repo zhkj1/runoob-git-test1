@@ -237,3 +237,5 @@ D:\李曙光\Git\Om\Om\obj\Debug\Om.dll
 D:\李曙光\Git\Om\Om\obj\Debug\Om.pdb
 D:\李曙光\Git\Om\Om\bin\Utilities.dll
 D:\李曙光\Git\Om\Om\bin\Utilities.pdb
+D:\李曙光\Git\Om\Om\bin\AutoMapper.dll
+D:\李曙光\Git\Om\Om\bin\AutoMapper.xml

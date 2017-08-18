@@ -24,5 +24,12 @@ namespace Model
 
         public int ModuleId { get; set; }
 
+        public string JsEvent { get; set; }
+
+        public string Icon { get; set; }
+
+        public string Code { get; set; }
+
+         public int Sort { get; set; }
     }
 }

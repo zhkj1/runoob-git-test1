@@ -28,7 +28,7 @@ namespace LeaRun.Utilities
         /// <returns></returns>
         public static string Encrypt(string Text)
         {
-            return Encrypt(Text, "adminqwe1111");
+            return Encrypt(Text, "adminqwe");
         }
         /// <summary> 
         /// 加密数据 
@@ -72,7 +72,7 @@ namespace LeaRun.Utilities
         {
             if (!string.IsNullOrEmpty(Text))
             {
-                return Decrypt(Text, "adminqwe1111");
+                return Decrypt(Text, "adminqwe");
               
             }
             else
