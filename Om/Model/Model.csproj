@@ -45,6 +45,7 @@
     <Compile Include="ModuleOperate.cs" />
     <Compile Include="ModuleOperateRole.cs" />
     <Compile Include="ModuleRole.cs" />
+    <Compile Include="OpeateModuleView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="BaseUser.cs" />

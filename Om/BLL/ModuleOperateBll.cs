@@ -18,6 +18,10 @@ namespace BLL
         {
             return ModuleOperateDal.GetInstance().GetModuleOperateListByModuleId(moduleid);
         }
+        public List<ModuleOperate> GetList()
+        {
+            return ModuleOperateDal.GetInstance().GetList();
+        }
 
     }
 }

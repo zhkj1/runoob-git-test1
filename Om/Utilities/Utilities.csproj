@@ -77,6 +77,8 @@
     <Compile Include="Base.Web\IPScanerHelper.cs" />
     <Compile Include="Base.Web\SessionHelper.cs" />
     <Compile Include="Base.Web\ToState.cs" />
+    <Compile Include="Cache\CacheHelper.cs" />
+    <Compile Include="Cache\DataCache.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

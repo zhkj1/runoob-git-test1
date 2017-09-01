@@ -9,9 +9,10 @@ using System.Web.Mvc;
 
 namespace Om.Controllers
 {
-    [LoginAuthorizeAttribute]
+    [LoginAuthorize]
     public class SystemController : Controller
     {
+       // [ModuleAuthorize]
         // GET: System
         public ActionResult ModuleManage()
         {
@@ -21,7 +22,9 @@ namespace Om.Controllers
         }
         public ActionResult RoleManage()
         {
-            return View();
+            RoleBll Bll = new RoleBll();
+            var modellist = Bll.GetRoleList();
+            return View(modellist);
         }
         public ActionResult UserManage()
         {
@@ -64,6 +67,9 @@ namespace Om.Controllers
             }
             return View(model);
         }
-
+        public ActionResult RoleModuleOperate()
+        {
+            return View();
+        }
     }
 }

@@ -44,7 +44,6 @@
             </div>
             <div class="cl pd-5 bg-1 bk-gray mt-20">
                 <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加模块', '/System/OperateAdd?moduleid=@Request.QueryString["moduleid"]', '800', '500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
-
             </div>
             <table class="table table-border table-bordered table-bg">
                 <thead>
@@ -65,7 +64,7 @@
                     {
                         <tr class="text-c">
                             <td><input type="checkbox" value="@item.ModuleOperateId" name=""></td>
-                            <td>@item.ModuleId</td>
+                            <td>@item.ModuleOperateId</td>
                             <td class="text-l">@item.ModuleOperateName</td>
                             <td>@item.JsEvent</td>
                             <td><i class="Hui-iconfont">@Html.Raw(item.Icon)</i></td>

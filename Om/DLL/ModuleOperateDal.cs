@@ -38,5 +38,9 @@ namespace DAL
         {
             return Repository().FindList("ModuleId", moduleid.ToString());
         }
+        public List<ModuleOperate> GetList()
+        {
+            return Repository().FindList();
+        }
     }
 }
