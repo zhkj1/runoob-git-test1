@@ -325,5 +325,64 @@ namespace DAL
             }
         }
 
+
+        public void WriteLog<T>(List<T> obj, OperationType type, int Status, string Remark = "") where T : new()
+        {
+            IDatabase database = DataFactory.Database();
+            DbTransaction isOpenTrans = database.BeginTrans();
+            try
+            {
+                foreach (var item in obj)
+                {
+                    // T Oldentity = database.FindEntity<T>(item.ToString());
+                    SysLog.ObjectId = DatabaseCommon.GetKeyFieldValue(item).ToString();
+                    SysLog.LogType = (int)type;
+                    SysLog.IPAddress = ManageProvider.Provider.Current().IPAddress;
+                    SysLog.IPAddressName = ManageProvider.Provider.Current().IPAddressName;
+                    SysLog.CreateUserId = ManageProvider.Provider.Current().UserId;
+                    SysLog.CreateUserName = ManageProvider.Provider.Current().Account;
+                    SysLog.CreateTime = DateTime.Now;
+                    SysLog.ModuleId = int.Parse(DESEncrypt.Decrypt(CookieHelper.GetCookie("ModuleId")));
+                    if (Remark == "")
+                    {
+                        SysLog.Remark = DatabaseCommon.GetClassName<T>();
+                    }
+                    else
+                    {
+                        SysLog.Remark = Remark;
+                    }
+
+                    SysLog.Status = Status;
+                    int newid = database.Insert(SysLog, isOpenTrans);
+                    //添加日志详细信息
+                    Type objTye = typeof(T);
+                    StringBuilder sbOldValue = new StringBuilder();
+                    foreach (PropertyInfo pi in objTye.GetProperties())
+                    {
+                        object value = pi.GetValue(item, null);
+                        if (value != null && value.ToString() != "&nbsp;" && value.ToString() != "")
+                        {
+
+                            sbOldValue.Append(pi.Name + ":" + value + ",");
+
+                        }
+                    }
+                    SysLogDetail syslogdetail = new SysLogDetail();
+
+                    syslogdetail.SysLogId = newid;
+                    syslogdetail.PropertyField = "";
+                    syslogdetail.PropertyName = "";
+                    syslogdetail.NewValue = sbOldValue.ToString();
+                    syslogdetail.CreateTime = DateTime.Now;
+                    database.Insert(syslogdetail, isOpenTrans);
+                }
+                database.Commit();
+            }
+            catch
+            {
+                database.Rollback();
+            }
+        }
+
     }
 }

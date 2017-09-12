@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelView\ModuleViewModel.cs" />
+    <Compile Include="ModelView\UserRoleViewModel.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="ModuleOperate.cs" />
     <Compile Include="ModuleOperateRole.cs" />

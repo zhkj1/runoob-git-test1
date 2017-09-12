@@ -34,5 +34,10 @@ namespace BLL
         {
             SysLogDal.GetInstance().WriteLog<T>(obj, Status, Remark);
         }
+
+        public void WriteLog<T>(List<T> obj, OperationType type,int Status, string Remark = "") where T : new()
+        {
+            SysLogDal.GetInstance().WriteLog<T>(obj, type, Status, Remark);
+        }
     }
 }

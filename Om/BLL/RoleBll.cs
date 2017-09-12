@@ -1,5 +1,6 @@
 ﻿using DAL;
 using LeaRun.Utilities;
+using MallWCF.DBHelper;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,26 @@ namespace BLL
         public Role GetModel(int roleId)
         {
             return RoleDal.GetInstance().GetModel(roleId);
+        }
+        //通过角色获取用列表
+        public string GetRoleUserByRoleId(int roleid)
+        {
+            IDatabase database = DataFactory.Database();
+           var ds=  database.FindDataSetBySql("select Account from BaseUser where userId in  (select UserId from UserRole where RoleId=" + roleid + ")");
+            StringBuilder sbUserName = new StringBuilder();
+            if (ds.Tables[0].Rows.Count == 0)
+            {
+                return "";
+            }
+            else
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    sbUserName.Append(ds.Tables[0].Rows[i]["Account"].ToString() + ",");
+                }
+                return sbUserName.ToString().Substring(0, sbUserName.ToString().Length - 1);
+            }
+        
         }
     }
 }

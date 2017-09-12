@@ -1,9 +1,13 @@
 ﻿@{
     ViewBag.Title = "模块管理";
 }
+@using BLL;
 @model List<Model.Role>
+
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 评论管理 <span class="c-gray en">&gt;</span> 意见反馈 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="Hui-article">
+    @{RoleBll bll = new RoleBll(); }
+
     <article class="cl pd-20">
         <div class="cl pd-5 bg-1 bk-gray mt-20" id="operate">
             <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加模块', '/System/RoleModuleOperate', '800', '500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
@@ -17,18 +21,21 @@
                     <th width="25"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th width="150">角色名称</th>
+                    <th width="150">用户列表</th>
                     <th width="150">排序</th>
                     <th width="150">创建时间</th>
                     <th width="150">创建用户</th>
                 </tr>
             </thead>
             <tbody id="view1">
+        
                 @foreach (var item in Model)
                 {
                     <tr class="text-c" >
                         <td><input type="checkbox" value="@item.RoleId" name=""></td>
                         <td>@item.RoleId</td>
                         <td>@item.RoleName</td>
+                        <td>@bll.GetRoleUserByRoleId(item.RoleId)</td>
                         <td>@item.Sort</td>
                         <td><i class="Hui-iconfont">@item.CreateTime.ToString("yyyy-MM-dd")</i></td>
                         <td>@item.CreateUserName</td>
@@ -88,9 +95,17 @@
             }
         }
         function btn_add() {
-            
-          
             admin_add('添加', '/System/RoleAdd', '800', '500')
+        }
+        function btn_adduser()
+        {
+            if ($("#view1").find(":checkbox:checked").length == 1) {
+                var roleid = $("#view1").find(":checkbox:checked").val();
+                admin_add('添加角色人员', '/System/RoleUserAdd?roleid=' + roleid, '800', '500')
+            }
+            else {
+                $.Huimodalalert('请选择一个需要修改的数据', 1000)
+            }
         }
         function btn_del()
         {

@@ -33,27 +33,27 @@
     <title>添加管理员 - 管理员管理</title>
 </head>
 <body>
-    <div class="Hui-article">
-        <article class="cl pd-20">
-            <table class="table">
-                <tr>
-                    <td width="200" class="va-t"><ul id="treeDemo" class="ztree"></ul></td>
-                    <td class="va-t">
-
-
-
-                        <dl class="cl permission-list2">
-
-                            <dd id="dd">
-
-                            </dd>
-                        </dl>
-                    </td>
-                </tr>
-            </table>
-            <input class="btn btn-primary radius" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;" onclick="sumit()">
-        </article>
-    </div>
+    <article class="cl pd-20">
+        <form action="" method="post" class="form form-horizontal" id="form-admin-role-add">
+            <div class="row cl">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                    <button type="button" class="btn btn-success radius" id="admin-role-save" name="admin-role-save" onclick="useradd()"><i class="icon-ok"></i> 确定</button>
+                </div>
+            </div>
+            <div class="row cl">
+               
+                <label class="form-label col-xs-4 col-sm-3">人员列表：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <dl class="permission-list" id="dllist">
+                              
+                            </dl>
+                     
+                  
+                </div>
+            </div>
+          
+        </form>
+    </article>
 
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -69,85 +69,7 @@
     <script type="text/javascript" src="/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
     <script type="text/javascript">
         var operatemodule = {};
-var setting = {
-    view: {
-        dblClickExpand: false,
-        showLine: false,
-        selectedMulti: false
-    },
-    data: {
-        key:{
-            checked: "ischecked",
-            name: "ModuleName"
-        },
-        simpleData: {
-            enable:true,
-            idKey: "ModuleId",
-            pIdKey: "ParentId",
-            rootPId: ""
-        }
-    },
-    check: {
-        enable: true
-    },
 
-    callback: {
-        beforeClick: function(treeId, treeNode) {
-            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-            if (treeNode.isParent) {
-                zTree.expandNode(treeNode);
-                return false;
-            } else {
-                //alert(treeNode.tId);
-                //demoIframe.attr("src",treeNode.file + ".html");
-                return true;
-            }
-        },
-        onClick: function (event, treeId, treeNode)
-        {
-            if (treeNode.ischecked)
-            {
-                var strhtml = "";
-                var module=operatemodule.module.ModuleList;
-                for (var i = 0; i <module.length; i++) {
-
-                    if (treeNode.tId.split("_")[1] == module[i].ModuleId)
-                    {
-
-                        strhtml += " <label class=\"\">  <input type=\"checkbox\" value=\"\" id=\"AllCheck_" + module[i].ModuleId + "\"  onclick=\"checkall(" + module[i].ModuleId + ")\"  data-id=\"" + module[i].ModuleId + "\" value=\"" + module[i].ModuleId + "\"> 全选</label>"
-                        for (var j = 0; j < module[i].List.length; j++) {
-                            if (module[i].List[j].IsCheck) {
-                                strhtml += " <label class=\"\"> <input type=\"checkbox\" checked=\"true\"  id=\"operate" + module[i].List[j].OperateId + "\" data-module=\"" + module[i].ModuleId + "\" onclick=\"check(" + module[i].List[j].OperateId + ")\" data-id=\"" + module[i].List[j].OperateId + "\"  value=\"" + module[i].List[j].OperateId + "\" name=\"user-Character-0-0-0\" id-d=\"Module_" + module[i].ModuleId + "_Operate_" + module[i].List[j].OperateId + "\" >" + module[i].List[j].OperateName + " </label>";
-
-                            }
-                            else {
-                                strhtml += " <label class=\"\"> <input type=\"checkbox\"  id=\"operate" + module[i].List[j].OperateId + "\" data-module=\"" + module[i].ModuleId + "\" onclick=\"check(" + module[i].List[j].OperateId + ")\" data-id=\"" + module[i].List[j].OperateId + "\"  value=\"" + module[i].List[j].OperateId + "\" name=\"user-Character-0-0-0\" id-d=\"Module_" + module[i].ModuleId + "_Operate_" + module[i].List[j].OperateId + "\" >" + module[i].List[j].OperateName + " </label>";
-
-                            }
-                        }
-                    }
-                }
-
-                $("#dd").html(strhtml);
-            }
-
-            //alert(JSON.stringify(operatemodule));
-          //  alert();
-          // alert(treeNode.tId);
-          // demoIframe.attr("src", "/System/OperateList?moduleid=" + treeNode.tId.split("_")[1]);
-          //  alert(treeNode.tId + ", " + treeNode.name + treeNode.parentTId);
-
-        },
-        onCheck: function (event, treeId, treeNode)
-        {
-            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-            var nodes = treeObj.getCheckedNodes(true);
-            updatemodel(nodes)
-
-         //   alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
-          }
-    }
-};
 function checkall(moduleid)
 {
     if ($("#AllCheck_" + moduleid).prop("checked")) {
@@ -169,79 +91,8 @@ function checkall(moduleid)
             obj.checklist.push($(this).attr("data-id"));
         }
     });
- //  alert(JSON.stringify(obj));
-    updateoperater(obj);
+
 }
-function check(operateid)
-{
-    var obj = {};
-    obj.moduleid = $("#operate" + operateid).attr("data-module")
-    obj.checklist = [];
-    $("#dd").find(":checkbox").each(function (index) {
-
-        if ($(this).prop("checked") && index > 0) {
-            obj.checklist.push($(this).attr("data-id"));
-        }
-    });
-    updateoperater(obj);
-}
-
-
-function updatemodel(arr)
-{
-   // console.log(JSON.stringify(arr));
-    var module = operatemodule.module.ModuleList;
-    for (var i = 0; i < module.length; i++) {
-        var count = 0;
-        for (var j = 0; j < arr.length; j++) {
-            if (module[i].ModuleId == arr[j].id)
-            {
-                count++;
-            }
-        }
-
-         if (count == 0) {
-            module[i].ischecked = false;
-        }
-         else {
-
-            module[i].ischecked = true;
-        }
-
-    }
-    operatemodule.module.ModuleList = module;
-    alert(JSON.stringify(operatemodule))
-}
-function updateoperater(obj)
-{
-    var module = operatemodule.module.ModuleList;
-    for (var i = 0; i < module.length; i++) {
-        if (module[i].ModuleId == obj.moduleid)
-        {
-            for (var z = 0; z < module[i].List.length; z++) {
-                var count = 0;
-                for (var j = 0; j < obj.checklist.length; j++) {
-                    if (module[i].List[z].OperateId == obj.checklist[j])
-                    {
-                        count++;
-                    }
-                }
-                if (count == 0) {
-                    module[i].List[z].IsCheck = false;
-                }
-                else {
-                    module[i].List[z].IsCheck = true;
-                }
-
-            }
-
-        }
-
-    }
-    operatemodule.module.ModuleList = module;
-   // alert(JSON.stringify(operatemodule))
-}
-
 
 var code;
 
@@ -268,8 +119,35 @@ function sumit()
     },"json"
     );
 }
+    $(document).ready(function () {
+        $.post("/api/ApiUser/RoleUserList", { "roleid": "@Request.QueryString["roleid"]" }, function (data) {
+ 
+            var strhtml = "";
+            var count=8;
+            var listlength = Math.ceil(data.list.length / count);
+       
+            var index=0;
+            for (var i = 0; i <listlength; i++) {
+                strhtml+="<dd>"
+                for (var j = 0; j < count; j++) {
+                    if (index < data.list.length)
+                    {
+                        if (data.list[index].IsChecked) {
+                            strhtml += " <label class=\"\"><input type=\"checkbox\" checked=\"true\"  value=\"" + data.list[index].UserId + "\" name=\"user-Character-0-0-0\" id=\"user_id" + data.list[index].UserId + "\"> " + data.list[index].UserName + " </label>"
 
-$(document).ready(function () {
+                        }
+                        else {
+                            strhtml += " <label class=\"\"><input type=\"checkbox\" value=\"" + data.list[index].UserId + "\" name=\"user-Character-0-0-0\" id=\"user_id" + data.list[index].UserId + "\"> " + data.list[index].UserName + " </label>"
+                        }
+                        index++;
+                    }
+                }
+                strhtml+="</dd>"
+            }
+            $("#dllist").html(strhtml);
+              
+        },"json"
+        );
     $(".permission-list2 dd input:checkbox").click(function () {
         var l = $(this).parent().parent().find("input:checked").length;
         var l2 = $(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
@@ -286,27 +164,39 @@ $(document).ready(function () {
             }
         }
     });
+   
+    });
 
-    $.post("/api/ApiModule/GetModelList", {}, function (data) {
+        function useradd()
+        {
+            var userid = "";
+            $("#dllist").find("input:checkbox").each(function()
+            {
+                if ($(this).prop("checked"))
+                {
+                    if (userid == "") {
+                        userid = $(this).val();
+                    }
+                    else {
+                        userid += "," + $(this).val();
+                    }
+                }
+            
+               
+            }
+          )
+        
+            $.post("/api/ApiUser/UserRoleAdd", {"roleid":'@Request.QueryString["roleid"]',"userid":userid},function(data)
+            {
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.location.reload();
+                parent.layer.close(index);
+            },"json"
+            );
+           
+            
+        }
 
-    }
-    );
-    $.post("/api/ApiModuleOperate/GetAllOperate", { "roleid": '@Request.QueryString["roleid"]' }, function (data) {
-      //  alert(JSON.stringify(data));
-        var t = $("#treeDemo");
-        var zNodes = data.module.ModuleList;
-        t = $.fn.zTree.init(t, setting, zNodes);
-        operatemodule = data;
-        console.log(JSON.stringify(data));
-    },"Json"
-    );
-});
-
-
-
-    //demoIframe = $("#testIframe");
-    //demoIframe.bind("load", loadReady);
-var zTree = $.fn.zTree.getZTreeObj("treeDemo");
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>

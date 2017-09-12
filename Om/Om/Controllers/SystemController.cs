@@ -84,5 +84,9 @@ namespace Om.Controllers
            
             return View(model);
         }
+        public ActionResult RoleUserAdd()
+        {
+            return View();
+        }
     }
 }
