@@ -10,3 +10,9 @@ D:\李曙光\Git\Om\Utilities\bin\Debug\Microsoft.Web.Infrastructure.dll
 D:\李曙光\Git\Om\Utilities\bin\Debug\System.Web.Mvc.xml
 D:\李曙光\Git\Om\Utilities\bin\Debug\Microsoft.Web.Infrastructure.xml
 D:\李曙光\Git\Om\Utilities\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\李曙光\Git\Om\Utilities\bin\Debug\System.Web.WebPages.dll
+D:\李曙光\Git\Om\Utilities\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\李曙光\Git\Om\Utilities\bin\Debug\System.Web.WebPages.xml
+D:\李曙光\Git\Om\Utilities\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\李曙光\Git\Om\Utilities\bin\Debug\zh-Hans\System.Web.WebPages.resources.dll
+D:\李曙光\Git\Om\Utilities\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll

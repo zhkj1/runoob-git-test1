@@ -46,6 +46,10 @@ namespace Om.Controllers
         [HttpPost]
         public Dictionary<string, object> GetAllOperate()
         {
+            IDatabase database = DataFactory.Database();
+            var context = (HttpContextBase)Request.Properties["MS_HttpContext"];
+            var request = context.Request;
+            string roleid = request.Form["roleid"];
             ModuleBll ModuleBll = new ModuleBll();
             ModuleOperateBll ModuleOperateBll = new ModuleOperateBll();
             List<Module> listmodel = ModuleBll.GetModuleList();
@@ -53,14 +57,29 @@ namespace Om.Controllers
             Dictionary<string, object> dic = new Dictionary<string, object>();
             OpeateModuleView model = new OpeateModuleView();
             List<ModuleView> listModuleView = new List<ModuleView>();
-          
+
+            List<ModuleRole> listmodulerole = database.FindList<ModuleRole>(" and RoleId="+roleid);
+            List<ModuleOperateRole> listmoduleoperaterole = database.FindList<ModuleOperateRole>(" and RoleId = " + roleid);
+
             foreach (var item in listmodel)
             {
+
                 ModuleView ModuleView = new ModuleView();
                 ModuleView.ModuleId = item.ModuleId;
                 ModuleView.ModuleName = item.ModuleName;
                 ModuleView.ParentId = item.ParentId;
-                ModuleView.ischecked = true;
+                int flag = 0;
+                if (listmodulerole.Where(a => a.ModuleId == item.ModuleId).ToList().Count > 0)
+                {
+                    flag = 1;
+                    ModuleView.ischecked = true;
+                }
+                else
+                {
+                    ModuleView.ischecked = false;
+                }
+                   
+               
                 ModuleView.id = item.ModuleId;
                 List<ModuleOperateView> listModuleOperateView = new List<ModuleOperateView>();
                 foreach (var item1 in moduleoperate)
@@ -68,10 +87,23 @@ namespace Om.Controllers
                     ModuleOperateView moduleOperateView = new ModuleOperateView();
                     if (item.ModuleId == item1.ModuleId)
                     {
-                        moduleOperateView.IsCheck = false;
+                        if (flag == 0)
+                        {
+                            moduleOperateView.IsCheck = false;
+                        }
+                        else
+                        {
+                            if (listmoduleoperaterole.Where(a => a.ModuleOperateId == item1.ModuleOperateId).ToList().Count > 0)
+                            {
+                                moduleOperateView.IsCheck = true;
+                            }
+                            else
+                            {
+                                moduleOperateView.IsCheck = false;
+                            }
+                        }
                         moduleOperateView.OperateId = item1.ModuleOperateId;
                         moduleOperateView.OperateName = item1.ModuleOperateName;
-                       
                         listModuleOperateView.Add(moduleOperateView);
                     }
                 }
@@ -142,6 +174,20 @@ namespace Om.Controllers
             }
       
          
+        }
+        [HttpPost]
+        public Dictionary<string, object> GetUserOperate()
+        {
+            IDatabase database = DataFactory.Database();
+            int userid = ManageProvider.Provider.Current().UserId;
+            string moduleid = DESEncrypt.Decrypt(CookieHelper.GetCookie("ModuleId"));
+            var list = database.FindListBySql<ModuleOperate>(" select[ModuleOperateId],[ModuleOperateName],[JsEvent],Icon from[ModuleOperate] where[ModuleOperateId] in (select ModuleOperateId from ModuleOperateRole where RoleId  in (select RoleId from UserRole where UserId = " + userid + " )) and ModuleId ="+ moduleid + "");
+            return new Dictionary<string, object>
+            {
+                {
+                  "list",list  
+                }
+            };
         }
 
     }

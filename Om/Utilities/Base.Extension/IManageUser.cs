@@ -26,6 +26,8 @@ namespace LeaRun.Utilities
 
         public string IPAddressName { get; set; }
 
+        public int RoleId { get; set; }
+
 
 
 

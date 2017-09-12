@@ -34,14 +34,7 @@
     <div class="Hui-article">
         <input type="hidden" id="hiddenmoduleid" value="@Request.QueryString["moduleid"]" />
         <article class="cl pd-20">
-            <div class="text-c">
-                日期范围：
-                <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
-                -
-                <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-                <input type="text" class="input-text" style="width:250px" placeholder="输入关键词" id="" name="">
-                <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜意见</button>
-            </div>
+            
             <div class="cl pd-5 bg-1 bk-gray mt-20">
                 <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加模块', '/System/OperateAdd?moduleid=@Request.QueryString["moduleid"]', '800', '500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
             </div>

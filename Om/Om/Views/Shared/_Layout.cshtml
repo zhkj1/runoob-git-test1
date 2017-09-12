@@ -9,6 +9,9 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="Bookmark" href="favicon.ico">
     <link rel="Shortcut Icon" href="favicon.ico" />
+    <link href="~/lib/Loading/css/loading.css" rel="stylesheet" />
+    <link href="~/lib/Loading/css/global.css" rel="stylesheet" />
+  
     <!--[if lt IE 9]>
     <script type="text/javascript" src="/lib/html5.js"></script>
     <script type="text/javascript" src="lib/respond.min.js"></script>
@@ -265,6 +268,7 @@
 
     <!--_footer 作为公共模版分离出去-->
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/lib/Loading/js/loading.js"></script>
     @RenderSection("scripts", required: false)
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->

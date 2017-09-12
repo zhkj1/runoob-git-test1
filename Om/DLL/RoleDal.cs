@@ -35,5 +35,18 @@ namespace DAL
         {
             return Repository().FindList();
         }
+        public int RoleAdd(Role model)
+        {
+            return Repository().Insert(model);
+        }
+
+        public int RoleEdit(Role model)
+        {
+            return Repository().Update(model);
+        }
+        public Role GetModel(int roleId)
+        {
+            return Repository().FindEntity(roleId);
+        }
     }
 }

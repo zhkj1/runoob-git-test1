@@ -20,6 +20,7 @@ namespace Om.Controllers
             List<Module> list = Bll.GetModuleList();
             return View(list);
         }
+        [ModuleAuthorize]
         public ActionResult RoleManage()
         {
             RoleBll Bll = new RoleBll();
@@ -43,7 +44,7 @@ namespace Om.Controllers
             ViewBag.ModuleParentList = list;
             return View();
         }
-
+        [ModuleAuthorize]
         public ActionResult OperateManage()
         {
             return View();
@@ -70,6 +71,18 @@ namespace Om.Controllers
         public ActionResult RoleModuleOperate()
         {
             return View();
+        }
+        //角色添加
+        public ActionResult RoleAdd()
+        {
+            Role model = new Role();
+            RoleBll bll = new RoleBll();
+            if (Request.QueryString["RoleId"] != null)
+            {
+                model = bll.GetModel(int.Parse(Request.QueryString["RoleId"]));
+            }
+           
+            return View(model);
         }
     }
 }

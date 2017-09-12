@@ -35,7 +35,7 @@ var setting = {
     
 	callback: {
 	    beforeClick: function(treeId, treeNode) {
-	        var zTree = $.fn.zTree.getZTreeObj("tree");
+	        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
 	        if (treeNode.isParent) {
 	            zTree.expandNode(treeNode);
 	            return false;
@@ -48,8 +48,10 @@ var setting = {
 	    onClick: function (event, treeId, treeNode)
 	    {
 	        demoIframe = $("#testIframe");
-	        alert(treeNode.tId);
-	      demoIframe.attr("src", "/System/OperateList?moduleid=" + treeNode.tId.split("_")[1]);
+	        var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+	        var node = treeObj.getNodeByTId(treeNode.tId);
+	       
+	        demoIframe.attr("src", "/System/OperateList?moduleid=" + node.ModuleId);
 	      //  alert(treeNode.tId + ", " + treeNode.name + treeNode.parentTId);
 
 	    }

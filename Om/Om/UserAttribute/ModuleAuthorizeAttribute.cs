@@ -28,7 +28,7 @@ namespace Om.UserAttribute
             }
             else
             {
-                CookieHelper.WriteCookie("ModuleId", DESEncrypt.Decrypt(moduleId));
+                CookieHelper.WriteCookie("ModuleId", DESEncrypt.Encrypt(moduleId));
 
             }
             

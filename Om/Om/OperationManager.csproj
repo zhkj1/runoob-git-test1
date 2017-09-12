@@ -216,6 +216,7 @@
     <Compile Include="Controllers\ApiLoginController.cs" />
     <Compile Include="Controllers\ApiModuleController.cs" />
     <Compile Include="Controllers\ApiModuleOperateController.cs" />
+    <Compile Include="Controllers\ApiRoleController.cs" />
     <Compile Include="Controllers\ApiUserController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -339,6 +340,11 @@
     <Content Include="lib\lightbox2\2.8.1\js\lightbox-plus-jquery.min.js" />
     <Content Include="lib\lightbox2\2.8.1\js\lightbox.js" />
     <Content Include="lib\lightbox2\2.8.1\js\lightbox.min.js" />
+    <Content Include="lib\Loading\css\global.css" />
+    <Content Include="lib\Loading\css\ie.css" />
+    <Content Include="lib\Loading\css\loading.css" />
+    <Content Include="lib\Loading\css\print.css" />
+    <Content Include="lib\Loading\js\loading.js" />
     <Content Include="lib\My97DatePicker\4.8\calendar.js" />
     <Content Include="lib\My97DatePicker\4.8\lang\en.js" />
     <Content Include="lib\My97DatePicker\4.8\lang\zh-cn.js" />
@@ -1402,6 +1408,8 @@
     <Content Include="Views\System\OperateList.cshtml" />
     <Content Include="Views\System\OperateAdd.cshtml" />
     <Content Include="Views\System\RoleModuleOperate.cshtml" />
+    <Content Include="Views\System\RoleAdd.cshtml" />
+    <Content Include="Views\System\RoleUserAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
