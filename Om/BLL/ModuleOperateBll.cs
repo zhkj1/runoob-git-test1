@@ -22,6 +22,15 @@ namespace BLL
         {
             return ModuleOperateDal.GetInstance().GetList();
         }
+        public ModuleOperate GetModel(int operateid)
+        {
+            return ModuleOperateDal.GetInstance().GetModel(operateid);
+        }
+        public int ModuleOperateEdit(ModuleOperate model)
+        {
+            return ModuleOperateDal.GetInstance().ModuleOperateEdit(model);
+        }
+
 
     }
 }

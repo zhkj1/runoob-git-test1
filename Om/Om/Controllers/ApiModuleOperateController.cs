@@ -13,11 +13,13 @@ using System.Data.Common;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using Utilities;
 
 namespace Om.Controllers
 {
     public class ApiModuleOperateController : ApiController
     {
+        SysLogBll sysLogBll = new SysLogBll();
         ModuleOperateBll ModuleOperateBll = new ModuleOperateBll();
         //模块操作添加
         public Dictionary<string, object> OperateAdd(ModuleOperate model)
@@ -25,21 +27,49 @@ namespace Om.Controllers
             model.CreateTime = DateTime.Now;
             model.CreateUserId = ManageProvider.Provider.Current().UserId;
             model.CreateUserName = ManageProvider.Provider.Current().Account;
-            if (ModuleOperateBll.ModuleOperateAdd(model) > 0)
+            if (model.ModuleOperateId == 0)
             {
-                return new Dictionary<string, object>
+                if (ModuleOperateBll.ModuleOperateAdd(model) > 0)
+                {
+
+                    sysLogBll.WriteLog<ModuleOperate>(model, OperationType.Add, (int)LogSatus.Success, "模块操作添加");
+                    return new Dictionary<string, object>
                   {
                       { "code",1},
                   };
-            }
-            else
-            {
-                return new Dictionary<string, object>
+                }
+                else
+                {
+                    return new Dictionary<string, object>
                   {
                       { "code",0},
                       { "msg","添加失败"}
                   };
+                }
             }
+            else
+            {
+                ModuleOperate oldmodel = new ModuleOperate();
+                oldmodel = ModuleOperateBll.GetModel(model.ModuleOperateId);
+                if (ModuleOperateBll.ModuleOperateEdit(model) > 0)
+                {
+                    sysLogBll.WriteLog<ModuleOperate>(oldmodel, model, OperationType.Update, (int)LogSatus.Success, "模块操作修改");
+
+                    return new Dictionary<string, object>
+                  {
+                      { "code",1},
+                  };
+                }
+                else
+                {
+                    return new Dictionary<string, object>
+                  {
+                      { "code",0},
+                      { "msg","修改失败"}
+                  };
+                }
+            }
+           
 
         }
         //获取所有模块
@@ -189,6 +219,51 @@ namespace Om.Controllers
                   "list",list  
                 }
             };
+        }
+        /// <summary>
+        /// 删除按钮
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public Dictionary<string, object> ModuleOperateDel()
+        {
+            IDatabase database = DataFactory.Database();
+            DbTransaction isOpenTrans = database.BeginTrans();
+            var context = (HttpContextBase)Request.Properties["MS_HttpContext"];
+            var request = context.Request;
+            string operateidlist = request.Form["operateid"];
+            List<ModuleOperate> list = new List<ModuleOperate>();
+            string[] arrid = operateidlist.Split(',');
+            for (int i = 0; i < operateidlist.Length; i++)
+            {
+                ModuleOperate model = new ModuleOperate();
+
+            }
+            try
+            {
+                StringBuilder sbModuleOperateRole = new StringBuilder(" delete   ModuleOperateRole where ModuleOperateId in ("+ operateidlist + ")");
+                database.ExecuteBySql(sbModuleOperateRole, isOpenTrans);
+                StringBuilder sbModuleOperate = new StringBuilder("delete ModuleOperate where ModuleOperateId in (" + operateidlist + ")");
+                database.ExecuteBySql(sbModuleOperate, isOpenTrans);
+                SysLogBll sysLogBll = new SysLogBll();
+                database.Commit();
+                sysLogBll.WriteLog<ModuleOperate>(list, (int)Utilities.LogSatus.Success, "模块按钮删除删除");
+
+                return new Dictionary<string, object>
+                {
+                    {  "code","1"  }
+                };
+
+            }
+            catch (Exception)
+            {
+
+                return new Dictionary<string, object>
+                {
+                    {  "code","0"  }
+                };
+            }
+    
         }
 
     }

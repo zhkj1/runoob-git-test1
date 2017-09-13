@@ -27,6 +27,7 @@ namespace Om.Controllers
             var modellist = Bll.GetRoleList();
             return View(modellist);
         }
+        [ModuleAuthorize]
         public ActionResult UserManage()
         {
             return View();
@@ -59,14 +60,21 @@ namespace Om.Controllers
 
         public ActionResult OperateAdd()
         {
-          
-            ModuleOperate model = new ModuleOperate();
-            model.ModuleId = int.Parse(Request.QueryString["moduleid"]);
-            if (Request.QueryString["id"] == null)
+            ModuleOperateBll Bll = new ModuleOperateBll();
+              ModuleOperate model = new ModuleOperate();
+            if (Request.QueryString["operateid"] != null)
             {
-                model.Enabled = 1;
+                model = Bll.GetModel(int.Parse(Request.QueryString["operateid"].ToString()));
             }
+            else
+            {
+                model.ModuleId = int.Parse(Request.QueryString["moduleid"]);
+                model.Enabled = 1;
+            
+            }
+
             return View(model);
+
         }
         public ActionResult RoleModuleOperate()
         {
