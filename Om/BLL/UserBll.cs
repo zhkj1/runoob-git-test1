@@ -22,9 +22,9 @@ namespace BLL
             return UserDal.GetInstance().UserLogin(Account, Password, out result);
         }
                 //添加用户
-        public Dictionary<string,object> AddUser(BaseUser model, int CreateUserId)
+        public Dictionary<string,object> AddUser(BaseUser model)
         {
-            if (UserDal.GetInstance().AddUser(model, CreateUserId) > 0)
+            if (UserDal.GetInstance().AddUser(model) > 0)
             {
                 return new Dictionary<string, object>
                {
@@ -39,5 +39,29 @@ namespace BLL
                };
             }
         }
+
+        public BaseUser GetModel(int userid)
+        {
+            return UserDal.GetInstance().GetModel(userid);
+
+        }
+        public Dictionary<string,object> EditUser(BaseUser model)
+        {
+            if (UserDal.GetInstance().EditUser(model) > 0)
+            {
+                return new Dictionary<string, object>
+               {
+                   { "code",1}
+               };
+            }
+            else
+            {
+                return new Dictionary<string, object>
+               {
+                   { "code",0}
+               };
+            }
+        }
+
     }
 }

@@ -111,7 +111,7 @@ var setting = {
                 var module=operatemodule.module.ModuleList;
                 for (var i = 0; i <module.length; i++) {
 
-                    if (treeNode.tId.split("_")[1] == module[i].ModuleId)
+                    if (treeNode.id == module[i].ModuleId)
                     {
                        
                         strhtml += " <label class=\"\">  <input type=\"checkbox\" value=\"\" id=\"AllCheck_" + module[i].ModuleId + "\"  onclick=\"checkall(" + module[i].ModuleId + ")\"  data-id=\"" + module[i].ModuleId + "\" value=\"" + module[i].ModuleId + "\"> 全选</label>"

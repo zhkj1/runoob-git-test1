@@ -5,16 +5,9 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 评论管理 <span class="c-gray en">&gt;</span> 意见反馈 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="Hui-article">
     <article class="cl pd-20">
-        <div class="text-c">
-            日期范围：
-            <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
-            -
-            <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入关键词" id="" name="">
-            <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜意见</button>
-        </div>
+      
         <div class="cl pd-5 bg-1 bk-gray mt-20">
-            <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加模块', '/System/ModuleAdd', '800', '500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
+            <span class="l" id="operate"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加模块', '/System/ModuleAdd', '800', '500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
            
         </div>
         <table class="table table-border table-bordered table-bg">
@@ -28,6 +21,7 @@
                     <th>模块名称</th>
                     <th width="150">模块地址</th>
                     <th width="150">模块图标</th>
+                    <th width="150">排序编号</th>
                     <th width="130">是否显示</th>
                  </tr>
             </thead>
@@ -38,10 +32,11 @@
 
                 <tr class="text-c">
                     <td><input type="checkbox" value="@item.ModuleId" name=""></td>
-                    <td>@item.ModuleId</td>
-                    <td class="text-l">@item.ModuleName</td>
-                    <td></td>
+                    <td width="50">@item.ModuleId</td>
+                    <td  width="200" class="text-l">@item.ModuleName</td>
+                    <td width="300"></td>
                     <td><i class="Hui-iconfont">@Html.Raw(item.Icon)</i></td>
+                    <td>@item.Sort</td>
                       @if (item.IsShow == 1)
                       {
                           <td>显示</td>
@@ -60,6 +55,7 @@
                         <td class="text-l">&nbsp;&nbsp;├&nbsp;@item1.ModuleName</td>
                         <td>@item1.ControllerName/@item1.ActionName</td>
                         <td>@Html.Raw(item1.Icon)</td>
+                        <td>@item1.Sort</td>
                         @if (item1.IsShow == 1)
                         {
                             <td>显示</td>
@@ -71,58 +67,6 @@
                     </tr>
                    }
                }
-                @*<tr class="text-c">
-                        <td><input type="checkbox" value="1" name=""></td>
-                        <td>1</td>
-                        <td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-                        <td class="text-l">
-                            <div class="c-999 f-12">
-                                <u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span>
-                            </div>
-                            <div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-                            <div>留言内容</div>
-                        </td>
-                        <td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                    </tr>
-                    <tr class="text-c">
-                        <td><input type="checkbox" value="1" name=""></td>
-                        <td>1</td>
-                        <td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-                        <td class="text-l">
-                            <div class="c-999 f-12">
-                                <u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span>
-                            </div>
-                            <div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-                            <div>留言内容</div>
-                        </td>
-                        <td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                    </tr>
-                    <tr class="text-c">
-                        <td><input type="checkbox" value="1" name=""></td>
-                        <td>1</td>
-                        <td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-                        <td class="text-l">
-                            <div class="c-999 f-12">
-                                <u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span>
-                            </div>
-                            <div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-                            <div>留言内容</div>
-                        </td>
-                        <td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                    </tr>
-                    <tr class="text-c">
-                        <td><input type="checkbox" value="1" name=""></td>
-                        <td>1</td>
-                        <td><a href="javascript:;" onclick="member_show('张三','member-show.html','10001','360','400')"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/avatar-default-S.gif"></i></a></td>
-                        <td class="text-l">
-                            <div class="c-999 f-12">
-                                <u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u> <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time> <span class="ml-20">13000000000</span> <span class="ml-20">admin@mail.com</span>
-                            </div>
-                            <div class="f-12 c-999"><a href="http://www.h-ui.net/Hui-4.22-comment.shtml" target="_blank">http://www.h-ui.net/Hui-4.22-comment.shtml</a></div>
-                            <div>留言内容</div>
-                        </td>
-                        <td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                    </tr>*@
             </tbody>
         </table>
 
@@ -137,12 +81,42 @@
     <script type="text/javascript" src="/lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
+<script src="~/lib/operate.js"></script>
     <script type="text/javascript">
     $(function ()
     {
-       
+        operateButton();
+        $("#view1").children().click(function () {
+            if ($(this).children().find(":checkbox").prop("checked")) {
+                $(this).children().find(":checkbox").prop("checked", false);
+            }
+            else {
+                $(this).children().find(":checkbox").prop("checked", true);
+            }
+        }
+        );
+        $("#view1").children().mouseover(function () {
+            $(this).css("background-color", "#f5fafe");
+            $(this).siblings().css("background-color", "");
+        }
+        );
     }
     )
+
+    function btn_add() {
+        admin_add('添加', '/System/ModuleAdd', '800', '500')
+    }
+
+    function btn_edit() {
+        if ($("#view1").find(":checkbox:checked").length == 1) {
+            var Moduleid = $("#view1").find(":checkbox:checked").val();
+            admin_add('修改', '/System/ModuleAdd?ModuleId=' + Moduleid, '800', '500')
+        }
+        else {
+            $.Huimodalalert('请选择一个需要修改的数据', 1000)
+        }
+
+    }
     function demo(page) {
         $.post('/api/ApiUser/GetUerList',
            { "page": page, "rows": 20, "sord": "desc", "sidx": "UserId" } //向服务端传的参数，此处只是演示
@@ -185,51 +159,7 @@
             });
         },"json");
     };
-    //$(function () {
-    //    $('.table-sort').dataTable({
-    //        "paging": true,
-    //        "lengthChange": true,
-    //        "searching": true,
-    //        "ordering": true,
-    //        "aaSorting": [[0, "asc"]], //默认的排序方式，第1列，升序排列
-    //        "info": true,
-    //        "autoWidth": false,
-    //        "destroy": true,
-    //        "processing": true,
-    //        "scrollX": true,   //水平新增滚动轴
-    //        //          "serverSide":true,    //true代表后台处理分页，false代表前台处理分页
-    //        "aLengthMenu": [10, 15, 20],
-    //        ajax: {
-    //            "url": "/api/ApiUser/GetUerList",
-    //            "type": "POST",
-    //            "data": { "page": 1, "rows": 15, "sord": "desc", "sidx": "UserId" },
-    //            "dataSrc": function (json) {
-    //                return json.rows;
-    //            }
-    //        },
-    //        "columns": [
-    //            { "data": "userid" },
-    //            { "data": "account" },
-    //        ]
-
-    //        //"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-    //        //"bStateSave": true,//状态保存
-    //        //"aoColumnDefs": [
-    //        //  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-    //        //  {"orderable":false,"aTargets":[0,2,4]}// 制定列不参与排序
-    //        //]
-    //    });
-    //    $('.table-sort tbody').on('click', 'tr', function () {
-    //        if ($(this).hasClass('selected')) {
-    //            $(this).removeClass('selected');
-    //        }
-    //        else {
-    //            table.$('tr.selected').removeClass('selected');
-    //            $(this).addClass('selected');
-    //        }
-    //    });
-    //});
-    /*用户-添加*/
+    
 
     function admin_add(title, url, w, h) {
         layer_show(title, url, w, h);

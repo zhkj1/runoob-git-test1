@@ -51,6 +51,7 @@
 
     <article class="cl pd-20">
         <form action="/api/ApiModule/ModuleAdd" method="post" class="form form-horizontal" id="form-admin-add">
+            @Html.HiddenFor(a=>a.ModuleId)
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>模块名：</label>
                 <div class="formControls col-xs-8 col-sm-9" >

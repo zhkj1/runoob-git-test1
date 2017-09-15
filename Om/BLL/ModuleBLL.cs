@@ -49,6 +49,14 @@ namespace BLL
 
         }
 
+        public Module GetModel(int moduleid)
+        {
+            return ModuleDal.GetInstance().GetModel(moduleid);
+        }
+        public int ModuleEdit(Module model)
+        {
+            return ModuleDal.GetInstance().ModuleEdit(model);
+        }
 
     }
 }

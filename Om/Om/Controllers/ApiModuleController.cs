@@ -19,21 +19,43 @@ namespace Om.Controllers
         {
             model.CreateTime = DateTime.Now;
             model.CreateUserId = ManageProvider.Provider.Current().UserId;
-            if (mduleBll.ModuleAdd(model) > 0)
+            if (model.ModuleId == 0)
             {
-              return new Dictionary<string, object>
-              {
-                  { "code","1"}
-              };
+                if (mduleBll.ModuleAdd(model) > 0)
+                {
+                       return new Dictionary<string, object>
+                       {
+                          { "code","1"}
+                      };
+                }
+                else
+                {
+                    return new Dictionary<string, object>
+                      {
+                          { "code","0"},
+                          { "msg","添加失败"}
+                      };
+                }
             }
             else
             {
-              return new Dictionary<string, object>
-              {
-                  { "code","1"},
-                  { "msg","添加失败"}
-              };
+                if (mduleBll.ModuleEdit(model) > 0)
+                {
+                    return new Dictionary<string, object>
+                       {
+                          { "code","1"}
+                      };
+                }
+                else
+                {
+                    return new Dictionary<string, object>
+                       {
+                            { "code","0"},
+                            { "msg","修改失败"}
+                      };
+                }
             }
+       
         }
         [HttpPost]
         //获取模块的列表

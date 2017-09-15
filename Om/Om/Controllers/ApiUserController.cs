@@ -36,8 +36,26 @@ namespace Om.Controllers
         [HttpPost]
         public Dictionary<string, object> CreateUser(BaseUser model)
         {
-            model.UserPassword= Md5Helper.MD5(DESEncrypt.Encrypt(model.UserPassword.ToLower(), "qwertyui"));
-            return UserBll.AddUser(model, 1);
+            model.CreateUserId = ManageProvider.Provider.Current().UserId;
+            model.CreateUserName = ManageProvider.Provider.Current().Account;
+        
+            if (model.UserId == 0)
+            {
+                model.Enabled = 1;
+                model.CreateTime = DateTime.Now;
+                model.UserPassword = Md5Helper.MD5(DESEncrypt.Encrypt(model.UserPassword.ToLower(), "qwertyui"));
+
+                return UserBll.AddUser(model);
+            }
+            else
+            {
+                model.ModifyUserId = ManageProvider.Provider.Current().UserId;
+                model.ModifyUserName = ManageProvider.Provider.Current().Account;
+                model.ModifyDate = DateTime.Now;
+                return UserBll.EditUser(model);
+            }
+          
+           
         }
         [HttpPost]
         //用户添加角色用户列表
@@ -119,6 +137,38 @@ namespace Om.Controllers
             }
         }
 
+        [HttpPost]
+        public Dictionary<string, object> EnabledUser()
+        {
+            var context = (HttpContextBase)Request.Properties["MS_HttpContext"];
+            var request = context.Request;
+            string ids = request.Form["ids"];
+            IDatabase database = DataFactory.Database();
 
+            StringBuilder sb = new StringBuilder("update BaseUser set Enabled=0 where UserId in(" + ids + ")");
+            database.ExecuteBySql(sb);
+            return new Dictionary<string, object>
+            {
+                { "code","1"}
+            };
+
+        }
+        //启用
+        [HttpPost]
+        public Dictionary<string, object> KqUser()
+        {
+            var context = (HttpContextBase)Request.Properties["MS_HttpContext"];
+            var request = context.Request;
+            string ids = request.Form["ids"];
+            IDatabase database = DataFactory.Database();
+
+            StringBuilder sb = new StringBuilder("update BaseUser set Enabled=1 where UserId in(" + ids + ")");
+            database.ExecuteBySql(sb);
+            return new Dictionary<string, object>
+            {
+                { "code","1"}
+            };
+
+        }
     }
 }

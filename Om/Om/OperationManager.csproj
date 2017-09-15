@@ -213,6 +213,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutoMapper\Profiles\ModuleProfile.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiCauseController.cs" />
     <Compile Include="Controllers\ApiLoginController.cs" />
     <Compile Include="Controllers\ApiModuleController.cs" />
     <Compile Include="Controllers\ApiModuleOperateController.cs" />
@@ -1386,12 +1387,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="temp\Thumbs.db" />
@@ -1410,6 +1405,8 @@
     <Content Include="Views\System\RoleModuleOperate.cshtml" />
     <Content Include="Views\System\RoleAdd.cshtml" />
     <Content Include="Views\System\RoleUserAdd.cshtml" />
+    <Content Include="Views\Manage\Cause.cshtml" />
+    <Content Include="Views\Manage\CauseAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

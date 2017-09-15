@@ -12,12 +12,13 @@ namespace Om.Controllers
     [LoginAuthorize]
     public class SystemController : Controller
     {
-       // [ModuleAuthorize]
+        // [ModuleAuthorize]
         // GET: System
+        [ModuleAuthorize]
         public ActionResult ModuleManage()
         {
             ModuleBll Bll = new ModuleBll();
-            List<Module> list = Bll.GetModuleList();
+            List<Module> list = Bll.GetModuleList().OrderBy(a=>a.Sort).ToList();
             return View(list);
         }
         [ModuleAuthorize]
@@ -34,7 +35,14 @@ namespace Om.Controllers
         }
         public ActionResult UserAdd()
         {
-            return View();
+            BaseUser model = new BaseUser();
+            UserBll bll = new UserBll();
+            if (Request.QueryString["UseridId"] != null)
+            {
+                model = bll.GetModel(int.Parse(Request.QueryString["UseridId"].ToString()));
+            }
+            
+            return View(model);
         }
 
         public ActionResult ModuleAdd()
@@ -43,7 +51,12 @@ namespace Om.Controllers
             List<Module> list = Bll.GetModuleList();
             list = list.Where(a => a.ParentId == 0).ToList();
             ViewBag.ModuleParentList = list;
-            return View();
+            Module model = new Module();
+            if (Request.QueryString["ModuleId"] != null)
+            {
+                model = Bll.GetModel(int.Parse(Request.QueryString["ModuleId"].ToString()));
+            }
+             return View(model);
         }
         [ModuleAuthorize]
         public ActionResult OperateManage()

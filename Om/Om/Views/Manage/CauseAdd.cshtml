@@ -3,7 +3,9 @@
 @{
     Layout = null;
 }
-@model Model.BaseUser
+@model Model.Sys_CauseSuggestion
+@using Utilities.Base.Common;
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -29,67 +31,73 @@
     <!--/meta 作为公共模版分离出去-->
 
     <title>添加管理员 - 管理员管理</title>
+    <style>
+        select {
+            height: 30px;
+            width: 100px;
+        }
+    </style>
 </head>
 <body>
-    <article class="cl pd-20">
-        <form action="/api/ApiUser/CreateUser" method="post" class="form form-horizontal" id="form-admin-add">
-            <div class="row cl">
-                @Html.HiddenFor(a=>a.UserId)
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>登录名：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    @Html.TextBoxFor(a => a.Account, new { @class = "input-text" })
-                </div>
-            </div>
-            @if (Model == null)
+    @{
+        List<SelectListItem> selectlist = new List<SelectListItem>();
+        List<Model.Sys_CauseSuggestion> listmodule = ViewBag.list as List<Model.Sys_CauseSuggestion>;
+        selectlist.Add(new SelectListItem { Text = "请选择", Value = "0" });
+        foreach (var item in listmodule)
+        {
+            char nbsp = (char)0xA0;
+            string TempItemText = "└ " + item.CauseContent;
+            for (int i = 1; i < item.CauseLevel + 1; i++)
             {
-                <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        @Html.PasswordFor(a => a.UserPassword, new { @class = "input-text", autocomplete = "off" })
-                    </div>
-                </div>
-                <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <input type="password" class="input-text" autocomplete="off" id="password2" name="password2">
-                    </div>
-                </div>
+                // TempItemText ="&nbsp;&nbsp;" + TempItemText;
+                TempItemText = TempItemText.PadLeft(i + 7, nbsp);
             }
-           
-            @*<div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
-                <div class="formControls col-xs-8 col-sm-9 skin-minimal">
-                     <div class="radio-box">
-                        <input name="sex" type="radio" id="sex-1" value="男" checked>
-                        <label for="sex-1">男</label>
-                    </div>
-                    <div class="radio-box">
-                        <input type="radio" id="sex-2" name="sex" value="女">
-                        <label for="sex-2">女</label>
-                    </div>
-                </div>
-            </div>*@
+
+           // "Level 0".PadLeft(i + 7, nbsp) + i
+            selectlist.Add(new SelectListItem { Text =TempItemText, Value = item.CauseId.ToString() });
+        }
+    }
+    <article class="cl pd-20">
+        <form action="/api/ApiCause/CauseAdd" method="post" class="form form-horizontal" id="form-admin-add">
+            @Html.HiddenFor(a => a.CauseId)
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>关键字/原因：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    @Html.TextBoxFor(a => a.Mobile, new { @class = "input-text" })
-                
+                    @Html.TextBoxFor(a => a.CauseContent, new { @class = "input-text", autocomplete = "off" })
                 </div>
             </div>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    @Html.TextBoxFor(a => a.Email, new {@class= "input-text" })
-                </div>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>父节点：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.DropDownListFor(a => a.ParentId, selectlist,new { @class = "input-text" })
             </div>
-          
+            </div>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">备注：</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>编码：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    @Html.TextAreaFor(a=>a.Remark, new { @class = "textarea" })
-                 
+                    @Html.TextBoxFor(a => a.CauseCode, new { @class = "input-text", autocomplete = "off" })
                 </div>
             </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>处理意见：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    @Html.TextBoxFor(a => a.SuggestionContent, new { @class = "input-text", autocomplete = "off" })
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>相关变电站挂靠历史事件：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    @Html.TextBoxFor(a => a.RelatedContent, new { @class = "input-text", autocomplete = "off" })
+                </div>
+            </div>
+            
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>显示顺序：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    @Html.TextBoxFor(a => a.Sort, new { @class = "input-text", autocomplete = "off" })
+                </div>
+            </div>
+
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                     <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -119,42 +127,30 @@ $(function(){
 
 	$("#form-admin-add").validate({
 		rules:{
-		    Account: {
+		    RoleName: {
 				required:true,
-				minlength:2,
-				maxlength:16
+
 			},
-		    UserPassword: {
+		    Sort: {
 				required:true,
-			},
-			password2:{
-				required:true,
-				equalTo: "#UserPassword"
-			},
-			Mobile: {
-				isPhone:true,
-			},
-			Email: {
-				email:true,
-			}
-			
+		    },
+
 		},
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
 		submitHandler: function (form) {
 		    $(form).ajaxSubmit(function (data) {
-		        var index = parent.layer.getFrameIndex(window.name);
-		        parent.location.reload();
-		        parent.layer.close(index);
+		        if (data.code)
+		        {
+		            var index = parent.layer.getFrameIndex(window.name);
+		            parent.location.reload();
+		            parent.layer.close(index);
+		        }
+
 
 		    });
-		    //$(form).ajaxSubmit();
-		    //alert("222");
-			//var index = parent.layer.getFrameIndex(window.name);
-			//parent.$('.btn-refresh').click();
-			//parent.layer.close(index);
-		}
+	}
 	});
 });
     </script>

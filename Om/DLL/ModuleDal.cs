@@ -38,5 +38,14 @@ namespace DAL
         {
             return Repository().FindList();
         }
+
+        public Module GetModel(int moduleid)
+        {
+            return Repository().FindEntity(moduleid);
+        }
+        public int ModuleEdit(Module model)
+        {
+            return Repository().Update(model);
+        }
     }
 }

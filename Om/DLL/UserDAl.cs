@@ -38,7 +38,7 @@ namespace DAL
         {
             StringBuilder strSql = new StringBuilder();
             List<DbParameter> parameter = new List<DbParameter>();
-            strSql.Append(@"select UserId,Account,Mobile, Email,CreateTime from BaseUser");
+            strSql.Append(@"select UserId,Account,Mobile, Email,CreateTime,Enabled from BaseUser");
             return Repository().FindTablePageBySql(strSql.ToString(),ref jqgridparam);
         }
         //登录
@@ -82,12 +82,19 @@ namespace DAL
 
         }
 
-        public int AddUser(BaseUser model,int CreateUserId)
+        public int AddUser(BaseUser model)
         {
-            model.CreateUserId = CreateUserId;
-            model.CreateTime = DateTime.Now;
-            model.Enabled = 1;
-             return Repository().Insert(model);
+            return Repository().Insert(model);
+        }
+
+        public BaseUser GetModel(int userid)
+        {
+            return Repository().FindEntity(userid);
+        }
+
+        public int EditUser(BaseUser model)
+        {
+            return Repository().Update(model);
         }
     }
 }
