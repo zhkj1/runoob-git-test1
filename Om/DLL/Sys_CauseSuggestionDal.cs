@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
-   public  class Sys_CauseSuggestionDal : RepositoryFactory<Sys_CauseSuggestion>
+    public class Sys_CauseSuggestionDal : RepositoryFactory<Sys_CauseSuggestion>
     {
         private static Sys_CauseSuggestionDal _instance;
         private static object _object = new Object();
@@ -30,7 +30,7 @@ namespace DAL
         }
         private Sys_CauseSuggestionDal()
         {
-         
+
         }
         public int CauseAdd(Sys_CauseSuggestion model)
         {
@@ -54,12 +54,39 @@ namespace DAL
             par[6].Value = model.CreateTime;
             par[7].Value = model.CreateUserId;
             par[8].Value = model.CreateUserName;
-           return  Repository().ExecuteByProc("Sys_CauseSuggestionadd", par);
+            return Repository().ExecuteByProc("Sys_CauseSuggestionadd", par);
         }
 
         public List<Sys_CauseSuggestion> GetList()
         {
-            return Repository().FindListBySql("select CauseId,CauseContent,CauseLevel from  Sys_CauseSuggestion  order by Code ");
+            return Repository().FindListBySql("select CauseId,CauseContent,CauseLevel from  Sys_CauseSuggestion where ParentId=0   ");
+        }
+
+        public Sys_CauseSuggestion GetModel(int id)
+        {
+            return Repository().FindEntity(id);
+        }
+        public int Sys_CauseSuggestionEdit(Sys_CauseSuggestion model)
+        {
+            return Repository().Update(model);
+        }
+        public int CauseDel(int id)
+        {
+            return Repository().Delete(id);
+        }
+        //获取要删除的集合
+        public List<Sys_CauseSuggestion> GetModelList(string ids,int type)
+        {
+            if (type == 1)
+            {
+                return Repository().FindListBySql("select CauseId,ParentId from Sys_CauseSuggestion where CauseId in (" + ids + ") ");
+
+            }
+            else
+            {
+                return Repository().FindListBySql("select CauseId,ParentId from Sys_CauseSuggestion where ParentId ="+ ids);
+            }
+           
         }
     }
 }

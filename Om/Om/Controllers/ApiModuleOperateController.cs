@@ -212,12 +212,17 @@ namespace Om.Controllers
             IDatabase database = DataFactory.Database();
             int userid = ManageProvider.Provider.Current().UserId;
             string moduleid = DESEncrypt.Decrypt(CookieHelper.GetCookie("ModuleId"));
+            var model = database.FindEntity<Module>(moduleid);
+            var parentname = database.FindEntity<Module>("ModuleId", model.ParentId);
             var list = database.FindListBySql<ModuleOperate>(" select[ModuleOperateId],[ModuleOperateName],[JsEvent],Icon from[ModuleOperate] where[ModuleOperateId] in (select ModuleOperateId from ModuleOperateRole where RoleId  in (select RoleId from UserRole where UserId = " + userid + " )) and ModuleId ="+ moduleid + "");
             return new Dictionary<string, object>
             {
-                {
-                  "list",list  
-                }
+
+                  { "list",list },
+                  { "parentname",parentname.ModuleName},
+                   { "name",model.ModuleName},
+
+
             };
         }
         /// <summary>

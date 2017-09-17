@@ -70,6 +70,12 @@
     <Compile Include="Base.Common\StringHelper.cs" />
     <Compile Include="Base.Common\SysHelper.cs" />
     <Compile Include="Base.Config\ConfigHelper.cs" />
+    <Compile Include="Base.Data\DataHelper.cs" />
+    <Compile Include="Base.Data\HashtableHelper.cs" />
+    <Compile Include="Base.DateTime\DateTimeHelper.cs" />
+    <Compile Include="Base.Document\Excel\DeriveExcel.cs" />
+    <Compile Include="Base.Document\Excel\ImportExcel.cs" />
+    <Compile Include="Base.Document\Word\DeriveWord.cs" />
     <Compile Include="Base.Extension\IManageProvider.cs" />
     <Compile Include="Base.Extension\IManageUser.cs" />
     <Compile Include="Base.Extension\ManageProvider.cs" />
@@ -86,6 +92,10 @@
     <Compile Include="Base.Http\HttpHelper.cs" />
     <Compile Include="Base.Http\NetHelper.cs" />
     <Compile Include="Base.Http\RequestHelper.cs" />
+    <Compile Include="Base.Model\Condition.cs" />
+    <Compile Include="Base.Model\GridPage.cs" />
+    <Compile Include="Base.Model\JqGridColumn.cs" />
+    <Compile Include="Base.Model\TreeJson.cs" />
     <Compile Include="Base.Security\DESEncrypt.cs" />
     <Compile Include="Base.Security\Md5Helper.cs" />
     <Compile Include="Base.Web\BuildFormHelper.cs" />
@@ -102,7 +112,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Base.Document\PDF\" />
     <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBHelper\DBHelper.csproj">
+      <Project>{af80e713-decb-47da-a6d3-b24875673cdd}</Project>
+      <Name>DBHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
