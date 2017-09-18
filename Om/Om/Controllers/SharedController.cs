@@ -14,7 +14,8 @@ namespace Om.Controllers
         public PartialViewResult Menu()
         {
             ModuleBll Bll = new ModuleBll();
-            List<Module> list = Bll.GetModuleList().OrderBy(a=>a.Sort).ToList();
+
+            List<Module> list = Bll.GetModuleListByUserId();
             return PartialView(list);
         }
     }

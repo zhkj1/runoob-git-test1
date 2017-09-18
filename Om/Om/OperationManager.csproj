@@ -217,7 +217,9 @@
     <Compile Include="Controllers\ApiLoginController.cs" />
     <Compile Include="Controllers\ApiModuleController.cs" />
     <Compile Include="Controllers\ApiModuleOperateController.cs" />
+    <Compile Include="Controllers\ApiM_HitchInfoController.cs" />
     <Compile Include="Controllers\ApiRoleController.cs" />
+    <Compile Include="Controllers\ApiUpfileController.cs" />
     <Compile Include="Controllers\ApiUserController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1407,6 +1409,10 @@
     <Content Include="Views\System\RoleUserAdd.cshtml" />
     <Content Include="Views\Manage\Cause.cshtml" />
     <Content Include="Views\Manage\CauseAdd.cshtml" />
+    <Content Include="Views\Manage\HitchList.cshtml" />
+    <Content Include="Views\Manage\Hitchleadingin.cshtml" />
+    <Content Include="uploads\20170918\2017091810340102211.xls" />
+    <Content Include="Views\Manage\HitchWarning.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
 ﻿using DAL;
+using LeaRun.Utilities;
 using MallWCF.DBHelper;
 using Model;
 using System;
@@ -19,6 +20,12 @@ namespace BLL
         public List<Module> GetModuleList()
         {
             return ModuleDal.GetInstance().GetModuleList();
+        }
+        public List<Module> GetModuleListByUserId()
+        {
+            int userid = ManageProvider.Provider.Current().UserId;
+           return  DataFactory.Database().FindListBySql<Module>("select ModuleId,ModuleName,ControllerName,ParentId ,ActionName from Module where IsShow=1 and   ModuleId in (select ModuleId from ModuleRole where RoleId in (select RoleId from UserRole where UserId=" + userid + "  )   )    order by Sort");
+
         }
         public bool ActionAuthorize(string controllerName,string action,int userId,out string moduleId )
         {

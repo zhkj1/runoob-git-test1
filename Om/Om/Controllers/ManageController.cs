@@ -27,8 +27,24 @@ namespace Om.Controllers
         {
             Sys_CauseSuggestionBll bll = new Sys_CauseSuggestionBll();
             List<Sys_CauseSuggestion> list = bll.GetList();
-          
             ViewBag.list = list;
+            return View();
+        }
+        [ModuleAuthorize]
+        //故障列表
+        public ActionResult HitchList()
+        {
+            return View();
+        }
+        //故障导入
+        public ActionResult Hitchleadingin()
+        {
+            return View();
+        }
+        [ModuleAuthorize]
+        //故障预警
+        public ActionResult HitchWarning()
+        {
             return View();
         }
     }
