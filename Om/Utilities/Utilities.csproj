@@ -34,6 +34,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -71,6 +74,15 @@
     <Compile Include="Base.Extension\IManageUser.cs" />
     <Compile Include="Base.Extension\ManageProvider.cs" />
     <Compile Include="Base.Extension\Permission\PermissionMode.cs" />
+    <Compile Include="Base.File\DirFileHelper.cs" />
+    <Compile Include="Base.File\ExportFile.cs" />
+    <Compile Include="Base.File\FileDateSorter.cs" />
+    <Compile Include="Base.File\FileDownHelper.cs" />
+    <Compile Include="Base.File\GZipHelper.cs" />
+    <Compile Include="Base.File\INIFileHelper.cs" />
+    <Compile Include="Base.File\ReadHelper.cs" />
+    <Compile Include="Base.File\SizeHelper.cs" />
+    <Compile Include="Base.File\UploadHelper.cs" />
     <Compile Include="Base.Http\HttpHelper.cs" />
     <Compile Include="Base.Http\NetHelper.cs" />
     <Compile Include="Base.Http\RequestHelper.cs" />
@@ -84,9 +96,13 @@
     <Compile Include="Cache\CacheHelper.cs" />
     <Compile Include="Cache\DataCache.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="MyConfig.cs" />
     <Compile Include="EnumToItemList.cs" />
     <Compile Include="HtmltHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
