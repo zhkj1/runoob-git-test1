@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
-   public  class Sys_CauseSuggestionDal : RepositoryFactory<Sys_CauseSuggestion>
+   public  class Sys_CauseSuggestionDal : RepositoryFactory<M_CauseSuggestion>
     {
         private static Sys_CauseSuggestionDal _instance;
         private static object _object = new Object();
@@ -32,7 +32,7 @@ namespace DAL
         {
          
         }
-        public int CauseAdd(Sys_CauseSuggestion model)
+        public int CauseAdd(M_CauseSuggestion model)
         {
             SqlParameter[] par =
              { new SqlParameter("@CauseContent",SqlDbType.NVarChar),
@@ -57,9 +57,9 @@ namespace DAL
            return  Repository().ExecuteByProc("Sys_CauseSuggestionadd", par);
         }
 
-        public List<Sys_CauseSuggestion> GetList()
+        public List<M_CauseSuggestion> GetList()
         {
-            return Repository().FindListBySql("select CauseId,CauseContent,CauseLevel from  Sys_CauseSuggestion  order by Code ");
+            return Repository().FindListBySql("select CauseId,CauseContent,CauseLevel from  M_CauseSuggestion  order by Code ");
         }
     }
 }

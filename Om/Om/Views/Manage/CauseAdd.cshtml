@@ -3,7 +3,7 @@
 @{
     Layout = null;
 }
-@model Model.Sys_CauseSuggestion
+@model Model.M_CauseSuggestion
 @using Utilities.Base.Common;
 
 <!DOCTYPE HTML>
@@ -41,7 +41,7 @@
 <body>
     @{
         List<SelectListItem> selectlist = new List<SelectListItem>();
-        List<Model.Sys_CauseSuggestion> listmodule = ViewBag.list as List<Model.Sys_CauseSuggestion>;
+        List<Model.M_CauseSuggestion> listmodule = ViewBag.list as List<Model.M_CauseSuggestion>;
         selectlist.Add(new SelectListItem { Text = "请选择", Value = "0" });
         foreach (var item in listmodule)
         {

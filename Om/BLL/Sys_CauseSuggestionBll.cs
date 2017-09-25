@@ -11,11 +11,11 @@ namespace BLL
 {
   public   class Sys_CauseSuggestionBll
     {
-        public int CauseAdd(Sys_CauseSuggestion model)
+        public int CauseAdd(M_CauseSuggestion model)
         {
             return Sys_CauseSuggestionDal.GetInstance().CauseAdd(model);
         }
-        public List<Sys_CauseSuggestion> GetList()
+        public List<M_CauseSuggestion> GetList()
         {
             return Sys_CauseSuggestionDal.GetInstance().GetList();
         }

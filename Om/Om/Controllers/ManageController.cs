@@ -26,7 +26,7 @@ namespace Om.Controllers
         public ActionResult CauseAdd()
         {
             Sys_CauseSuggestionBll bll = new Sys_CauseSuggestionBll();
-            List<Sys_CauseSuggestion> list = bll.GetList();
+            List<M_CauseSuggestion> list = bll.GetList();
             ViewBag.list = list;
             return View();
         }

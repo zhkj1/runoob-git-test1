@@ -12,7 +12,7 @@ namespace Om.Controllers
 {
     public class ApiCauseController : ApiController
     {
-        public Dictionary<string, object> CauseAdd(Sys_CauseSuggestion model)
+        public Dictionary<string, object> CauseAdd(M_CauseSuggestion model)
         {
             Sys_CauseSuggestionBll bll = new Sys_CauseSuggestionBll();
             model.CreateTime = DateTime.Now;
