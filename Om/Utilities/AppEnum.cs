@@ -73,5 +73,14 @@ namespace Utilities
          No=0
     }
 
+    public enum yujingbilitype
+    {
+        [Description("每天均分")]
+        每天均分 =0,
+        [Description("周末工作日固定比例")]
+        周末工作日固定比例 =1
+    }
+
+
 
 }

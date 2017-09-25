@@ -45,16 +45,24 @@
         selectlist.Add(new SelectListItem { Text = "请选择", Value = "0" });
         foreach (var item in listmodule)
         {
-            //  char nbsp = (char)0xA0;
-            string TempItemText = "└ " + item.CauseContent;
-            for (int i = 1; i < item.CauseLevel + 1; i++)
+            if (Model.ParentId == 0)
             {
-                TempItemText = System.Web.HttpUtility.HtmlDecode("&nbsp;&nbsp;") + TempItemText;
-                //TempItemText = TempItemText.PadLeft(i, nbsp);
+                selectlist.Add(new SelectListItem { Text = item.CauseContent, Value = item.CauseId.ToString() });
+
+            }
+            else
+            {
+                if (Model.ParentId == item.CauseId)
+                {
+                    selectlist.Add(new SelectListItem { Text = item.CauseContent, Value = item.CauseId.ToString(), Selected = true });
+                }
+                else
+                {
+                    selectlist.Add(new SelectListItem { Text = item.CauseContent, Value = item.CauseId.ToString() });
+                }
+
             }
 
-            // "Level 0".PadLeft(i + 7, nbsp) + i
-            selectlist.Add(new SelectListItem { Text =TempItemText, Value = item.CauseId.ToString() });
         }
     }
     <article class="cl pd-20">
@@ -67,36 +75,26 @@
                 </div>
             </div>
             <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>父节点：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>信号名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 @Html.DropDownListFor(a => a.ParentId, selectlist,new { @class = "input-text" })
             </div>
             </div>
+         
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>编码：</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>备注：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    @Html.TextBoxFor(a => a.CauseCode, new { @class = "input-text", autocomplete = "off" })
+                    @Html.TextAreaFor(a => a.SuggestionContent, new { @class = "input-text", autocomplete = "off" ,style = "margin: 0px; height: 148px; width: 565px;" })
                 </div>
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>处理意见：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    @Html.TextBoxFor(a => a.SuggestionContent, new { @class = "input-text", autocomplete = "off" })
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>相关变电站挂靠历史事件：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    @Html.TextBoxFor(a => a.RelatedContent, new { @class = "input-text", autocomplete = "off" })
-                </div>
-            </div>
+          
             
-            <div class="row cl">
+            @*<div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>显示顺序：</label>
                 <div class="formControls col-xs-8 col-sm-9">
                     @Html.TextBoxFor(a => a.Sort, new { @class = "input-text", autocomplete = "off" })
                 </div>
-            </div>
+            </div>*@
 
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">

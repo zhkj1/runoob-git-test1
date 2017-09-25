@@ -19,5 +19,23 @@ namespace BLL
         {
             return Sys_CauseSuggestionDal.GetInstance().GetList();
         }
+        public Sys_CauseSuggestion GetModel(int id)
+        {
+            return Sys_CauseSuggestionDal.GetInstance().GetModel(id);
+        }
+        public int Sys_CauseSuggestionEdit(Sys_CauseSuggestion model)
+        {
+            return Sys_CauseSuggestionDal.GetInstance().Sys_CauseSuggestionEdit(model);
+        }
+        public int CauseDel(int id)
+        {
+            return Sys_CauseSuggestionDal.GetInstance().CauseDel(id);
+        }
+        public List<Sys_CauseSuggestion> GetModelList(string ids,int type)
+        {
+            return Sys_CauseSuggestionDal.GetInstance().GetModelList(ids,type);
+        }
+      
+
     }
 }

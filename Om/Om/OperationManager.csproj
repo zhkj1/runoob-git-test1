@@ -249,6 +249,9 @@
     <Compile Include="UserAttribute\SetModuleAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\selfsetting.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -256,6 +259,20 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="lib\Calendar\images\body-bg.jpg" />
+    <Content Include="lib\Calendar\images\download-button.png" />
+    <Content Include="lib\Calendar\images\github-button.png" />
+    <Content Include="lib\Calendar\images\header-bg.jpg" />
+    <Content Include="lib\Calendar\images\highlight-bg.jpg" />
+    <Content Include="lib\Calendar\images\sidebar-bg.jpg" />
+    <Content Include="lib\Calendar\index.html" />
+    <Content Include="lib\Calendar\javascripts\main.js" />
+    <Content Include="lib\Calendar\javascripts\simple-calendar-es6.js" />
+    <Content Include="lib\Calendar\javascripts\simple-calendar.js" />
+    <Content Include="lib\Calendar\javascripts\simple-calendarbk.js" />
+    <Content Include="lib\Calendar\stylesheets\print.css" />
+    <Content Include="lib\Calendar\stylesheets\simple-calendar.css" />
+    <Content Include="lib\Calendar\stylesheets\stylesheet.css" />
     <Content Include="lib\datatables\1.10.0\jquery.dataTables.min.js" />
     <Content Include="lib\date.js" />
     <Content Include="lib\DD_belatedPNG_0.0.8a-min.js" />
@@ -1413,10 +1430,14 @@
     <Content Include="Views\Manage\Hitchleadingin.cshtml" />
     <Content Include="uploads\20170918\2017091810340102211.xls" />
     <Content Include="Views\Manage\HitchWarning.cshtml" />
+    <Content Include="Views\Manage\YujingList.cshtml" />
+    <Content Include="Views\Manage\SettingList.cshtml" />
+    <Content Include="Views\Manage\DailyList.cshtml" />
+    <Content Include="Views\Manage\MonthList.cshtml" />
+    <Content Include="Views\Manage\YearList.cshtml" />
+    <Content Include="Views\Manage\yujilist.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

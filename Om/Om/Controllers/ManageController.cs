@@ -26,9 +26,19 @@ namespace Om.Controllers
         public ActionResult CauseAdd()
         {
             Sys_CauseSuggestionBll bll = new Sys_CauseSuggestionBll();
+<<<<<<< HEAD
             List<M_CauseSuggestion> list = bll.GetList();
+=======
+            List<Sys_CauseSuggestion> list = bll.GetList();
+
+            Sys_CauseSuggestion model = new Sys_CauseSuggestion();
+            if (Request.QueryString["id"] != null)
+            {
+                model = bll.GetModel(int.Parse(Request.QueryString["id"]));
+            }
+>>>>>>> 46859edee9ef02c4620922162bf62aacd662a3a7
             ViewBag.list = list;
-            return View();
+            return View(model);
         }
         [ModuleAuthorize]
         //故障列表
@@ -44,6 +54,37 @@ namespace Om.Controllers
         [ModuleAuthorize]
         //故障预警
         public ActionResult HitchWarning()
+        {
+            return View();
+        }
+        [ModuleAuthorize]
+        public ActionResult YujingList()
+        {
+            return View();
+        }
+        [ModuleAuthorize]
+        public ActionResult SettingList()
+        {
+            M_HitchInfoBll bll = new M_HitchInfoBll();
+
+            return View(bll.GetSettingModel());
+        }
+        [ModuleAuthorize]
+        public ActionResult DailyList()
+        {
+            return View();
+        }
+        [ModuleAuthorize]
+        public ActionResult MonthList()
+        {
+            return View();
+        }
+        [ModuleAuthorize]
+        public ActionResult YearList()
+        {
+            return View();
+        }
+        public ActionResult yujilist()
         {
             return View();
         }

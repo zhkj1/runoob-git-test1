@@ -53,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody id="view1">
-                    @foreach (var item in Model.Where(a => a.Enabled == 1))
+                    @foreach (var item in Model)
                     {
                         <tr class="text-c">
                             <td><input type="checkbox" value="@item.ModuleOperateId" name=""></td>

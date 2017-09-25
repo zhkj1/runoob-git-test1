@@ -1,19 +1,11 @@
 ﻿@{
-    ViewBag.Title = "故障列表";
+    ViewBag.Title = "信息列表";
 }
 
 
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 评论管理 <span class="c-gray en">&gt;</span> 意见反馈 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"></nav>
 <div class="Hui-article">
     <article class="cl pd-20">
-        <div class="text-c">
-            日期范围：
-            <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
-            -
-            <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入关键词" id="" name="">
-            <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜意见</button>
-        </div>
         <div class="cl pd-5 bg-1 bk-gray mt-20">
             <span class="l" id="operate"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加用户','/System/UserAdd','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
             <span class="r">共有数据：<strong id="total">54</strong> 条</span>
@@ -99,8 +91,6 @@
                 var date = new Date(res.rows[i].createtime);
                 strhtml += "<td>" + date.pattern("yyyy-MM-dd") + "</td>";
                 strhtml += "<td>" + res.rows[i].createusername + "</td>";
-                
-            
                 strhtml+="</tr>"
 
             }
