@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "信号日表";
+    ViewBag.Title = "信号月表";
 }
 @using BLL;
 <style>
@@ -44,7 +44,7 @@
             <button onclick="search()" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 查询</button>
         </div>
         <div class="cl pd-5 bg-1 bk-gray mt-20">
-            <span class="l" id="operate"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_add('添加用户','/System/UserAdd','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
+            <span class="l" id="operate"> </span>
             <span class="r">共有数据：<strong id="total">54</strong> 条</span>
         </div>
         <table class="table table-border table-bordered table-bg">
@@ -125,7 +125,6 @@
                         strhtml += "<td>" + res.rows[i].factorysation + "</td>";
                         strhtml += "<td>" + res.rows[i].signal + "</td>";
                         strhtml += "<td>" + res.rows[i].total + "</td>";
-                        strhtml += "<td>" + res.rows[i].createtime + "</td>";
                         strhtml += "<td>" + res.rows[i].createtime + "</td>";
                         strhtml += "<td><a class=\"btn btn-success radius\" onclick=\"zhili('" + res.rows[i].factorysation + "','" + res.rows[i].signal + "','" + res.rows[i].createtime.substring(0, 10) + "')\">治理</a></td>";
                         strhtml+="</tr>"
@@ -230,11 +229,9 @@
                 }
             }
 
-            function zhili()
+            function zhili(factorysation, signal, createtime)
             {
-
-                admin_add('zhili', '/Manage/yujilist?factorysation=' + factorysation + "&signal=" + signal + "&createtime=" + createtime, '800', '650')
-
+                admin_add('厂站:' + factorysation + "信号:" + signal, '/Manage/zhili?factorysation=' + factorysation + "&signal=" + signal + "&createtime=" + createtime, '1000', '650')
             }
 
 

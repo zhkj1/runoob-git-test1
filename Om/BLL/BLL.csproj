@@ -45,6 +45,8 @@
     <Compile Include="ModuleBll.cs" />
     <Compile Include="ModuleOperateBll.cs" />
     <Compile Include="M_HitchInfoBll.cs" />
+    <Compile Include="M_SolutionBll.cs" />
+    <Compile Include="PredicSettingBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBll.cs" />
     <Compile Include="SysLogBll.cs" />

@@ -218,6 +218,8 @@
     <Compile Include="Controllers\ApiModuleController.cs" />
     <Compile Include="Controllers\ApiModuleOperateController.cs" />
     <Compile Include="Controllers\ApiM_HitchInfoController.cs" />
+    <Compile Include="Controllers\ApiM_SolutionController.cs" />
+    <Compile Include="Controllers\ApiPredicSettingController.cs" />
     <Compile Include="Controllers\ApiRoleController.cs" />
     <Compile Include="Controllers\ApiUpfileController.cs" />
     <Compile Include="Controllers\ApiUserController.cs" />
@@ -267,6 +269,7 @@
     <Content Include="lib\Calendar\images\sidebar-bg.jpg" />
     <Content Include="lib\Calendar\index.html" />
     <Content Include="lib\Calendar\javascripts\main.js" />
+    <Content Include="lib\Calendar\javascripts\simple-calendar1.js" />
     <Content Include="lib\Calendar\javascripts\simple-calendar-es6.js" />
     <Content Include="lib\Calendar\javascripts\simple-calendar.js" />
     <Content Include="lib\Calendar\javascripts\simple-calendarbk.js" />
@@ -1127,6 +1130,8 @@
     <Content Include="lib\webuploader\0.1.5\server\fileupload2.php" />
     <Content Include="lib\webuploader\0.1.5\server\preview.php" />
     <Content Include="Resource\IPScaner\QQWry.Dat" />
+    <None Include="Properties\PublishProfiles\132.pubxml" />
+    <None Include="Properties\PublishProfiles\OM.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1428,7 +1433,6 @@
     <Content Include="Views\Manage\CauseAdd.cshtml" />
     <Content Include="Views\Manage\HitchList.cshtml" />
     <Content Include="Views\Manage\Hitchleadingin.cshtml" />
-    <Content Include="uploads\20170918\2017091810340102211.xls" />
     <Content Include="Views\Manage\HitchWarning.cshtml" />
     <Content Include="Views\Manage\YujingList.cshtml" />
     <Content Include="Views\Manage\SettingList.cshtml" />
@@ -1436,8 +1440,13 @@
     <Content Include="Views\Manage\MonthList.cshtml" />
     <Content Include="Views\Manage\YearList.cshtml" />
     <Content Include="Views\Manage\yujilist.cshtml" />
+    <Content Include="Views\Manage\zhili.cshtml" />
+    <Content Include="Views\Manage\DailyDetial.cshtml" />
+    <Content Include="Views\Manage\PredicSettingAdd.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="uploads\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

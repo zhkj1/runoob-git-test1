@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     [PrimaryKey("CauseId")]
-    public  class M_CauseSuggestion
+    public  class Sys_CauseSuggestion
     {
          public int CauseId { get; set; }
 

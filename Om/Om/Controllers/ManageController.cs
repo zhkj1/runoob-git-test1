@@ -26,17 +26,15 @@ namespace Om.Controllers
         public ActionResult CauseAdd()
         {
             Sys_CauseSuggestionBll bll = new Sys_CauseSuggestionBll();
-<<<<<<< HEAD
-            List<M_CauseSuggestion> list = bll.GetList();
-=======
+
             List<Sys_CauseSuggestion> list = bll.GetList();
 
-            Sys_CauseSuggestion model = new Sys_CauseSuggestion();
+             Sys_CauseSuggestion model = new Sys_CauseSuggestion();
             if (Request.QueryString["id"] != null)
             {
                 model = bll.GetModel(int.Parse(Request.QueryString["id"]));
             }
->>>>>>> 46859edee9ef02c4620922162bf62aacd662a3a7
+
             ViewBag.list = list;
             return View(model);
         }
@@ -87,6 +85,34 @@ namespace Om.Controllers
         public ActionResult yujilist()
         {
             return View();
+        }
+        public ActionResult zhili()
+        {
+
+            // admin_add('治理', '/Manage/zhili?factorysation=' + factorysation + "&signal=" + signal + "&createtime=" + createtime, '1000', '650')
+
+            string factorysation = Request.QueryString["factorysation"].ToString();
+            string signal = Request.QueryString["signal"].ToString();
+            Sys_CauseSuggestionBll Bll = new Sys_CauseSuggestionBll();
+            string content = "";
+            var list = Bll.GetCauseSuggestionListByContent(signal, factorysation,ref content);
+            ViewBag.CauseContent = content;
+                 return View(list);
+        }
+        public ActionResult DailyDetial()
+        {
+          
+            return View();
+        }
+        public ActionResult PredicSettingAdd()
+        {
+            PredicSettingBll bll = new PredicSettingBll();
+            PredicSetting model = new PredicSetting();
+            if (Request.QueryString["id"] != null)
+            {
+                model = bll.GetModel(int.Parse(Request.QueryString["id"].ToString()));
+            }
+             return View(model);
         }
     }
 }

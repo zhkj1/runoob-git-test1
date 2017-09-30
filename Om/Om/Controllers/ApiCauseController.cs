@@ -15,14 +15,12 @@ using System.Web.Http;
 namespace Om.Controllers
 {
     public class ApiCauseController : ApiController
-<<<<<<< HEAD
+
     {
-        public Dictionary<string, object> CauseAdd(M_CauseSuggestion model)
-=======
-    { 
+  
          [HttpPost]
         public Dictionary<string, object> CauseAdd(Sys_CauseSuggestion model)
->>>>>>> 46859edee9ef02c4620922162bf62aacd662a3a7
+
         {
             Sys_CauseSuggestionBll bll = new Sys_CauseSuggestionBll();
             if (model.CauseId > 0)

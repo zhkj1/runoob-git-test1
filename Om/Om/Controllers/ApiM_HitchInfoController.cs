@@ -233,11 +233,16 @@ namespace Om.Controllers
         public Dictionary<string, object> GetYuji()
         {
            
-             string factorysation= HttpContext.Current.Request.Form["factorysation"].ToString();
+            string factorysation= HttpContext.Current.Request.Form["factorysation"].ToString();
             string signal = HttpContext.Current.Request.Form["signal"].ToString();
             string createtime = HttpContext.Current.Request.Form["createtime"].ToString();
             IDatabase database = DataFactory.Database();
-            int totalday = 600;
+
+            string path = HttpContext.Current.Server.MapPath("/App_Data/selfsetting.xml");
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load(path);
+            // PropertyInfo[] properties = t.GetProperties();
+            int totalday = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value);
             var list = database.FindListBySql<M_HitchInfo>("SELECT sum(HappenTimes)AS HappenTimes, CreateTime FROM [M_HitchInfo] where  FactorySation = '"+ factorysation + "' and Signal = '"+signal+"' and DATEDIFF(month, CreateTime, '"+ createtime + "') = 0  group by CreateTime");
             int monthdyas = DateTimeHelper.GetDaysOfMonth(DateTime.Parse(createtime));
             string month = DateTime.Parse(createtime).Month.ToString();
@@ -256,24 +261,40 @@ namespace Om.Controllers
                     listtimes.Add(model.HappenTimes);
                 }
             }
-            string bili = "2:1";
+            string bili = xmldoc.SelectSingleNode("root").SelectSingleNode("weekendbili").Attributes[0].Value;
             string[] arrbili = bili.Split(':');
             //工作日节假日的具体比例
             List<int> shijilist = new List<int>();
-            //每月的周末和工作日
-            List<int> listdays = DateTimeHelper.GetMonthArr(DateTime.Parse(createtime));
-            for (int i = 0; i < listdays.Count; i++)
+
+            PredicSettingBll PredicSettingBll = new PredicSettingBll();
+            string ScaleDetial = "";
+            if (PredicSettingBll.IsExits(factorysation, signal,ref ScaleDetial))
             {
-                //工作日
-                if (listdays[i] == 0)
+                string[] arr = ScaleDetial.Split(':');
+                for (int i = 0; i < arr.Length; i++)
                 {
-                    shijilist.Add(int.Parse(arrbili[1]));
-                }
-                else
-                {
-                    shijilist.Add(int.Parse(arrbili[0]));
+                    shijilist.Add(int.Parse(arr[i]));
                 }
             }
+            else
+            {  //每月的周末和工作日
+                List<int> listdays = DateTimeHelper.GetMonthArr(DateTime.Parse(createtime));
+                for (int i = 0; i < listdays.Count; i++)
+                {
+                    //工作日
+                    if (listdays[i] == 0)
+                    {
+                        shijilist.Add(int.Parse(arrbili[1]));
+                    }
+                    else
+                    {
+                        shijilist.Add(int.Parse(arrbili[0]));
+                    }
+                }
+
+            }
+
+          
             int bilisum = 0;
             foreach (var item in shijilist)
             {
@@ -298,6 +319,51 @@ namespace Om.Controllers
             {
                 {"shijilist",shiji},
                 { "yujilist",yuji}
+            };
+
+
+        }
+
+
+
+        [HttpPost]
+
+        public Dictionary<string, object> GetDailyDetial()
+        {
+
+            string factorysation = HttpContext.Current.Request.Form["factorysation"].ToString();
+            string signal = HttpContext.Current.Request.Form["signal"].ToString();
+            string createtime = HttpContext.Current.Request.Form["createtime"].ToString();
+            IDatabase database = DataFactory.Database();
+
+            //string path = HttpContext.Current.Server.MapPath("/App_Data/selfsetting.xml");
+            //XmlDocument xmldoc = new XmlDocument();
+            //xmldoc.Load(path);
+            // PropertyInfo[] properties = t.GetProperties();
+            //int totalday = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value);
+            var list = database.FindListBySql<M_HitchInfo>("SELECT sum(HappenTimes)AS HappenTimes, CreateTime FROM [M_HitchInfo] where  FactorySation = '" + factorysation + "' and Signal = '" + signal + "' and DATEDIFF(month, CreateTime, '" + createtime + "') = 0  group by CreateTime");
+            int monthdyas = DateTimeHelper.GetDaysOfMonth(DateTime.Parse(createtime));
+            string month = DateTime.Parse(createtime).Month.ToString();
+            string year = DateTime.Parse(createtime).Year.ToString();
+            //计算出每天的次数集合
+            List<int> listtimes = new List<int>();
+            for (int i = 1; i < monthdyas + 1; i++)
+            {
+                var model = list.Find(a => a.CreateTime == DateTime.Parse(year + "-" + month + "-" + i.ToString()));
+                if (model == null)
+                {
+                    listtimes.Add(0);
+                }
+                else
+                {
+                    listtimes.Add(model.HappenTimes);
+                }
+            }
+       
+            return new Dictionary<string, object>
+            {
+                {"shijilist",listtimes},
+             
             };
 
 
