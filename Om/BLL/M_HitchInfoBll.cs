@@ -69,11 +69,25 @@ namespace BLL
                 {
                     sum += list[i];
                 }
+                else {
+                    break;
+                }
                
             }
             return sum; 
         }
-     
+        public static int GetListSum(List<int> list)
+        {
+            int sum = 0;
+            foreach (var item in list)
+            {
+                sum += item;
+            }
+            return sum;
+
+        }
+           
+        
 
     }
 }

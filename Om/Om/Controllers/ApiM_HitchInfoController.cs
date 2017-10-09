@@ -302,12 +302,49 @@ namespace Om.Controllers
             }
             List<int> shiji = new List<int>();
             List<int> yuji = new List<int>();
+            List<int> list2 = new List<int>();
+            List<int> list3 = new List<int>();
             int shijisum = 0;
             for (int i = 0; i < shijilist.Count; i++)
             {
-                int shengyu = shijilist[i] * (totalday - M_HitchInfoBll.GetRestCount(listtimes, i)) / (bilisum - (M_HitchInfoBll.GetRestCount(shijilist, i)));
+                //预计
+                int inta = 0;
+                //已用
+                int intb = 0;
+                if (i == 0)
+                {
+                    inta = totalday * shijilist[i] / bilisum;
+                    if (listtimes[i] == 0)
+                    {
+                        intb = inta;
+
+                    }
+                    else {
+                        intb = listtimes[i];
+                    }
+                    list3.Add(intb);
+                }
+                else
+                {
+                    int a = totalday - M_HitchInfoBll.GetListSum(list3);
+                    int b = bilisum - (M_HitchInfoBll.GetListSum(list2));
+                     inta = shijilist[i] * a / b;
+                    if (listtimes[i] == 0)
+                    {
+                        list3.Add(inta);
+
+                    }
+                    else
+                    {
+                        list3.Add(listtimes[i]);
+                    }
+                  
+                }
+               
+                list2.Add(shijilist[i]);
+              //  int shengyu = shijilist[i] * (totalday- M_HitchInfoBll.GetRestCount(listtimes, i)) / (bilisum - (M_HitchInfoBll.GetRestCount(shijilist, i)));
                 shiji.Add(listtimes[i]);
-                yuji.Add(shengyu);
+                yuji.Add(inta);
                 shijisum += listtimes[i];
                 if (shijisum > totalday)
                 {

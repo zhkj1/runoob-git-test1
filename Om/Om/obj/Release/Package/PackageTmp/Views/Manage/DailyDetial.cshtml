@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="/lib/Calendar/stylesheets/print.css" media="print">
     <link rel="stylesheet" type="text/css" href="/lib/Calendar/stylesheets/simple-calendar.css">
     <script src="~/lib/jquery/1.9.1/jquery.js"></script>
-
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -33,7 +32,7 @@
 </head>
 
 <body>
-   
+
 
     <div id="content-wrapper">
         <div class="inner clearfix">
@@ -42,33 +41,32 @@
             </div>
         </div>
 
-     
+
     </div>
 
-    <script type="text/javascript" src="/lib/Calendar/javascripts/simple-calendar.js"></script>
- 
+    <script type="text/javascript" src="/lib/Calendar/javascripts/simple-calendar1.js"></script>
+
     <script>
-       
-        $.post("/api/ApiM_HitchInfo/GetYuji", {"factorysation":'@Request.QueryString["factorysation"]',"signal":'@Request.QueryString["signal"]',"createtime":'@Request.QueryString["createtime"]'}, function (data)
+
+        $.post("/api/ApiM_HitchInfo/GetDailyDetial", { "factorysation": '@Request.QueryString["factorysation"]', "signal": '@Request.QueryString["signal"]', "createtime": '@Request.QueryString["createtime"]' }, function (data)
         {
-            
+
             var dataobj = {};
             var date = new Date('@Request.QueryString["createtime"]');
-         
             var month = date.getMonth() + 1;
             var year=date.getFullYear();
             var dataobj = {};
             for (var i =0; i < data.shijilist.length; i++) {
                 var name = year + "-" + month + "-" + (i + 1);
                // dataobj += name+":"
-                dataobj[name] = data.shijilist[i] + "," + data.yujilist[i];
+                dataobj[name] = data.shijilist[i];
             }
           //  var agc = JSON.stringify(dataobj);
-          
+
             //yujilist
             var options = {
                 width: '700px',
-                height: '550px',
+                height: '500px',
                 language: 'CH', //语言
                 showLunarCalendar: false, //阴历
                 showHoliday: false, //休假
@@ -80,8 +78,6 @@
                     startYear: 1900,
                     endYear: 2049
                 },
-                year: year,
-                month:month,
                 mark: dataobj,
                 theme: {
                     changeAble: false,
@@ -100,13 +96,12 @@
                 }
             }
             var myCalendar = new SimpleCalendar('#calendar', options);
-            myCalendar.abc = "";
 
         },"json"
-          
+
         );
-       
-       
+
+
     </script>
 
 

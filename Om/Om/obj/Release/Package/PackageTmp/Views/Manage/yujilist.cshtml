@@ -54,6 +54,7 @@
             
             var dataobj = {};
             var date = new Date('@Request.QueryString["createtime"]');
+         
             var month = date.getMonth() + 1;
             var year=date.getFullYear();
             var dataobj = {};
@@ -67,7 +68,7 @@
             //yujilist
             var options = {
                 width: '700px',
-                height: '500px',
+                height: '550px',
                 language: 'CH', //语言
                 showLunarCalendar: false, //阴历
                 showHoliday: false, //休假
@@ -79,6 +80,8 @@
                     startYear: 1900,
                     endYear: 2049
                 },
+                year: year,
+                month:month,
                 mark: dataobj,
                 theme: {
                     changeAble: false,
@@ -97,6 +100,7 @@
                 }
             }
             var myCalendar = new SimpleCalendar('#calendar', options);
+            myCalendar.abc = "";
 
         },"json"
           

@@ -13,7 +13,7 @@
       <publishTime>08/14/2017 13:46:18</publishTime>
     </File>
     <File Include="App_Data/selfsetting.xml">
-      <publishTime>09/25/2017 14:23:11</publishTime>
+      <publishTime>09/26/2017 10:35:40</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>02/22/2013 08:43:40</publishTime>
@@ -25,13 +25,13 @@
       <publishTime>10/26/2015 21:51:50</publishTime>
     </File>
     <File Include="bin/BLL.dll">
-      <publishTime>09/25/2017 16:27:08</publishTime>
+      <publishTime>10/09/2017 11:34:56</publishTime>
     </File>
     <File Include="bin/DBHelper.dll">
       <publishTime>09/25/2017 16:27:04</publishTime>
     </File>
     <File Include="bin/DLL.dll">
-      <publishTime>09/25/2017 16:27:08</publishTime>
+      <publishTime>09/30/2017 17:28:02</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -103,13 +103,13 @@
       <publishTime>04/23/2012 15:23:58</publishTime>
     </File>
     <File Include="bin/Model.dll">
-      <publishTime>09/25/2017 16:27:05</publishTime>
+      <publishTime>09/30/2017 17:28:01</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/03/2014 20:33:56</publishTime>
     </File>
     <File Include="bin/Om.dll">
-      <publishTime>09/25/2017 18:00:39</publishTime>
+      <publishTime>10/09/2017 11:35:03</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>11/27/2012 13:00:52</publishTime>
@@ -313,7 +313,10 @@
       <publishTime>09/25/2017 14:23:12</publishTime>
     </File>
     <File Include="lib/Calendar/javascripts/simple-calendar.js">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>10/09/2017 09:51:50</publishTime>
+    </File>
+    <File Include="lib/Calendar/javascripts/simple-calendar1.js">
+      <publishTime>09/29/2017 14:56:52</publishTime>
     </File>
     <File Include="lib/Calendar/javascripts/simple-calendarbk.js">
       <publishTime>09/25/2017 14:23:12</publishTime>
@@ -3691,13 +3694,16 @@
       <publishTime>08/16/2017 15:14:35</publishTime>
     </File>
     <File Include="Views/Manage/Cause.cshtml">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>09/25/2017 18:04:52</publishTime>
     </File>
     <File Include="Views/Manage/CauseAdd.cshtml">
       <publishTime>09/25/2017 16:28:58</publishTime>
     </File>
+    <File Include="Views/Manage/DailyDetial.cshtml">
+      <publishTime>09/30/2017 09:01:07</publishTime>
+    </File>
     <File Include="Views/Manage/DailyList.cshtml">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>10/09/2017 09:53:29</publishTime>
     </File>
     <File Include="Views/Manage/Hitchleadingin.cshtml">
       <publishTime>09/25/2017 14:23:12</publishTime>
@@ -3706,22 +3712,28 @@
       <publishTime>09/25/2017 14:23:12</publishTime>
     </File>
     <File Include="Views/Manage/HitchWarning.cshtml">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>09/30/2017 17:03:37</publishTime>
     </File>
     <File Include="Views/Manage/MonthList.cshtml">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>09/29/2017 15:08:19</publishTime>
+    </File>
+    <File Include="Views/Manage/PredicSettingAdd.cshtml">
+      <publishTime>09/30/2017 17:05:52</publishTime>
     </File>
     <File Include="Views/Manage/SettingList.cshtml">
       <publishTime>09/25/2017 14:23:12</publishTime>
     </File>
     <File Include="Views/Manage/YearList.cshtml">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>09/26/2017 10:07:55</publishTime>
     </File>
     <File Include="Views/Manage/yujilist.cshtml">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>10/09/2017 09:54:24</publishTime>
     </File>
     <File Include="Views/Manage/YujingList.cshtml">
-      <publishTime>09/25/2017 14:23:12</publishTime>
+      <publishTime>09/26/2017 10:21:24</publishTime>
+    </File>
+    <File Include="Views/Manage/zhili.cshtml">
+      <publishTime>09/30/2017 13:24:39</publishTime>
     </File>
     <File Include="Views/Module/index.cshtml">
       <publishTime>08/14/2017 16:52:55</publishTime>
