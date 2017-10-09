@@ -57,6 +57,7 @@
                     <th width="300">信号</th>
                     <th width="100">数量</th>
                     <th width="100">日期</th>
+                    @*<th width="100">当日预计次数</th>*@
                     <th width="100">查看预计次数</th>
                 </tr>
             </thead>
@@ -76,6 +77,11 @@
     <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript" src="~/lib/date.js"></script>
     <script src="~/lib/operate.js"></script>
+    <style>
+        .abc {
+       background-color:#a09a9a
+        }
+    </style>
     <script type="text/javascript">
         function selectMonth() {
             WdatePicker({ dateFmt: 'yyyy-MM', isShowToday: false, isShowClear: false });
@@ -128,7 +134,15 @@
                         strhtml += "<td>" + res.rows[i].factorysation + "</td>";
                         strhtml += "<td>" + res.rows[i].signal + "</td>";
                         strhtml += "<td>" + res.rows[i].total + "</td>";
-                        strhtml += "<td>" + res.rows[i].createtime.substring(0,10) + "</td>"
+                        strhtml += "<td>" + res.rows[i].createtime.substring(0, 10) + "</td>"
+                        //if (res.yuji[i].split(',')[0] > res.yuji[i].split(',')[1]) {
+                        //    strhtml += "<td style=\"background-color:#a09a9a\">" + res.yuji[i].split(',')[1] + "</td>"
+
+                        //}
+                        //else {
+                        //    strhtml += "<td >" + res.yuji[i].split(',')[1] + "</td>"
+
+                        //}
                         strhtml += "<td><a class=\"btn btn-success radius\" onclick=\"goyuji('" + res.rows[i].factorysation + "','" + res.rows[i].signal + "','" + res.rows[i].createtime.substring(0, 10) + "')\">查看</a></td>";
                         strhtml+="</tr>"
 

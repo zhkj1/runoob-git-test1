@@ -305,7 +305,16 @@ var SimpleCalendar = function () {
       for (var i = 0; i < 7; i++) {
         week.innerHTML = week.innerHTML + ' <div class="sc-week-item"></div>';
       }
-      for (var i = 0; i < 35; i++) {
+
+      var date1 = new Date(this._options.year + "-" + this._options.month + "-" + "01");
+      var week1 = date1.getDay();
+      var lenth = 35;
+      if (week1 == 0 || week1 == 6) {
+          lenth = 42;
+      }
+     
+
+      for (var i = 0; i < lenth; i++) {
         days.innerHTML = days.innerHTML + '<div class="sc-item"><div class="day"></div><div class="lunar-day"></div></div>';
       }
       //添加下拉框数据
@@ -321,8 +330,11 @@ var SimpleCalendar = function () {
   }, {
     key: 'update',
     value: function update() {
-      var month = arguments.length <= 0 || arguments[0] === undefined ? this.tmonth : arguments[0];
-      var year = arguments.length <= 1 || arguments[1] === undefined ? this.tyear : arguments[1];
+        var year = this._options.year;
+        var month = this._options.month;
+
+      //var month = arguments.length <= 0 || arguments[0] === undefined ? this.tmonth : arguments[0];
+      //var year = arguments.length <= 1 || arguments[1] === undefined ? this.tyear : arguments[1];
 
       this.updateSize();
       this.updateWeek();
@@ -434,8 +446,15 @@ var SimpleCalendar = function () {
       //计算得到第一个格子的日期
       var thispageStart = new Date(Date.parse(day) - (week - 1) * 24 * 3600 * 1000);
 
+
+      var date1 = new Date(this._options.year + "-" + this._options.month + "-" + "01");
+      var week1 = date1.getDay();
+      var lenth = 35;
+      if (week1 == 0 || week1 == 6) {
+          lenth = 42;
+      }
       //对每一个格子遍历
-      for (var i = 0; i < 35; i++) {
+      for (var i = 0; i < lenth; i++) {
         daysElement[i].className = 'sc-item';
         var theday = new Date(Date.parse(thispageStart) + i * 24 * 3600 * 1000);
         var writeyear = theday.getFullYear();
