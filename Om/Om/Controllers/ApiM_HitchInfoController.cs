@@ -256,6 +256,7 @@ namespace Om.Controllers
             int monthdyas = DateTimeHelper.GetDaysOfMonth(DateTime.Parse(createtime));
             string month = DateTime.Parse(createtime).Month.ToString();
             string year = DateTime.Parse(createtime).Year.ToString();
+            int days = DateTime.Parse(createtime).Day;
             //计算出每天的次数集合
             List<int> listtimes = new List<int>();
             for (int i = 1; i < monthdyas + 1; i++)
@@ -325,7 +326,7 @@ namespace Om.Controllers
                     inta = totalday * shijilist[i] / bilisum;
                     if (listtimes[i] == 0)
                     {
-                        intb = inta;
+                       // intb = inta;
 
                     }
                     else
@@ -333,25 +334,39 @@ namespace Om.Controllers
                         intb = listtimes[i];
                     }
                     list3.Add(intb);
+                    list2.Add(shijilist[i]);
                 }
                 else
                 {
-                    int a = totalday - M_HitchInfoBll.GetListSum(list3);
-                    int b = bilisum - (M_HitchInfoBll.GetListSum(list2));
-                    inta = shijilist[i] * a / b;
-                    if (listtimes[i] == 0)
+                   
+                    if (days < i+1)
                     {
-                        list3.Add(inta);
-
+                        int a = totalday - M_HitchInfoBll.GetListSum(list3);
+                        int b = bilisum - (M_HitchInfoBll.GetListSum(list2));
+                        inta = shijilist[i] * a / b;
+                       
+                     
+                       
                     }
                     else
                     {
-                        list3.Add(listtimes[i]);
+                        int a = totalday - M_HitchInfoBll.GetListSum(list3);
+                        int b = bilisum - (M_HitchInfoBll.GetListSum(list2));
+                        inta = shijilist[i] * a / b;
+                        if (listtimes[i] == 0)
+                        {
+                            // list3.Add(inta);
+                        }
+                        else
+                        {
+                            list3.Add(listtimes[i]);
+                        }
+                        list2.Add(shijilist[i]);
                     }
 
                 }
 
-                list2.Add(shijilist[i]);
+            
                 //  int shengyu = shijilist[i] * (totalday- M_HitchInfoBll.GetRestCount(listtimes, i)) / (bilisum - (M_HitchInfoBll.GetRestCount(shijilist, i)));
                 shiji.Add(listtimes[i]);
                 yuji.Add(inta);
