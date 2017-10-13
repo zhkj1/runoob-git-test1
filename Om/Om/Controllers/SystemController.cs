@@ -1,4 +1,5 @@
 ﻿using BLL;
+using LeaRun.Utilities;
 using Model;
 using Om.UserAttribute;
 using System;
@@ -108,6 +109,11 @@ namespace Om.Controllers
         public ActionResult RoleUserAdd()
         {
             return View();
+        }
+        public ActionResult LoginOut()
+        {
+            ManageProvider.Provider.EmptyCurrent();
+            return RedirectToAction("index", "Login");
         }
     }
 }

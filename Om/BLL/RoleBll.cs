@@ -89,5 +89,11 @@ namespace BLL
             }
         
         }
+        public Role GetModelByUserId(int UserId)
+        {
+            IDatabase database = DataFactory.Database();
+          return  database.FindEntityBySql<Role>("select top 1 * from Role where RoleId in (select RoleId from  UserRole where UserId="+ UserId+")");
+        }
+
     }
 }
