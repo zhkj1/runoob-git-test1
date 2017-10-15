@@ -10,6 +10,7 @@ using Utilities.Base.File;
 using LeaRun.Utilities;
 using System.Xml;
 using Model.ModelView;
+using System.Text;
 
 namespace Om.Controllers
 {
@@ -580,6 +581,19 @@ namespace Om.Controllers
             }
             return result;
 
+        }
+
+        [HttpPost]
+        public Dictionary<string, object> DelByDate()
+        {
+            string date = HttpContext.Current.Request.Form["date"].ToString();
+            IDatabase database = DataFactory.Database();
+            StringBuilder sb = new StringBuilder("delete  M_HitchInfo where CreateTime='" + date + "'");
+          int a=  database.ExecuteBySql(sb);
+            return new Dictionary<string, object>
+            {
+                { "msg",a}
+            };
         }
     }
 }
