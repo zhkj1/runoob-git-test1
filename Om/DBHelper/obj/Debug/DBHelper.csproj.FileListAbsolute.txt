@@ -17,4 +17,14 @@ D:\Git\Om\DBHelper\bin\Debug\Newtonsoft.Json.dll
 D:\Git\Om\DBHelper\bin\Debug\Newtonsoft.Json.xml
 D:\Git\Om\DBHelper\obj\Debug\DBHelper.dll
 D:\Git\Om\DBHelper\obj\Debug\DBHelper.pdb
+<<<<<<< HEAD
+E:\Git\Om\Om\DBHelper\bin\Debug\DBHelper.dll
+E:\Git\Om\Om\DBHelper\bin\Debug\DBHelper.pdb
+E:\Git\Om\Om\DBHelper\bin\Debug\Newtonsoft.Json.dll
+E:\Git\Om\Om\DBHelper\bin\Debug\Newtonsoft.Json.xml
+E:\Git\Om\Om\DBHelper\obj\Debug\DBHelper.csprojResolveAssemblyReference.cache
+E:\Git\Om\Om\DBHelper\obj\Debug\DBHelper.dll
+E:\Git\Om\Om\DBHelper\obj\Debug\DBHelper.pdb
+=======
 D:\李曙光\Git\Om\DBHelper\obj\Debug\DBHelper.csprojResolveAssemblyReference.cache
+>>>>>>> 8289d937390bcf1da6ee234041a486a860f9a5eb
