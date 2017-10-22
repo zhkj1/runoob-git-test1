@@ -12,6 +12,8 @@ namespace Model.ModelView
          public int yujingtype { get; set; }
         public string weekendbili { get; set; }
          public int mothtimes { get; set; }
+        //饼状图显示的数量
+        public int showcount { get; set; }
     }
 }
 

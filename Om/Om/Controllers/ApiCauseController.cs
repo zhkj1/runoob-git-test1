@@ -27,6 +27,7 @@ namespace Om.Controllers
             {
                 var model1 = bll.GetModel(model.CauseId);
                 model1.CauseContent = model.CauseContent;
+                model1.RelatedContent = model.RelatedContent;
                 model1.ParentId = model.ParentId;
 
                 if (model.SuggestionContent == null)
@@ -73,8 +74,12 @@ namespace Om.Controllers
                 {
                     model.SuggestionContent = "";
                 }
+                if (model.RelatedContent == null)
+                {
+                    model.RelatedContent = "";
+                }
                 model.CauseCode = "";
-                model.RelatedContent = "";
+               
                 model.Sort = 0;
                 if (bll.CauseAdd(model) > 0)
                 {
@@ -112,7 +117,7 @@ namespace Om.Controllers
                 strwhere += " and (CauseContent like '%"+key+ "%' or SuggestionContent like '%"+key+"%')";
 
             }
-            data = re.FindTablePageBySql("select CauseId,ParentId,Code,[CauseContent],SuggestionContent,CreateTime,[CreateUserId],CreateUserName ,Sort from Sys_CauseSuggestion ", ref jqgridparam);
+            data = re.FindTablePageBySql("select CauseId,ParentId,Code,[CauseContent],SuggestionContent,CreateTime,[CreateUserId],CreateUserName ,Sort,RelatedContent from Sys_CauseSuggestion ", ref jqgridparam);
             return new Dictionary<string, object>
             {
                 { "code",1},

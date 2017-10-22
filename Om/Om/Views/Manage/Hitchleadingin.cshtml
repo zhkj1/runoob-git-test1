@@ -44,9 +44,11 @@
     <article class="cl pd-20">
         <form  method="post" class="form form-horizontal" id="form-admin-add">
             <div class="row cl">
+                <div id="divtips" style="color:red; margin-left:150px;font-size:large"></div>
+                
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>导入时间：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" onclick="WdatePicker()" id="leandingtime"name="leandingtime" class="input-text Wdate" style="width:120px;" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                    <input type="text" onclick="WdatePicker({onpicked:getMonday})" id="leandingtime"name="leandingtime" class="input-text Wdate" style="width:120px;" value="@DateTime.Now.ToString("yyyy-MM-dd")">
 
                     <button  class="btn btn-primary " onclick="del()">删除当前日期的数据</button>
 
@@ -85,6 +87,7 @@
     <script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
     <script src="~/lib/webuploader/0.1.5/webuploader.js"></script>
     <script type="text/javascript">
+       
         function del()
         {
             if (confirm("你确实删除" + $("#leandingtime").val() + "当天的数据吗？"))
@@ -96,9 +99,24 @@
             }
         }
         function selectMonth() {
+           
             WdatePicker({ dateFmt: 'yyyy-MM', isShowToday: false, isShowClear: false });
         }
+        function getMonday()
+        {
+            $.post("/api/ApiM_HitchInfo/IsExistByDate", { "date": $("#leandingtime").val() }, function (data)
+            {
+                if (data.code == "1") {
+                    $("#divtips").html($("#leandingtime").val() + "已经存在了是否确认还要导入");
+                }
+                else {
+                    $("#divtips").html("");
+                }
+            },"json")
+        }
         $(function () {
+
+            getMonday();
             $list = $("#fileList");
         
             var uploader = WebUploader.create({
