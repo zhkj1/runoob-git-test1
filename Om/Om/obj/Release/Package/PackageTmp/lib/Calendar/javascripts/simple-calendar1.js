@@ -473,10 +473,11 @@ var SimpleCalendar = function () {
         }
 
         //添加today样式
-        //if (this.tyear == writeyear && this.tday == writeday && this.tmonth == writemonth) {
-        //  this.selectDay = daysElement[i];
-        //  daysElement[i].classList.add("sc-today");
-        //}
+        if (this._options.year == writeyear && this._options.day == writeday && this._options.month == writemonth) {
+
+          this.selectDay = daysElement[i];
+          daysElement[i].classList.add("sc-today");
+        }
       }
     }
 

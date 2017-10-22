@@ -34,11 +34,24 @@ namespace Om.Controllers
                     SysLogBll.WriteLog(model.Account, OperationType.Login, LogSatus.fail, "账号不存在、IP所在城市" + IPAddressName);
                     break;
                 case 1:
+                    RoleBll RoleBll = new RoleBll();
+                    Role role = RoleBll.GetModelByUserId(base_user.UserId);
+                  
                     IManageUser mangeuser = new IManageUser();
                     mangeuser.UserId = base_user.UserId;
                     mangeuser.Account = base_user.Account;
                     mangeuser.IPAddress = IPAddress;
                     mangeuser.IPAddressName = IPAddressName;
+                    if (role != null)
+                    {
+                        mangeuser.RoleName = role.RoleName;
+                        mangeuser.RoleId = role.RoleId;
+                    }
+                    else
+                    {
+                        mangeuser.RoleName = "";
+                        mangeuser.RoleId = 0;
+                    }
                     ManageProvider.Provider.AddCurrent(mangeuser);
                     SysLogBll.WriteLog(model.Account, OperationType.Login, LogSatus.Success, "登陆成功、IP所在城市" + IPAddressName);
                     break;

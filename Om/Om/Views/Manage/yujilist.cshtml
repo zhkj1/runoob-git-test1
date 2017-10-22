@@ -57,6 +57,7 @@
          
             var month = date.getMonth() + 1;
             var year=date.getFullYear();
+            var day=date.getDate();
             var dataobj = {};
             for (var i =0; i < data.shijilist.length; i++) {
                 var name = year + "-" + month + "-" + (i + 1);
@@ -82,6 +83,7 @@
                 },
                 year: year,
                 month:month,
+                day:day,
                 mark: dataobj,
                 theme: {
                     changeAble: false,
