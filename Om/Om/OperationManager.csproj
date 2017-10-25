@@ -249,6 +249,13 @@
     <Compile Include="UserAttribute\LoginAuthorizeAttribute.cs" />
     <Compile Include="UserAttribute\ModuleAuthorizeAttribute.cs" />
     <Compile Include="UserAttribute\SetModuleAttribute.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\selfsetting.xml">
@@ -1139,6 +1146,7 @@
     <Content Include="lib\webuploader\0.1.5\server\fileupload2.php" />
     <Content Include="lib\webuploader\0.1.5\server\preview.php" />
     <Content Include="Resource\IPScaner\QQWry.Dat" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Properties\PublishProfiles\132.pubxml" />
     <None Include="Properties\PublishProfiles\OM.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

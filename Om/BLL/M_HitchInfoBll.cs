@@ -45,10 +45,12 @@ namespace BLL
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(path);
            // PropertyInfo[] properties = t.GetProperties();
-             SettingModel1.selecttimes = xmldoc.SelectSingleNode("root").SelectSingleNode("selecttimes").Attributes[0].Value;
+            SettingModel1.selecttimes = xmldoc.SelectSingleNode("root").SelectSingleNode("selecttimes").Attributes[0].Value;
             SettingModel1.mothtimes = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value);
             SettingModel1.weekendbili = xmldoc.SelectSingleNode("root").SelectSingleNode("weekendbili").Attributes[0].Value;
             SettingModel1.showcount = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value);
+            SettingModel1.daorutime =xmldoc.SelectSingleNode("root").SelectSingleNode("daorutime").Attributes[0].Value;
+            SettingModel1.daorudir = xmldoc.SelectSingleNode("root").SelectSingleNode("daorudir").Attributes[0].Value;
             return SettingModel1;
         }
         public string GetSetting(string property)

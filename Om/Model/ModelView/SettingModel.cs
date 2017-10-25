@@ -14,6 +14,9 @@ namespace Model.ModelView
          public int mothtimes { get; set; }
         //饼状图显示的数量
         public int showcount { get; set; }
+
+        public string daorutime { get; set; }
+        public string daorudir { get; set; }
     }
 }
 

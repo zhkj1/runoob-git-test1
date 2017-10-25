@@ -444,6 +444,8 @@ namespace Om.Controllers
             xmldoc.SelectSingleNode("root").SelectSingleNode("weekendbili").Attributes[0].Value = model.weekendbili;
             xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value = model.mothtimes.ToString();
             xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value = model.showcount.ToString();
+            xmldoc.SelectSingleNode("root").SelectSingleNode("daorutime").Attributes[0].Value = model.daorutime;
+            xmldoc.SelectSingleNode("root").SelectSingleNode("daorudir").Attributes[0].Value = model.daorudir;
             xmldoc.Save(path);
             return new Dictionary<string, object>
             {

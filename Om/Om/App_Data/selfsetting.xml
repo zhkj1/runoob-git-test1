@@ -10,4 +10,8 @@
   </mothtimes>
   <showcount value="5">
   </showcount>
+  <daorutime value="10">
+  </daorutime>
+  <daorudir value="D:\01">
+  </daorudir>
 </root>

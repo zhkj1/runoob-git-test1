@@ -1,6 +1,8 @@
 ﻿using DAL;
 using MallWCF.DBHelper;
 using Model;
+using Quartz;
+using Quartz.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +46,13 @@ namespace BLL
                 ScaleDetial = "";
                 return false;
             }
+        }
+
+
+        public void ZiDongDaoRu()
+        {
+            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            scheduler.Start();
         }
 
     }
