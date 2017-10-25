@@ -48,6 +48,7 @@ namespace BLL
              SettingModel1.selecttimes = xmldoc.SelectSingleNode("root").SelectSingleNode("selecttimes").Attributes[0].Value;
             SettingModel1.mothtimes = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value);
             SettingModel1.weekendbili = xmldoc.SelectSingleNode("root").SelectSingleNode("weekendbili").Attributes[0].Value;
+            SettingModel1.showcount = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value);
             return SettingModel1;
         }
         public string GetSetting(string property)

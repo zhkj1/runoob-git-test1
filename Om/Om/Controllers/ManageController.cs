@@ -114,5 +114,11 @@ namespace Om.Controllers
             }
              return View(model);
         }
+        public ActionResult bingtutongji()
+        {
+            return View();
+        }
+
+
     }
 }
