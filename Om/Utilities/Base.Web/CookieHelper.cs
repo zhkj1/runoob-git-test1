@@ -41,7 +41,8 @@ namespace LeaRun.Utilities
                 cookie = new HttpCookie(strName);
             }
             cookie.Value = strValue;
-            cookie.Expires = DateTime.Now.AddMinutes(expires);
+            //cookie.Expires = DateTime.Now;
+       
             HttpContext.Current.Response.AppendCookie(cookie);
         }
         /// <summary>

@@ -435,6 +435,7 @@ namespace Om.Controllers
 
         public Dictionary<string, object> AddSetting(SettingModel model)
         {
+            PredicSettingBll PredicSettingBll = new PredicSettingBll();
             // Type t = typeof(SettingModel);
             string path = HttpContext.Current.Server.MapPath("/App_Data/selfsetting.xml");
             XmlDocument xmldoc = new XmlDocument();
@@ -446,7 +447,10 @@ namespace Om.Controllers
             xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value = model.showcount.ToString();
             xmldoc.SelectSingleNode("root").SelectSingleNode("daorutime").Attributes[0].Value = model.daorutime;
             xmldoc.SelectSingleNode("root").SelectSingleNode("daorudir").Attributes[0].Value = model.daorudir;
+            xmldoc.SelectSingleNode("root").SelectSingleNode("daorunowdate").Attributes[0].Value = model.daorunowdate;
+            
             xmldoc.Save(path);
+            PredicSettingBll.ZiDongDaoRu(model.daorutime);
             return new Dictionary<string, object>
             {
                 { "code","1"}

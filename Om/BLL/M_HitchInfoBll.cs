@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Web;
 using System.Xml;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Impl.Matchers;
 
 namespace BLL
 {
@@ -51,6 +54,17 @@ namespace BLL
             SettingModel1.showcount = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value);
             SettingModel1.daorutime =xmldoc.SelectSingleNode("root").SelectSingleNode("daorutime").Attributes[0].Value;
             SettingModel1.daorudir = xmldoc.SelectSingleNode("root").SelectSingleNode("daorudir").Attributes[0].Value;
+            SettingModel1.daorunowdate = xmldoc.SelectSingleNode("root").SelectSingleNode("daorunowdate").Attributes[0].Value;
+            var scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            var triggerKeys = scheduler.GetTriggerKeys(GroupMatcher<TriggerKey>.AnyGroup());
+            var trigger= scheduler.GetTrigger(new TriggerKey("trigger", "triggers"));
+            if(trigger!=null)
+            {
+                SettingModel1.NextDoTime = trigger.GetNextFireTimeUtc()?.LocalDateTime.ToString();
+
+            }
+
+
             return SettingModel1;
         }
         public string GetSetting(string property)

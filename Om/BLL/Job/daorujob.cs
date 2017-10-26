@@ -18,11 +18,16 @@ namespace BLL.Job
     {
         public void Execute(IJobExecutionContext context)
         {
-            string path = HttpContext.Current.Server.MapPath("/App_Data/selfsetting.xml");
+            // string path = System.Environment.CurrentDirectory; // MapPath("/App_Data/selfsetting.xml");
+            HttpContext http = HttpContext.Current;
+            string path = System.IO.Path.Combine(HttpRuntime.AppDomainAppPath, "App_Data/selfsetting.xml");
             XmlDocument xmldoc = new XmlDocument();
+        //  string path =  System.AppDomain.CurrentDomain.BaseDirectory.ToString()+ "App_Data/selfsetting.xml";
             xmldoc.Load(path);
             string time = xmldoc.SelectSingleNode("root").SelectSingleNode("daorutime").Attributes[0].Value;
             string daorupath = xmldoc.SelectSingleNode("root").SelectSingleNode("daorudir").Attributes[0].Value;
+            string daorunowdate = xmldoc.SelectSingleNode("root").SelectSingleNode("daorunowdate").Attributes[0].Value;
+         
             var files = DirFileHelper.GetFileNames(daorupath);
             if (files.Length > 0)
             {
@@ -45,7 +50,7 @@ namespace BLL.Job
                         model.MessageType = dr[i][6].ToString();
                         model.CreateUserId = 1;
                         model.CreateUserName = "admin";
-                        model.CreateTime = DateTime.Now.AddDays(-1);
+                        model.CreateTime = DateTime.Now.AddDays(int.Parse(daorunowdate));
                         if (M_HitchInfoBll.M_HitchInfoAdd(model) > 0)
                         {
                             successcount++;
@@ -63,7 +68,11 @@ namespace BLL.Job
                     }
 
                 }
-                Directory.Delete(daorupath);
+                for (int i = 0; i < files.Length; i++)
+                {
+                    File.Delete(files[i]);
+                }
+                
             }
 
         }

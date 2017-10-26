@@ -53,3 +53,13 @@ D:\Git\Om\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
 D:\Git\Om\BLL\obj\Release\BLL.dll
 D:\Git\Om\BLL\obj\Release\BLL.pdb
 D:\Git\Om\BLL\bin\Release\BLL.dll.config
+D:\李曙光\Git\Om\BLL\bin\Release\BLL.dll.config
+D:\李曙光\Git\Om\BLL\bin\Release\Common.Logging.Core.dll
+D:\李曙光\Git\Om\BLL\bin\Release\Common.Logging.dll
+D:\李曙光\Git\Om\BLL\bin\Release\Quartz.dll
+D:\李曙光\Git\Om\BLL\bin\Release\Common.Logging.pdb
+D:\李曙光\Git\Om\BLL\bin\Release\Common.Logging.xml
+D:\李曙光\Git\Om\BLL\bin\Release\Common.Logging.Core.pdb
+D:\李曙光\Git\Om\BLL\bin\Release\Common.Logging.Core.xml
+D:\李曙光\Git\Om\BLL\bin\Release\Quartz.pdb
+D:\李曙光\Git\Om\BLL\bin\Release\Quartz.xml

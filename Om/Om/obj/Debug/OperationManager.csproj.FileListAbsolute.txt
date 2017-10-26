@@ -409,6 +409,7 @@ D:\李曙光\Git\Om\Om\bin\Microsoft.Web.Infrastructure.dll
 D:\李曙光\Git\Om\Om\bin\Model.dll
 D:\李曙光\Git\Om\Om\bin\Newtonsoft.Json.dll
 D:\李曙光\Git\Om\Om\bin\Owin.dll
+D:\李曙光\Git\Om\Om\bin\Quartz.dll
 D:\李曙光\Git\Om\Om\bin\System.Net.Http.Formatting.dll
 D:\李曙光\Git\Om\Om\bin\System.Web.Helpers.dll
 D:\李曙光\Git\Om\Om\bin\System.Web.Http.dll
@@ -435,6 +436,8 @@ D:\李曙光\Git\Om\Om\bin\Microsoft.AI.WindowsServer.xml
 D:\李曙光\Git\Om\Om\bin\Microsoft.ApplicationInsights.xml
 D:\李曙光\Git\Om\Om\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\李曙光\Git\Om\Om\bin\Newtonsoft.Json.xml
+D:\李曙光\Git\Om\Om\bin\Quartz.pdb
+D:\李曙光\Git\Om\Om\bin\Quartz.xml
 D:\李曙光\Git\Om\Om\bin\System.Web.Helpers.xml
 D:\李曙光\Git\Om\Om\bin\System.Web.Mvc.xml
 D:\李曙光\Git\Om\Om\bin\System.Web.Optimization.xml
@@ -486,12 +489,9 @@ D:\李曙光\Git\Om\Om\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.reso
 D:\李曙光\Git\Om\Om\obj\Debug\OperationManager.csprojResolveAssemblyReference.cache
 D:\李曙光\Git\Om\Om\obj\Debug\Om.dll
 D:\李曙光\Git\Om\Om\obj\Debug\Om.pdb
-D:\李曙光\Git\Om\Om\bin\Quartz.dll
 D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.dll
 D:\李曙光\Git\Om\Om\bin\Common.Logging.dll
-D:\李曙光\Git\Om\Om\bin\Quartz.pdb
-D:\李曙光\Git\Om\Om\bin\Quartz.xml
-D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.pdb
-D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.xml
 D:\李曙光\Git\Om\Om\bin\Common.Logging.pdb
 D:\李曙光\Git\Om\Om\bin\Common.Logging.xml
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.pdb
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.xml

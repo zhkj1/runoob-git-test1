@@ -17,6 +17,10 @@ namespace Model.ModelView
 
         public string daorutime { get; set; }
         public string daorudir { get; set; }
+
+        public string NextDoTime { get; set; }
+
+        public string daorunowdate { get; set; }
     }
 }
 
