@@ -18,7 +18,7 @@ namespace MallWCF.DBHelper
         void Commit();
         void Rollback();
         void Close();
-
+         object GetSingle(string strSql);
         bool BulkInsert(DataTable dt);
 
         int ExecuteBySqlNew(StringBuilder strSql, DbTransaction isOpenTrans);

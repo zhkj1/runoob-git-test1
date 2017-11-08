@@ -48,6 +48,12 @@
       <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -84,6 +90,10 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.6.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.6.1\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -249,6 +259,13 @@
     <Compile Include="UserAttribute\LoginAuthorizeAttribute.cs" />
     <Compile Include="UserAttribute\ModuleAuthorizeAttribute.cs" />
     <Compile Include="UserAttribute\SetModuleAttribute.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\selfsetting.xml">
@@ -256,6 +273,8 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\loginbg.jpg" />
+    <Content Include="Content\Images\logo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -276,6 +295,8 @@
     <Content Include="lib\Calendar\stylesheets\print.css" />
     <Content Include="lib\Calendar\stylesheets\simple-calendar.css" />
     <Content Include="lib\Calendar\stylesheets\stylesheet.css" />
+    <Content Include="lib\css\global.css" />
+    <Content Include="lib\css\login.css" />
     <Content Include="lib\css\style.css" />
     <Content Include="lib\datatables\1.10.0\jquery.dataTables.min.js" />
     <Content Include="lib\date.js" />
@@ -335,6 +356,28 @@
     <Content Include="lib\Hui-iconfont\1.0.8\iconfont.css" />
     <Content Include="lib\Hui-iconfont\1.0.8\iconfont.min.css" />
     <Content Include="lib\Hui-iconfont\1.0.8\iconfont.svg" />
+    <Content Include="lib\images\skin1\blue_btn_bg.gif" />
+    <Content Include="lib\images\skin1\frame_arrow.gif" />
+    <Content Include="lib\images\skin1\frame_arrow.png" />
+    <Content Include="lib\images\skin1\frame_view_bg.gif" />
+    <Content Include="lib\images\skin1\left_arr_1.gif" />
+    <Content Include="lib\images\skin1\left_arr_2.gif" />
+    <Content Include="lib\images\skin1\left_arr_3.gif" />
+    <Content Include="lib\images\skin1\left_arr_4.gif" />
+    <Content Include="lib\images\skin1\left_arr_5.gif" />
+    <Content Include="lib\images\skin1\left_bg.gif" />
+    <Content Include="lib\images\skin1\left_first_menu_bg.gif" />
+    <Content Include="lib\images\skin1\left_second_menu_bg.gif" />
+    <Content Include="lib\images\skin1\loading.gif" />
+    <Content Include="lib\images\skin1\loading2.gif" />
+    <Content Include="lib\images\skin1\login_bg_1.jpg" />
+    <Content Include="lib\images\skin1\login_bg_2.jpg" />
+    <Content Include="lib\images\skin1\login_bg_3.jpg" />
+    <Content Include="lib\images\skin1\login_btn.png" />
+    <Content Include="lib\images\skin1\login_btn_hover.png" />
+    <Content Include="lib\images\skin1\top_search_bg.gif" />
+    <Content Include="lib\images\skin1\top_search_btn.gif" />
+    <Content Include="lib\images\tp02_20140320.jpg" />
     <Content Include="lib\images\pic01_20140320.jpg" />
     <Content Include="lib\images\tp01_20140320.png" />
     <Content Include="lib\images\tp02_20140320.png" />
@@ -1139,6 +1182,7 @@
     <Content Include="lib\webuploader\0.1.5\server\fileupload2.php" />
     <Content Include="lib\webuploader\0.1.5\server\preview.php" />
     <Content Include="Resource\IPScaner\QQWry.Dat" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Properties\PublishProfiles\132.pubxml" />
     <None Include="Properties\PublishProfiles\OM.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1165,14 +1209,14 @@
     <Content Include="static\h-ui.admin\images\um.gif" />
     <Content Include="static\h-ui.admin\js\de_DE.txt" />
     <Content Include="static\h-ui.admin\js\H-ui.admin.page.js" />
-    <Content Include="static\h-ui.admin\skin\blue\acrossTab-bg.png" />
-    <Content Include="static\h-ui.admin\skin\blue\acrossTab.png" />
-    <Content Include="static\h-ui.admin\skin\blue\icon_arrow.png" />
-    <Content Include="static\h-ui.admin\skin\blue\skin.css" />
     <Content Include="static\h-ui.admin\skin\default\acrossTab-bg.png" />
     <Content Include="static\h-ui.admin\skin\default\acrossTab.png" />
     <Content Include="static\h-ui.admin\skin\default\icon_arrow.png" />
     <Content Include="static\h-ui.admin\skin\default\skin.css" />
+    <Content Include="static\h-ui.admin\skin\black\acrossTab-bg.png" />
+    <Content Include="static\h-ui.admin\skin\black\acrossTab.png" />
+    <Content Include="static\h-ui.admin\skin\black\icon_arrow.png" />
+    <Content Include="static\h-ui.admin\skin\black\skin.css" />
     <Content Include="static\h-ui.admin\skin\green\acrossTab-bg.png" />
     <Content Include="static\h-ui.admin\skin\green\acrossTab.png" />
     <Content Include="static\h-ui.admin\skin\green\icon_arrow.png" />
@@ -1454,8 +1498,12 @@
     <Content Include="Views\Manage\PredicSettingAdd.cshtml" />
     <Content Include="Views\Login\indexbak.cshtml" />
     <Content Include="Views\Manage\bingtutongji.cshtml" />
+    <Content Include="Views\Login\indexnew.cshtml" />
+    <Content Include="Views\Login\index - 复制.cshtml" />
+    <Content Include="Views\Manage\EveryDayYujing.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Styles\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>

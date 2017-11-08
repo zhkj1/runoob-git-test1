@@ -46,6 +46,8 @@
             <input type="text" class="input-text" style="width:250px" placeholder="输入关键词" id="" name="" >
             <button  onclick="search()" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 查询</button>
             <button onclick="look()" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 查看饼图</button>
+            <button onclick="goEveryDayYujing()" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i>超出预警</button>
+
         </div>
         <div class="cl pd-5 bg-1 bk-gray mt-20">
             <span class="l" id="operate"></span>
@@ -99,7 +101,11 @@
                 demo(1);
             }
             )
-
+            function goEveryDayYujing()
+            {
+                var datetime = $("#datemin").val();
+                window.open("/Manage/EveryDayYujing?date=" + datetime)
+            }
 
             function btn_add() {
                 admin_add('添加', '/System/UserAdd', '800', '500')

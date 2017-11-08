@@ -25,3 +25,12 @@ D:\Git\Om\Model\bin\Debug\Newtonsoft.Json.xml
 D:\Git\Om\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 D:\Git\Om\Model\obj\Debug\Model.dll
 D:\Git\Om\Model\obj\Debug\Model.pdb
+D:\李曙光\Git\Om\Model\bin\Debug\Model.dll
+D:\李曙光\Git\Om\Model\bin\Debug\Model.pdb
+D:\李曙光\Git\Om\Model\bin\Debug\DBHelper.dll
+D:\李曙光\Git\Om\Model\bin\Debug\Newtonsoft.Json.dll
+D:\李曙光\Git\Om\Model\bin\Debug\DBHelper.pdb
+D:\李曙光\Git\Om\Model\bin\Debug\Newtonsoft.Json.xml
+D:\李曙光\Git\Om\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\李曙光\Git\Om\Model\obj\Debug\Model.dll
+D:\李曙光\Git\Om\Model\obj\Debug\Model.pdb

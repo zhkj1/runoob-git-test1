@@ -53,7 +53,7 @@ namespace BLL
          //   DataSet ds1 = database.FindDataSetBySql("select top 1 CauseId,CauseContent from Sys_CauseSuggestion where  ParentId=0 and  CauseContent like '%" + content + "%'");
             if (model1!=null)
             {
-                DataSet ds = database.FindDataSetBySql("select CauseId,CauseContent,SuggestionContent from Sys_CauseSuggestion where ParentId="+model1.CauseId);
+                DataSet ds = database.FindDataSetBySql("select CauseId,CauseContent,SuggestionContent,RelatedContent from Sys_CauseSuggestion where ParentId=" + model1.CauseId);
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     sb.Append(ds.Tables[0].Rows[i]["CauseId"].ToString()+",");
@@ -79,6 +79,7 @@ namespace BLL
                     model.CauseId = int.Parse(ds.Tables[0].Rows[i]["CauseId"].ToString());
                     model.SuggestionContent = ds.Tables[0].Rows[i]["SuggestionContent"].ToString();
                     model.CauseContent = ds.Tables[0].Rows[i]["CauseContent"].ToString();
+                    model.RelatedContent = ds.Tables[0].Rows[i]["RelatedContent"].ToString();
                     var nowmodel = listnow.FirstOrDefault(a => a.CauseId == model.CauseId);
                     if (nowmodel == null)
                     {

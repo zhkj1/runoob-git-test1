@@ -21,7 +21,8 @@ function getskincookie(){
 		v="default";
 	}
 	if(hrefStr!=undefined){
-		var hrefRes=hrefStr.substring(0,hrefStr.lastIndexOf('skin/'))+'skin/'+v+'/skin.css';
+	    var hrefRes = hrefStr.substring(0, hrefStr.lastIndexOf('skin/')) + 'skin/' + v + '/skin.css';
+	   
 		$("#skin").attr("href",hrefRes);
 	}
 }

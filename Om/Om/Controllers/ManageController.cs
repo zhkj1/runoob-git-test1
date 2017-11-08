@@ -118,6 +118,14 @@ namespace Om.Controllers
         {
             return View();
         }
+        //每天超过的
+        public ActionResult EveryDayYujing()
+        {
+            string date = Request.QueryString["date"].ToString();
+            M_HitchInfoBll bll = new M_HitchInfoBll();
+
+            return View(bll.GetEveryDayYujiList(DateTime.Parse(date)));
+        }
 
 
     }

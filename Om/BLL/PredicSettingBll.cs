@@ -1,6 +1,9 @@
-﻿using DAL;
+﻿using BLL.Job;
+using DAL;
 using MallWCF.DBHelper;
 using Model;
+using Quartz;
+using Quartz.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +47,33 @@ namespace BLL
                 ScaleDetial = "";
                 return false;
             }
+        }
+
+
+        public void ZiDongDaoRu(string corn)
+        {
+            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            scheduler.Start();
+            var exists = scheduler.CheckExists(new TriggerKey("trigger", "triggers"));
+            if (exists)
+            {
+                var trigger = TriggerBuilder.Create().ForJob("job", "jobs")
+                      .WithIdentity("trigger", "triggers")
+                      .WithCronSchedule(corn)
+                      .Build();
+                scheduler.RescheduleJob(new TriggerKey("trigger", "triggers"), trigger);
+            }
+            else
+            {
+                var job = JobBuilder.Create<DaoRuJob>()
+            .WithIdentity("job", "jobs")
+            .Build();
+                var trigger = TriggerBuilder.Create().WithCronSchedule(corn)
+                    .WithIdentity("trigger", "triggers")
+                    .Build();
+                scheduler.ScheduleJob(job, trigger);
+            }
+        
         }
 
     }

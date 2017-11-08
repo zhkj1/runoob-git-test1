@@ -244,3 +244,12 @@ D:\Git\Om\Om\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\Git\Om\Om\obj\Release\OperationManager.csprojResolveAssemblyReference.cache
 D:\Git\Om\Om\obj\Release\Om.dll
 D:\Git\Om\Om\obj\Release\Om.pdb
+D:\李曙光\Git\Om\Om\bin\Quartz.dll
+D:\李曙光\Git\Om\Om\bin\Quartz.pdb
+D:\李曙光\Git\Om\Om\bin\Quartz.xml
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.dll
+D:\李曙光\Git\Om\Om\bin\Common.Logging.dll
+D:\李曙光\Git\Om\Om\bin\Common.Logging.pdb
+D:\李曙光\Git\Om\Om\bin\Common.Logging.xml
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.pdb
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.xml

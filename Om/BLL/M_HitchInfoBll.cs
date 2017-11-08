@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Web;
 using System.Xml;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Impl.Matchers;
+using LeaRun.Utilities;
 
 namespace BLL
 {
@@ -45,10 +49,26 @@ namespace BLL
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(path);
            // PropertyInfo[] properties = t.GetProperties();
-             SettingModel1.selecttimes = xmldoc.SelectSingleNode("root").SelectSingleNode("selecttimes").Attributes[0].Value;
+            SettingModel1.selecttimes = xmldoc.SelectSingleNode("root").SelectSingleNode("selecttimes").Attributes[0].Value;
             SettingModel1.mothtimes = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value);
             SettingModel1.weekendbili = xmldoc.SelectSingleNode("root").SelectSingleNode("weekendbili").Attributes[0].Value;
             SettingModel1.showcount = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value);
+            SettingModel1.daorutime =xmldoc.SelectSingleNode("root").SelectSingleNode("daorutime").Attributes[0].Value;
+            SettingModel1.daorudir = xmldoc.SelectSingleNode("root").SelectSingleNode("daorudir").Attributes[0].Value;
+            SettingModel1.daorunowdate = xmldoc.SelectSingleNode("root").SelectSingleNode("daorunowdate").Attributes[0].Value;
+            var scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            var triggerKeys = scheduler.GetTriggerKeys(GroupMatcher<TriggerKey>.AnyGroup());
+            var trigger= scheduler.GetTrigger(new TriggerKey("trigger", "triggers"));
+           //  && scheduler.GetTriggerState(new TriggerKey("trigger", "triggers")) == TriggerState.Normal
+            if (trigger != null)
+            {
+
+                SettingModel1.NextDoTime = trigger.GetNextFireTimeUtc()?.LocalDateTime.ToString();
+
+            }
+           
+
+
             return SettingModel1;
         }
         public string GetSetting(string property)
@@ -87,6 +107,106 @@ namespace BLL
             return sum;
 
         }
+        public List<M_HitchInfoView> GetEveryDayYujiList(DateTime dt)
+        {
+            List<M_HitchInfoView> M_HitchInfoViewlist = new List<M_HitchInfoView>();
+            IDatabase database = DataFactory.Database();
+            var dsmonth = database.FindDataSetBySql("select sum(HappenTimes) as HappenTimes,FactorySation,Signal  FROM  M_HitchInfo WHERE    DATEDIFF(MONTH, CreateTime, '" + dt.ToString()+"') = 0 AND CreateTime < '"+ dt.ToString() + "' group by FactorySation,Signal");
+            var dsPredicSetting = database.FindDataSetBySql("select FactorySation,Signal,ScaleDetial from  PredicSetting");
+           // var 
+            var ds = database.FindDataSetBySql("select FactorySation,Signal,sum(HappenTimes) as HappenTimes ,CreateTime from M_HitchInfo where  DATEDIFF(day,CreateTime,'" + dt + "')=0 group by CreateTime,[FactorySation], Signal");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+               
+                PredicSettingBll PredicSettingBll = new PredicSettingBll();
+                string path = HttpContext.Current.Server.MapPath("/App_Data/selfsetting.xml");
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.Load(path);
+                int totalday = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value);
+                string bili = xmldoc.SelectSingleNode("root").SelectSingleNode("weekendbili").Attributes[0].Value;
+                string[] arrbili = bili.Split(':');
+                string createtime = dt.ToString();
+                List<int> listdays = DateTimeHelper.GetMonthArr(DateTime.Parse(createtime));
+                List<int> shijilistbili = new List<int>();
+                for (int j = 0; j < listdays.Count; j++)
+                {
+                  
+                    //工作日
+                    if (listdays[j] == 0)
+                    {
+                        shijilistbili.Add(int.Parse(arrbili[1]));
+                    }
+                    else
+                    {
+                        shijilistbili.Add(int.Parse(arrbili[0]));
+                    }
+                }
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    string factorysation = ds.Tables[0].Rows[i]["FactorySation"].ToString();
+                    string signal = ds.Tables[0].Rows[i]["Signal"].ToString();
+                    int usedtimes = 0;
+                    for (int z = 0; z < dsmonth.Tables[0].Rows.Count; z++)
+                    {
+                        if (factorysation == dsmonth.Tables[0].Rows[z]["FactorySation"].ToString()&& signal== dsmonth.Tables[0].Rows[z]["Signal"].ToString())
+                        {
+                            usedtimes = int.Parse(dsmonth.Tables[0].Rows[z]["HappenTimes"].ToString());
+                              break;
+                        }
+                    }
+              
+                    M_HitchInfoView M_HitchInfoView = new M_HitchInfoView();
+                  
+                  
+
+                    List<int> shijilist = new List<int>();
+                    string ScaleDetial = "";
+                    int count = 0;
+                    for (int z = 0; z < dsPredicSetting.Tables[0].Rows.Count; z++)
+                    {
+                        if (factorysation == dsPredicSetting.Tables[0].Rows[z]["FactorySation"].ToString() && signal == dsPredicSetting.Tables[0].Rows[z]["Signal"].ToString())
+                        {
+                            ScaleDetial = dsPredicSetting.Tables[0].Rows[z]["ScaleDetial"].ToString();
+                            count++;
+                            break;
+                        }
+                    }
+                    if (count>0)
+                    {
+                        string[] arr = ScaleDetial.Split(':');
+                        for (int j = 0; i < arr.Length;j++)
+                        {
+                            shijilist.Add(int.Parse(arr[j]));
+                        }
+                    }
+                    else
+                    {
+                        shijilist = shijilistbili;
+                    }
+                    int surplus = totalday - usedtimes;
+                
+                        int playthisday = surplus * shijilist[dt.Day - 1] / (shijilist.Sum()- shijilist.Take(dt.Day - 1).Sum());
+                        int shijithisday = int.Parse(ds.Tables[0].Rows[i]["HappenTimes"].ToString());
+
+                    if (playthisday < shijithisday)
+                    {
+                        M_HitchInfoView.PlanTimes = playthisday;
+                        M_HitchInfoView.Signal = signal;
+                        M_HitchInfoView.FactorySation = factorysation;
+                        M_HitchInfoView.HappenTimes = shijithisday;
+                        M_HitchInfoViewlist.Add(M_HitchInfoView);
+                    }
+
+
+
+
+                }
+
+               }
+            return M_HitchInfoViewlist;
+
+            }
+
            
         
 
