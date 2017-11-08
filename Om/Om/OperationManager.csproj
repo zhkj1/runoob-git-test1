@@ -273,6 +273,8 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\loginbg.jpg" />
+    <Content Include="Content\Images\logo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -293,6 +295,8 @@
     <Content Include="lib\Calendar\stylesheets\print.css" />
     <Content Include="lib\Calendar\stylesheets\simple-calendar.css" />
     <Content Include="lib\Calendar\stylesheets\stylesheet.css" />
+    <Content Include="lib\css\global.css" />
+    <Content Include="lib\css\login.css" />
     <Content Include="lib\css\style.css" />
     <Content Include="lib\datatables\1.10.0\jquery.dataTables.min.js" />
     <Content Include="lib\date.js" />
@@ -352,6 +356,28 @@
     <Content Include="lib\Hui-iconfont\1.0.8\iconfont.css" />
     <Content Include="lib\Hui-iconfont\1.0.8\iconfont.min.css" />
     <Content Include="lib\Hui-iconfont\1.0.8\iconfont.svg" />
+    <Content Include="lib\images\skin1\blue_btn_bg.gif" />
+    <Content Include="lib\images\skin1\frame_arrow.gif" />
+    <Content Include="lib\images\skin1\frame_arrow.png" />
+    <Content Include="lib\images\skin1\frame_view_bg.gif" />
+    <Content Include="lib\images\skin1\left_arr_1.gif" />
+    <Content Include="lib\images\skin1\left_arr_2.gif" />
+    <Content Include="lib\images\skin1\left_arr_3.gif" />
+    <Content Include="lib\images\skin1\left_arr_4.gif" />
+    <Content Include="lib\images\skin1\left_arr_5.gif" />
+    <Content Include="lib\images\skin1\left_bg.gif" />
+    <Content Include="lib\images\skin1\left_first_menu_bg.gif" />
+    <Content Include="lib\images\skin1\left_second_menu_bg.gif" />
+    <Content Include="lib\images\skin1\loading.gif" />
+    <Content Include="lib\images\skin1\loading2.gif" />
+    <Content Include="lib\images\skin1\login_bg_1.jpg" />
+    <Content Include="lib\images\skin1\login_bg_2.jpg" />
+    <Content Include="lib\images\skin1\login_bg_3.jpg" />
+    <Content Include="lib\images\skin1\login_btn.png" />
+    <Content Include="lib\images\skin1\login_btn_hover.png" />
+    <Content Include="lib\images\skin1\top_search_bg.gif" />
+    <Content Include="lib\images\skin1\top_search_btn.gif" />
+    <Content Include="lib\images\tp02_20140320.jpg" />
     <Content Include="lib\images\pic01_20140320.jpg" />
     <Content Include="lib\images\tp01_20140320.png" />
     <Content Include="lib\images\tp02_20140320.png" />
@@ -1183,14 +1209,14 @@
     <Content Include="static\h-ui.admin\images\um.gif" />
     <Content Include="static\h-ui.admin\js\de_DE.txt" />
     <Content Include="static\h-ui.admin\js\H-ui.admin.page.js" />
-    <Content Include="static\h-ui.admin\skin\blue\acrossTab-bg.png" />
-    <Content Include="static\h-ui.admin\skin\blue\acrossTab.png" />
-    <Content Include="static\h-ui.admin\skin\blue\icon_arrow.png" />
-    <Content Include="static\h-ui.admin\skin\blue\skin.css" />
     <Content Include="static\h-ui.admin\skin\default\acrossTab-bg.png" />
     <Content Include="static\h-ui.admin\skin\default\acrossTab.png" />
     <Content Include="static\h-ui.admin\skin\default\icon_arrow.png" />
     <Content Include="static\h-ui.admin\skin\default\skin.css" />
+    <Content Include="static\h-ui.admin\skin\black\acrossTab-bg.png" />
+    <Content Include="static\h-ui.admin\skin\black\acrossTab.png" />
+    <Content Include="static\h-ui.admin\skin\black\icon_arrow.png" />
+    <Content Include="static\h-ui.admin\skin\black\skin.css" />
     <Content Include="static\h-ui.admin\skin\green\acrossTab-bg.png" />
     <Content Include="static\h-ui.admin\skin\green\acrossTab.png" />
     <Content Include="static\h-ui.admin\skin\green\icon_arrow.png" />
@@ -1472,8 +1498,12 @@
     <Content Include="Views\Manage\PredicSettingAdd.cshtml" />
     <Content Include="Views\Login\indexbak.cshtml" />
     <Content Include="Views\Manage\bingtutongji.cshtml" />
+    <Content Include="Views\Login\indexnew.cshtml" />
+    <Content Include="Views\Login\index - 复制.cshtml" />
+    <Content Include="Views\Manage\EveryDayYujing.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Styles\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@
       <publishTime>08/14/2017 13:46:18</publishTime>
     </File>
     <File Include="App_Data/selfsetting.xml">
-      <publishTime>10/26/2017 14:41:26</publishTime>
+      <publishTime>11/08/2017 10:52:43</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>02/22/2013 08:43:40</publishTime>
@@ -25,7 +25,7 @@
       <publishTime>10/26/2015 21:51:50</publishTime>
     </File>
     <File Include="bin/BLL.dll">
-      <publishTime>11/08/2017 08:47:58</publishTime>
+      <publishTime>11/08/2017 19:21:11</publishTime>
     </File>
     <File Include="bin/Common.Logging.Core.dll">
       <publishTime>11/14/2015 13:35:30</publishTime>
@@ -34,10 +34,10 @@
       <publishTime>11/14/2015 13:35:30</publishTime>
     </File>
     <File Include="bin/DBHelper.dll">
-      <publishTime>11/08/2017 08:47:56</publishTime>
+      <publishTime>11/08/2017 19:21:08</publishTime>
     </File>
     <File Include="bin/DLL.dll">
-      <publishTime>11/08/2017 08:47:58</publishTime>
+      <publishTime>11/08/2017 19:21:10</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -109,13 +109,13 @@
       <publishTime>04/23/2012 15:23:58</publishTime>
     </File>
     <File Include="bin/Model.dll">
-      <publishTime>11/08/2017 08:47:57</publishTime>
+      <publishTime>11/08/2017 19:21:09</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/03/2014 20:33:56</publishTime>
     </File>
     <File Include="bin/Om.dll">
-      <publishTime>11/08/2017 08:48:03</publishTime>
+      <publishTime>11/08/2017 19:21:17</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>11/27/2012 13:00:52</publishTime>
@@ -193,7 +193,7 @@
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
     <File Include="bin/Utilities.dll">
-      <publishTime>11/08/2017 08:47:57</publishTime>
+      <publishTime>11/08/2017 19:21:10</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>09/10/2013 17:28:38</publishTime>
@@ -270,6 +270,12 @@
     <File Include="Content/bootstrap.min.css">
       <publishTime>08/14/2017 13:45:51</publishTime>
     </File>
+    <File Include="Content/Images/loginbg.jpg">
+      <publishTime>11/08/2017 14:33:10</publishTime>
+    </File>
+    <File Include="Content/Images/logo.jpg">
+      <publishTime>11/08/2017 14:33:10</publishTime>
+    </File>
     <File Include="Content/Site.css">
       <publishTime>08/14/2017 13:45:45</publishTime>
     </File>
@@ -293,6 +299,9 @@
     </File>
     <File Include="HtmlPage1.html">
       <publishTime>08/14/2017 14:34:48</publishTime>
+    </File>
+    <File Include="Image/logo.jpg">
+      <publishTime>11/08/2017 10:57:14</publishTime>
     </File>
     <File Include="lib/Calendar/images/body-bg.jpg">
       <publishTime>09/25/2017 14:23:12</publishTime>
@@ -339,8 +348,14 @@
     <File Include="lib/Calendar/stylesheets/stylesheet.css">
       <publishTime>09/25/2017 14:23:12</publishTime>
     </File>
+    <File Include="lib/css/global.css">
+      <publishTime>11/08/2017 13:44:58</publishTime>
+    </File>
+    <File Include="lib/css/login.css">
+      <publishTime>11/08/2017 13:47:06</publishTime>
+    </File>
     <File Include="lib/css/style.css">
-      <publishTime>10/25/2017 13:29:35</publishTime>
+      <publishTime>11/08/2017 11:49:30</publishTime>
     </File>
     <File Include="lib/datatables/1.10.0/jquery.dataTables.min.js">
       <publishTime>08/14/2017 13:50:34</publishTime>
@@ -534,8 +549,74 @@
     <File Include="lib/images/pic01_20140320.jpg">
       <publishTime>10/25/2017 13:29:35</publishTime>
     </File>
+    <File Include="lib/images/skin1/blue_btn_bg.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/frame_arrow.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/frame_arrow.png">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/frame_view_bg.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_arr_1.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_arr_2.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_arr_3.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_arr_4.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_arr_5.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_bg.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_first_menu_bg.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/left_second_menu_bg.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/loading.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/loading2.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/login_bg_1.jpg">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/login_bg_2.jpg">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/login_bg_3.jpg">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/login_btn.png">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/login_btn_hover.png">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/top_search_bg.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
+    <File Include="lib/images/skin1/top_search_btn.gif">
+      <publishTime>11/08/2017 13:41:22</publishTime>
+    </File>
     <File Include="lib/images/tp01_20140320.png">
       <publishTime>10/25/2017 13:29:35</publishTime>
+    </File>
+    <File Include="lib/images/tp02_20140320.jpg">
+      <publishTime>11/08/2017 11:40:44</publishTime>
     </File>
     <File Include="lib/images/tp02_20140320.png">
       <publishTime>10/25/2017 13:29:35</publishTime>
@@ -2992,7 +3073,19 @@
       <publishTime>08/14/2017 13:50:22</publishTime>
     </File>
     <File Include="static/h-ui.admin/js/H-ui.admin.page.js">
-      <publishTime>08/14/2017 15:23:12</publishTime>
+      <publishTime>11/08/2017 14:10:32</publishTime>
+    </File>
+    <File Include="static/h-ui.admin/skin/black/acrossTab-bg.png">
+      <publishTime>08/14/2017 13:50:22</publishTime>
+    </File>
+    <File Include="static/h-ui.admin/skin/black/acrossTab.png">
+      <publishTime>08/14/2017 13:50:22</publishTime>
+    </File>
+    <File Include="static/h-ui.admin/skin/black/icon_arrow.png">
+      <publishTime>08/14/2017 13:50:22</publishTime>
+    </File>
+    <File Include="static/h-ui.admin/skin/black/skin.css">
+      <publishTime>08/14/2017 13:50:22</publishTime>
     </File>
     <File Include="static/h-ui.admin/skin/blue/acrossTab-bg.png">
       <publishTime>08/14/2017 13:50:22</publishTime>
@@ -3729,11 +3822,17 @@
     <File Include="Views/Home/Index.cshtml">
       <publishTime>08/14/2017 15:13:25</publishTime>
     </File>
+    <File Include="Views/Login/index - 复制.cshtml">
+      <publishTime>11/08/2017 13:48:24</publishTime>
+    </File>
     <File Include="Views/Login/index.cshtml">
-      <publishTime>10/25/2017 13:29:35</publishTime>
+      <publishTime>11/08/2017 14:56:11</publishTime>
     </File>
     <File Include="Views/Login/indexbak.cshtml">
       <publishTime>10/25/2017 13:29:35</publishTime>
+    </File>
+    <File Include="Views/Login/indexnew.cshtml">
+      <publishTime>11/08/2017 13:33:35</publishTime>
     </File>
     <File Include="Views/Manage/bingtutongji.cshtml">
       <publishTime>10/25/2017 13:29:35</publishTime>
@@ -3749,6 +3848,9 @@
     </File>
     <File Include="Views/Manage/DailyList.cshtml">
       <publishTime>10/09/2017 18:39:34</publishTime>
+    </File>
+    <File Include="Views/Manage/EveryDayYujing.cshtml">
+      <publishTime>11/08/2017 18:57:00</publishTime>
     </File>
     <File Include="Views/Manage/Hitchleadingin.cshtml">
       <publishTime>10/25/2017 13:29:35</publishTime>
@@ -3796,7 +3898,7 @@
       <publishTime>08/14/2017 14:46:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/25/2017 13:29:35</publishTime>
+      <publishTime>11/08/2017 10:59:28</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>08/14/2017 13:46:03</publishTime>
@@ -3841,7 +3943,7 @@
       <publishTime>08/14/2017 14:55:42</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/26/2017 14:44:44</publishTime>
+      <publishTime>11/08/2017 19:21:18</publishTime>
     </File>
     <File Include="WebForm1.aspx">
       <publishTime>10/25/2017 14:30:59</publishTime>
