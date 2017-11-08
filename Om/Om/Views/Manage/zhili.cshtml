@@ -60,7 +60,8 @@
                                             <th width="15%">匹配信号</th>
                                             <th width="10%">次数</th>
                                             <th width="20%">原因</th>
-                                            <th width="30%">原因详情</th>
+                                            <th width="20%">原因详情</th>
+                                            <th width="10%">原因备注</th>
                                             <th width="12%">当前站发生次数</th>
                                             <th width="12%">全站发生次数</th>
                                         </tr>
@@ -74,7 +75,8 @@
                                                     <td width="15%" rowspan="@rowspan">@ViewBag.CauseContent</td>
                                                     <td width="10%"><input type="text" class="input-text" value="0" /></td>
                                                     <td width="20%">@Model[i].CauseContent</td>
-                                                    <td width="30%">@Model[i].SuggestionContent</td>
+                                                    <td width="20%">@Model[i].SuggestionContent</td>
+                                                    <td width="10%">@Model[i].RelatedContent</td>
                                                   
                                                     @if (Model[i].ThisHappensTimesMax > 0 && Model[0].ThisHappensTimesMax == @Model[i].ThisHappensTimes)
                                                     {
@@ -102,7 +104,8 @@
                                                 <tr tid="@Model[i].CauseId">
                                                     <td width="10%"><input type="text" class="input-text" value="0" /></td>
                                                     <td width="20%">@Model[i].CauseContent</td>
-                                                    <td width="30%">@Model[i].SuggestionContent</td>
+                                                    <td width="20%">@Model[i].SuggestionContent</td>
+                                                    <td width="10%">@Model[i].RelatedContent</td>
                                                   
                                                     @if (Model[i].ThisHappensTimesMax > 0 && Model[0].ThisHappensTimesMax == @Model[i].ThisHappensTimes)
                                                     {

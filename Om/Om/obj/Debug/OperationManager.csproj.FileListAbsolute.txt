@@ -382,6 +382,8 @@ D:\李曙光\Git\Om\Om\bin\Om.pdb
 D:\李曙光\Git\Om\Om\bin\Antlr3.Runtime.dll
 D:\李曙光\Git\Om\Om\bin\AutoMapper.dll
 D:\李曙光\Git\Om\Om\bin\BLL.dll
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.dll
+D:\李曙光\Git\Om\Om\bin\Common.Logging.dll
 D:\李曙光\Git\Om\Om\bin\DBHelper.dll
 D:\李曙光\Git\Om\Om\bin\EntityFramework.dll
 D:\李曙光\Git\Om\Om\bin\EntityFramework.SqlServer.dll
@@ -429,6 +431,10 @@ D:\李曙光\Git\Om\Om\bin\DBHelper.pdb
 D:\李曙光\Git\Om\Om\bin\Model.pdb
 D:\李曙光\Git\Om\Om\bin\Utilities.pdb
 D:\李曙光\Git\Om\Om\bin\AutoMapper.xml
+D:\李曙光\Git\Om\Om\bin\Common.Logging.pdb
+D:\李曙光\Git\Om\Om\bin\Common.Logging.xml
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.pdb
+D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.xml
 D:\李曙光\Git\Om\Om\bin\Microsoft.AI.DependencyCollector.xml
 D:\李曙光\Git\Om\Om\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\李曙光\Git\Om\Om\bin\Microsoft.AI.Web.xml
@@ -489,9 +495,3 @@ D:\李曙光\Git\Om\Om\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.reso
 D:\李曙光\Git\Om\Om\obj\Debug\OperationManager.csprojResolveAssemblyReference.cache
 D:\李曙光\Git\Om\Om\obj\Debug\Om.dll
 D:\李曙光\Git\Om\Om\obj\Debug\Om.pdb
-D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.dll
-D:\李曙光\Git\Om\Om\bin\Common.Logging.dll
-D:\李曙光\Git\Om\Om\bin\Common.Logging.pdb
-D:\李曙光\Git\Om\Om\bin\Common.Logging.xml
-D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.pdb
-D:\李曙光\Git\Om\Om\bin\Common.Logging.Core.xml
