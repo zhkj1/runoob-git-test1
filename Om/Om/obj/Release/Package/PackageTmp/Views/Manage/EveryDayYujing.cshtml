@@ -26,6 +26,7 @@
                     <th width="100">日期</th>
                     <th width="100">当日预计次数</th>
                     <th width="100">当日实际次数</th>
+                    <th width="100">差值</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +41,7 @@
                         <td width="100">@Request.QueryString["date"]</td>
                         <td width="100">@item.PlanTimes</td>
                         <td width="100">@item.HappenTimes</td>
+                        <td width="100">@(item.HappenTimes-item.PlanTimes)</td>
                     </tr>
                 }
                
