@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>执行的表达式<br />0 0 2 * * ? 表示每天两点执行</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>自动执行时刻设定<br />0 0 2 * * ? 表示每天两点执行</label>
               
                 <div class="formControls col-xs-8 col-sm-9">
                     @Html.TextBoxFor(a => a.daorutime, new { @class = "input-text", autocomplete = "off" })
@@ -46,13 +46,13 @@
                 </div>
             </div>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>自动导入时间配置<br />0导入是当天的数据，-1代表导入算前天的数据</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>导入文件天数选项<br />0为当日 -1为前一日</label>
                 <div class="formControls col-xs-8 col-sm-9">
                     @Html.TextBoxFor(a => a.daorunowdate, new { @class = "input-text", autocomplete = "off" })
                 </div>
             </div>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>执行自动导入的文件夹路径</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>文件夹路径</label>
                 <div class="formControls col-xs-8 col-sm-9">
                     @Html.TextBoxFor(a => a.daorudir, new { @class = "input-text", autocomplete = "off" })
                 </div>

@@ -25,5 +25,7 @@ namespace Model
         public string CreateUserName { get; set; }
 
         public DateTime HappenDate { get; set; }
+
+        public int EventTimes { get; set; }
     }
 }
