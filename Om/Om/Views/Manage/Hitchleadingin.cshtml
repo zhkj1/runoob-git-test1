@@ -48,7 +48,7 @@
                 <div class="formControls col-xs-8 col-sm-9">
                     <input type="text" onclick="WdatePicker()" id="leandingtime"name="leandingtime" class="input-text Wdate" style="width:120px;" value="@DateTime.Now.ToString("yyyy-MM-dd")">
 
-                    <button id="ctlBtn" class="btn btn-primary " onclick="del()">删除当前日期的数据</button>
+                    <button  class="btn btn-primary " onclick="del()">删除当前日期的数据</button>
 
                 </div>
             </div>
@@ -64,7 +64,7 @@
                             <div id="fileList" class="uploader-list"></div>
                             <div id="filePicker">选择文件</div>&nbsp;
                             <button id="ctlBtn" class="btn btn-default">上传并导入</button>
-                            <button id="ctlBtn" class="btn btn-default" onclick="location.href=location.href">刷新继续导入</button>
+                            <button  class="btn btn-default" onclick="location.href=location.href">刷新继续导入</button>
                         </div>
                     </div>
                 </div>
@@ -153,6 +153,7 @@
             });
             $("#ctlBtn").on("click", function ()
             {
+                alert("22");
                  uploader.upload();
             }
             )
