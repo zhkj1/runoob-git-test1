@@ -40,7 +40,7 @@
 <body>
      <article class="cl pd-20">
         <form action="/api/ApiCause/CauseAdd" method="post" class="form form-horizontal" id="form-admin-add">
-                    <div class="formControls col-xs-8 col-sm-9">
+                    <div class="formControls col-xs-8 col-sm-9" style="width:90%">
                         <div class="row cl">
                             <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>日期：</label>
                             <div class="formControls col-xs-8 col-sm-9">
@@ -54,15 +54,20 @@
                             {
                                 int rowspan = 0;
                                 rowspan = Model.Count;
-                                <table class="table table-border table-bordered table-bg" style="width:900px" id="table1">
+                                <table class="table table-border table-bordered table-bg" style="width:100%" id="table1">
                                     <thead>
                                         <tr class="text-c">
-                                            <th width="15%">匹配信号</th>
+                                            <th width="10%">匹配信号</th>
                                             <th width="10%">次数</th>
-                                            <th width="20%">原因</th>
-                                            <th width="30%">原因详情</th>
-                                            <th width="12%">当前站发生次数</th>
-                                            <th width="12%">全站发生次数</th>
+                                            <th width="10%">事件</th>
+                                            <th width="10%">原因</th>
+                                            <th width="10%">原因详情</th>
+                                            <th width="10%">原因备注</th>
+                                            <th width="10%">当前站发生次数</th>
+                                            <th width="10%">全站发生次数</th>
+                                            <th width="10%">当前站事件次数</th>
+                                            <th width="10%">全站事件次数</th>
+
                                         </tr>
                                     </thead>
                                     <tbody id="tbody1">
@@ -71,26 +76,46 @@
                                             if (i == 0)
                                             {
                                                 <tr tid="@Model[i].CauseId">
-                                                    <td width="15%" rowspan="@rowspan">@ViewBag.CauseContent</td>
-                                                    <td width="10%"><input type="text" class="input-text" value="0" /></td>
-                                                    <td width="20%">@Model[i].CauseContent</td>
-                                                    <td width="30%">@Model[i].SuggestionContent</td>
+                                                    <td  rowspan="@rowspan">@ViewBag.CauseContent</td>
+                                                    <td ><input type="text" name="happen" class="input-text" value="0" /></td>
+                                                    <td><input type="text" name="event" class="input-text" value="0" /></td>
+                                                    <td >@Model[i].CauseContent</td>
+                                                    <td >@Model[i].SuggestionContent</td>
+                                                    <td >@Model[i].RelatedContent</td>
                                                   
                                                     @if (Model[i].ThisHappensTimesMax > 0 && Model[0].ThisHappensTimesMax == @Model[i].ThisHappensTimes)
                                                     {
-                                                        <td width="12%" style="color:red">@Model[i].ThisHappensTimes</td>
+                                                        <td  style="color:red">@Model[i].ThisHappensTimes</td>
                                                     }
                                                     else
                                                     {
-                                                        <td width="12%">@Model[i].ThisHappensTimes</td>
+                                                        <td >@Model[i].ThisHappensTimes</td>
                                                     }
                                                     @if (Model[i].AllHappenSTimesMax > 0 && Model[0].AllHappenSTimesMax == @Model[i].AllHappenSTimes)
                                                     {
-                                                        <td width="12%" style="color:red">@Model[i].AllHappenSTimes</td>
+                                                        <td  style="color:red">@Model[i].AllHappenSTimes</td>
                                                     }
                                                     else
                                                     {
-                                                        <td width="12%">@Model[i].AllHappenSTimes</td>
+                                                        <td >@Model[i].AllHappenSTimes</td>
+                                                                       
+                                                    }
+
+                                                    @if (Model[i].ThisEventTimesMax > 0 && Model[0].ThisEventTimesMax == @Model[i].ThisEventTimes)
+                                                    {
+                                                        <td style="color:red">@Model[i].ThisEventTimes</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@Model[i].ThisEventTimes</td>
+                                                    }
+                                                    @if (Model[i].AllEventTimesMax > 0 && Model[0].AllEventTimesMax == @Model[i].AllEventTimes)
+                                                    {
+                                                        <td style="color:red">@Model[i].AllEventTimes</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td >@Model[i].AllEventTimes</td>
 
                                                     }
                                                
@@ -100,25 +125,45 @@
                                             else
                                             {
                                                 <tr tid="@Model[i].CauseId">
-                                                    <td width="10%"><input type="text" class="input-text" value="0" /></td>
-                                                    <td width="20%">@Model[i].CauseContent</td>
-                                                    <td width="30%">@Model[i].SuggestionContent</td>
+                                                    <td width="10%"><input type="text" name="happen" class="input-text" value="0" /></td>
+                                                    <td width="10%"><input type="text" name="event" class="input-text" value="0" /></td>
+                                                    <td width="10%">@Model[i].CauseContent</td>
+                                                    <td width="10%">@Model[i].SuggestionContent</td>
+                                                    <td width="10%">@Model[i].RelatedContent</td>
                                                   
                                                     @if (Model[i].ThisHappensTimesMax > 0 && Model[0].ThisHappensTimesMax == @Model[i].ThisHappensTimes)
                                                     {
-                                                        <td width="12%" style="color:red">@Model[i].ThisHappensTimes</td>
+                                                        <td width="10%" style="color:red">@Model[i].ThisHappensTimes</td>
                                                     }
                                                     else
                                                     {
-                                                        <td width="12%">@Model[i].ThisHappensTimes</td>
+                                                        <td width="10%">@Model[i].ThisHappensTimes</td>
                                                     }
                                                     @if (Model[i].AllHappenSTimesMax > 0 && Model[0].AllHappenSTimesMax == @Model[i].AllHappenSTimes)
                                                     {
-                                                        <td width="12%" style="color:red">@Model[i].AllHappenSTimes</td>
+                                                        <td width="10%" style="color:red">@Model[i].AllHappenSTimes</td>
                                                     }
                                                     else
                                                     {
-                                                        <td width="12%">@Model[i].AllHappenSTimes</td>
+                                                        <td width="10%">@Model[i].AllHappenSTimes</td>
+
+                                                    }
+
+                                                    @if (Model[i].ThisEventTimesMax > 0 && Model[0].ThisEventTimesMax == @Model[i].ThisEventTimes)
+                                                    {
+                                                        <td width="10%" style="color:red">@Model[i].ThisEventTimes</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td width="10%">@Model[i].ThisEventTimes</td>
+                                                    }
+                                                    @if (Model[i].AllEventTimesMax > 0 && Model[0].AllEventTimesMax == @Model[i].AllEventTimes)
+                                                    {
+                                                        <td width="10%" style="color:red">@Model[i].AllEventTimes</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td width="10%">@Model[i].AllEventTimes</td>
 
                                                     }
                                                 </tr>
@@ -162,7 +207,8 @@
         function sub()
         {
             var  CauseId="";
-            var HappenTimes="";
+            var HappenTimes = "";
+            var eventtimes = "";
             $("#tbody1").children().each(function()
             {
                 if(CauseId!=="")
@@ -174,12 +220,16 @@
                     CauseId=$(this).attr("tid");
                 }
                
-                HappenTimes+=$(this).children().find("input").val()+",";
+                HappenTimes += $(this).children().find("input[name='happen']").val() + ",";
+                eventtimes += $(this).children().find("input[name='event']").val() + ",";
+              
+
 
             }
             );
+       
 
-            $.post("/api/ApiM_Solution/CreateM_Solution", {"FactorySation":"@Request.QueryString["factorysation"]","Signal":"@Request.QueryString["signal"]","HappenDate":$("#datemin").val(),"CauseId":CauseId,"HappenTimes":HappenTimes}, function (data) {
+            $.post("/api/ApiM_Solution/CreateM_Solution", { "FactorySation": "@Request.QueryString["factorysation"]", "Signal": "@Request.QueryString["signal"]", "HappenDate": $("#datemin").val(), "CauseId": CauseId, "HappenTimes": HappenTimes, "EventTimes": eventtimes }, function (data) {
                 if (data.code == "1")
                 {
                     alert("提交成功");

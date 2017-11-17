@@ -24,7 +24,7 @@
                 }
 
                 List<SelectListItem> list = new List<SelectListItem>();
-                list.Add(new SelectListItem { Text = "天", Value = "1" });
+                list.Add(new SelectListItem { Text = "日", Value = "1" });
                 list.Add(new SelectListItem { Text = "月", Value = "0",Selected=true });
 
                 List<SelectListItem> listpass = new List<SelectListItem>();
@@ -45,6 +45,9 @@
             @Html.DropDownList("searchtimes", listpass, new { @class = "drp" }) 
             <input type="text" class="input-text" style="width:250px" placeholder="输入关键词" id="" name="" >
             <button  onclick="search()" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+            <button onclick="look()" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 查看饼图</button>
+            <button onclick="goEveryDayYujing()" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i>超出预警</button>
+
         </div>
         <div class="cl pd-5 bg-1 bk-gray mt-20">
             <span class="l" id="operate"></span>
@@ -80,7 +83,14 @@
     <script type="text/javascript" src="~/lib/date.js"></script>
     <script src="~/lib/operate.js"></script>
     <script type="text/javascript">
-
+        function look()
+        {
+            var  timetype=$("#searchtype").val();
+            var datetime = $("#datemin").val();
+            var factory=$("#factory").val();
+            var times=$("#searchtimes").val()
+            admin_add('统计', '/Manage/bingtutongji?timetype=' + timetype + '&datetime=' + datetime + '&factory=' + factory + "&times=" + times, '1000', '700')
+        }
         function search()
         {
             demo(1);
@@ -91,7 +101,11 @@
                 demo(1);
             }
             )
-
+            function goEveryDayYujing()
+            {
+                var datetime = $("#datemin").val();
+                window.open("/Manage/EveryDayYujing?date=" + datetime)
+            }
 
             function btn_add() {
                 admin_add('添加', '/System/UserAdd', '800', '500')

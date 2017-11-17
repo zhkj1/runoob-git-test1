@@ -53,24 +53,30 @@ namespace BLL
          //   DataSet ds1 = database.FindDataSetBySql("select top 1 CauseId,CauseContent from Sys_CauseSuggestion where  ParentId=0 and  CauseContent like '%" + content + "%'");
             if (model1!=null)
             {
-                DataSet ds = database.FindDataSetBySql("select CauseId,CauseContent,SuggestionContent from Sys_CauseSuggestion where ParentId="+model1.CauseId);
+                DataSet ds = database.FindDataSetBySql("select CauseId,CauseContent,SuggestionContent,RelatedContent from Sys_CauseSuggestion where ParentId=" + model1.CauseId);
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     sb.Append(ds.Tables[0].Rows[i]["CauseId"].ToString()+",");
                 }
                 string ids = sb.ToString().Substring(0, sb.ToString().Length - 1);
                 //取出当前信息发生的所有次数
-                List<M_Solution> listall = database.FindListBySql<M_Solution>("select sum(HappenTimes)  as HappenTimes,[CauseId] from M_Solution where CauseId in (" + ids + ")  group by CauseId");
-                List<M_Solution> listnow = database.FindListBySql<M_Solution>("select sum(HappenTimes)  as HappenTimes,[CauseId] from M_Solution where CauseId in (" + ids + ") and FactorySation='" + FactorySation + "' and  Signal='" + content + "'   group by CauseId");
+                List<M_Solution> listall = database.FindListBySql<M_Solution>("select sum(HappenTimes)  as HappenTimes,[CauseId],sum(EventTimes) as EventTimes from M_Solution where CauseId in (" + ids + ")  group by CauseId");
+                List<M_Solution> listnow = database.FindListBySql<M_Solution>("select sum(HappenTimes)  as HappenTimes,[CauseId],sum(EventTimes) as  EventTimes from M_Solution where CauseId in (" + ids + ") and FactorySation='" + FactorySation + "' and  Signal='" + content + "'   group by CauseId");
                 int maxall = 0;
                 int maxnow = 0;
+                int eventmaxtall = 0;
+                int eventmaxnow = 0;
                 if (listall.Count > 0)
                 {
                     maxall = listall.Max(a => a.HappenTimes);
+                    eventmaxtall = listall.Max(a => a.EventTimes);
+
                 }
                 if (listnow.Count > 0)
                 {
                     maxnow = listnow.Max(a => a.HappenTimes);
+                    eventmaxnow = listnow.Max(a => a.EventTimes);
+
                 }
 
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -79,24 +85,32 @@ namespace BLL
                     model.CauseId = int.Parse(ds.Tables[0].Rows[i]["CauseId"].ToString());
                     model.SuggestionContent = ds.Tables[0].Rows[i]["SuggestionContent"].ToString();
                     model.CauseContent = ds.Tables[0].Rows[i]["CauseContent"].ToString();
+                    model.RelatedContent = ds.Tables[0].Rows[i]["RelatedContent"].ToString();
                     var nowmodel = listnow.FirstOrDefault(a => a.CauseId == model.CauseId);
                     if (nowmodel == null)
                     {
                         model.ThisHappensTimes = 0;
+                        model.ThisEventTimes = 0;
                     }
                     else
                     {
                         model.ThisHappensTimes = nowmodel.HappenTimes;
+                        model.ThisEventTimes = nowmodel.EventTimes; ;
                     }
                     var allmodel = listall.FirstOrDefault(a => a.CauseId == model.CauseId);
                     if (allmodel == null)
                     {
                         model.AllHappenSTimes = 0;
+                        model.AllEventTimes = 0;
                     }
                     else
                     {
                         model.AllHappenSTimes = allmodel.HappenTimes;
+                        model.AllEventTimes = allmodel.EventTimes;
                     }
+                  
+                    model.AllEventTimesMax = eventmaxtall;
+                    model.ThisEventTimesMax = eventmaxnow;
                     model.AllHappenSTimesMax = maxall;
                     model.ThisHappensTimesMax = maxnow;
                     modellist.Add(model);

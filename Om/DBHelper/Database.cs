@@ -132,6 +132,10 @@ namespace MallWCF.DBHelper
         {
             return DbHelper.ExecuteNonQuery(CommandType.Text, strSql.ToString());
         }
+        public object GetSingle(string strSql)
+        {
+            return DbHelper.ExecuteScalar(CommandType.Text, strSql);
+        }
         /// <summary>
         /// 执行SQL语句
         /// </summary>

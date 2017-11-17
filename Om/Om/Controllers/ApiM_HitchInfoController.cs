@@ -11,6 +11,8 @@ using LeaRun.Utilities;
 using System.Xml;
 using Model.ModelView;
 using System.Text;
+using Quartz.Impl;
+using Quartz;
 
 namespace Om.Controllers
 {
@@ -152,7 +154,7 @@ namespace Om.Controllers
             }
             List<string> list = new List<string>();
           
-            data = re.FindTablePageBySql("SELECT sum(happentimes) as total,[FactorySation],CreateTime,Signal FROM[ElectricPower].[dbo].[M_HitchInfo] where " + strwhere + "   group by CreateTime,[FactorySation], Signal", ref jqgridparam);
+            data = re.FindTablePageBySql("SELECT sum(happentimes) as total,[FactorySation],CreateTime,Signal FROM  [M_HitchInfo] where " + strwhere + "   group by CreateTime,[FactorySation], Signal", ref jqgridparam);
             //for (int i = 0; i < data.Rows.Count; i++)
             //{
             //    list.Add(GetYuji1(data.Rows[i]["FactorySation"].ToString(), data.Rows[i]["Signal"].ToString(), data.Rows[i]["CreateTime"].ToString()));
@@ -435,6 +437,7 @@ namespace Om.Controllers
 
         public Dictionary<string, object> AddSetting(SettingModel model)
         {
+            PredicSettingBll PredicSettingBll = new PredicSettingBll();
             // Type t = typeof(SettingModel);
             string path = HttpContext.Current.Server.MapPath("/App_Data/selfsetting.xml");
             XmlDocument xmldoc = new XmlDocument();
@@ -443,7 +446,27 @@ namespace Om.Controllers
             xmldoc.SelectSingleNode("root").SelectSingleNode("selecttimes").Attributes[0].Value = model.selecttimes;
             xmldoc.SelectSingleNode("root").SelectSingleNode("weekendbili").Attributes[0].Value = model.weekendbili;
             xmldoc.SelectSingleNode("root").SelectSingleNode("mothtimes").Attributes[0].Value = model.mothtimes.ToString();
+            xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value = model.showcount.ToString();
+            xmldoc.SelectSingleNode("root").SelectSingleNode("daorutime").Attributes[0].Value = model.daorutime;
+            xmldoc.SelectSingleNode("root").SelectSingleNode("daorudir").Attributes[0].Value = model.daorudir;
+            xmldoc.SelectSingleNode("root").SelectSingleNode("daorunowdate").Attributes[0].Value = model.daorunowdate;
             xmldoc.Save(path);
+            if (string.IsNullOrEmpty(model.daorutime))
+            {
+                var scheduler = StdSchedulerFactory.GetDefaultScheduler();
+                if (scheduler.CheckExists(new TriggerKey("trigger", "triggers")))
+                {
+                    scheduler.UnscheduleJob(new TriggerKey("trigger", "triggers"));
+
+                }
+
+
+            }
+            else
+            {
+                PredicSettingBll.ZiDongDaoRu(model.daorutime);
+
+            }
             return new Dictionary<string, object>
             {
                 { "code","1"}
@@ -595,5 +618,96 @@ namespace Om.Controllers
                 { "msg",a}
             };
         }
+        [HttpPost]
+        public Dictionary<string, object> IsExistByDate()
+        {
+            string date = HttpContext.Current.Request["date"].ToString();
+            IDatabase database = DataFactory.Database();
+            var ds = database.FindDataSetBySql("select top 1 HitchId  from M_HitchInfo where CreateTime='" + date + "'");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return new Dictionary<string, object>
+                {
+                    { "code","1"}
+
+                };
+            }
+            else
+            {
+                return new Dictionary<string, object>
+                {
+                    { "code","0"}
+
+                };
+            }
+
+        }
+
+        //预警饼图
+        [HttpPost]
+        public Dictionary<string, object> YujingListBingTu()
+        {
+            string path = HttpContext.Current.Server.MapPath("/App_Data/selfsetting.xml");
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load(path);
+            // PropertyInfo[] properties = t.GetProperties();
+           
+            string content = "";
+            int top = int.Parse(xmldoc.SelectSingleNode("root").SelectSingleNode("showcount").Attributes[0].Value);
+            JqGridParam jqgridparam = new JqGridParam();
+            jqgridparam.page = 1;
+            jqgridparam.rows = top;
+            jqgridparam.sord = "desc";
+            jqgridparam.sidx = "total";
+            var timetype = HttpContext.Current.Request.Form["timetype"].ToString();
+            var datetime = HttpContext.Current.Request.Form["datetime"].ToString();
+            var times = HttpContext.Current.Request.Form["times"].ToString();
+            var factory = HttpContext.Current.Request.Form["factory"].ToString();
+            //月
+            string date = "";
+            if (timetype == "0")
+            {
+                date = DateTime.Parse(datetime).Month.ToString() + "月份";
+            }
+            else {
+                date = datetime;
+            }
+
+
+            content = date + factory + "次数超过" + times + "次的前" + top + "统计";
+
+
+
+            IDatabase database = DataFactory.Database();
+            IRepository<Module> re = new Repository<Module>();
+            DataTable data = new DataTable();
+            string strwhere = "";
+            if (!string.IsNullOrEmpty(factory))
+            {
+                strwhere = " and FactorySation='" + factory + "'";
+            }
+            //按照月份删选
+
+            if (timetype == "0")
+            {
+
+                data = re.FindTablePageBySql("select [FactorySation],[Signal],sum([HappenTimes]) as total from (SELECT [FactorySation],[Signal] ,[HappenTimes] ,[SignalType], [CreateTime]   FROM[ElectricPower].[dbo].[M_HitchInfo] where datediff(month, CreateTime, '" + datetime + "') = 0 " + strwhere + ") a group by[FactorySation],[Signal] having sum([HappenTimes])>" + times + "", ref jqgridparam);
+
+            }
+            else
+            {
+                data = re.FindTablePageBySql("select [FactorySation],[Signal],sum([HappenTimes]) as total from (SELECT [FactorySation],[Signal] ,[HappenTimes] ,[SignalType], [CreateTime]   FROM[ElectricPower].[dbo].[M_HitchInfo] where datediff(day, CreateTime, '" + datetime + "') = 0 " + strwhere + ") a group by[FactorySation],[Signal] having sum([HappenTimes])>" + times + "", ref jqgridparam);
+
+            }
+            return new Dictionary<string, object>
+            {
+                { "code",1},
+                { "rows",data},
+                { "content",content}
+            };
+        }
+
+
+
     }
 }

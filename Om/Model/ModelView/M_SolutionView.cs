@@ -21,5 +21,15 @@ namespace Model.ModelView
         public int ThisHappensTimesMax { get; set; }
 
         public int AllHappenSTimesMax { get; set; }
+        public string RelatedContent { get; set; }
+
+        public int ThisEventTimes { get; set; }
+
+        public int AllEventTimes { get; set; }
+
+        public int ThisEventTimesMax { get; set; }
+
+        public int AllEventTimesMax { get; set; }
+
     }
 }

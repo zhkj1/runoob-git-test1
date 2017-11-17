@@ -28,6 +28,7 @@
                     <th width="40">编号</th>
                     <th width="200">信息/原因</th>
                     <th width="300">详细原因</th>
+                    <th width="300">备注</th>
                     <th width="100">创建时间</th>
                     <th width="100">创建人</th>
 
@@ -58,13 +59,13 @@
     )
 
     function btn_add() {
-        admin_add('添加', '/Manage/CauseAdd', '800', '500')
+        admin_add('添加', '/Manage/CauseAdd', '800', '600')
     }
 
     function btn_edit() {
         if ($("#view1").find(":checkbox:checked").length == 1) {
             var id = $("#view1").find(":checkbox:checked").val();
-            admin_add('修改', '/Manage/CauseAdd?id=' + id, '800', '500')
+            admin_add('修改', '/Manage/CauseAdd?id=' + id, '800', '600')
         }
         else {
             $.Huimodalalert('请选择一个需要修改的数据', 1000)
@@ -128,8 +129,8 @@
                 else {
                     strhtml += "<td style=\"text-align:left\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├&nbsp;" + res.rows[i].causecontent + "</td>";
                 }
-             
                 strhtml += "<td style=\"text-align:left\">" + res.rows[i].suggestioncontent + "</td>";
+                strhtml += "<td style=\"text-align:left\">" + res.rows[i].relatedcontent + "</td>";
                
                strhtml += "<td>" + res.rows[i].createtime.substring(0,10) + "</td>";
              
