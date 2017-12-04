@@ -66,7 +66,10 @@
                             <div id="fileList" class="uploader-list"></div>
                             <div id="filePicker">选择文件</div>&nbsp;
                             <button id="ctlBtn" class="btn btn-default">上传并导入</button>
-                            <button class="btn btn-default" onclick="location.href=location.href">刷新继续导入</button>
+
+                            <button  class="btn btn-default" onclick="location.href=location.href">刷新继续导入</button>
+
+
                         </div>
                     </div>
                 </div>
@@ -171,6 +174,7 @@
             });
             $("#ctlBtn").on("click", function ()
             {
+                alert("22");
                  uploader.upload();
             }
             )
