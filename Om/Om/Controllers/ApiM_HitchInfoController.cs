@@ -14,6 +14,7 @@ using System.Text;
 using Quartz.Impl;
 using Quartz;
 
+
 namespace Om.Controllers
 {
     public class ApiM_HitchInfoController : ApiController
@@ -153,6 +154,7 @@ namespace Om.Controllers
                 strwhere += " and Signal like'%" + key + "%'";
             }
             List<string> list = new List<string>();
+           
           
             data = re.FindTablePageBySql("SELECT sum(happentimes) as total,[FactorySation],CreateTime,Signal FROM  [M_HitchInfo] where " + strwhere + "   group by CreateTime,[FactorySation], Signal", ref jqgridparam);
             //for (int i = 0; i < data.Rows.Count; i++)

@@ -239,7 +239,7 @@ namespace MallWCF.DBHelper
         /// </summary>
         /// <param name="entity">实体类</param>
         /// <returns>int</returns>
-        public static StringBuilder InsertSql<T>(T entity)
+        public static StringBuilder e<T>(T entity)
         {
             Type type = entity.GetType();
             StringBuilder sb = new StringBuilder();
